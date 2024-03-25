@@ -13,4 +13,15 @@
 
 ## What is ddev-pimp-my-shell?
 
+This a an addon that adds several nice command line utitlites I use across all
+projects, making it easier/nicer to work inside the container with some initial
+defaults.
+
+- https://github.com/ahoy-cli/ahoy
+- https://github.com/skywind3000/z.lua
+- https://github.com/junegunn/fzf
+- https://github.com/junegunn/fzf-git.sh
+- https://starship.rs/
+- https://github.com/charmbracelet/gum
+
 **Contributed and maintained by [@hanoii](https://github.com/hanoii)**

@@ -5,3 +5,4 @@ RUN mkdir -p /opt/fzf-git.sh && cd /opt/fzf-git.sh && git init && git remote add
 RUN wget -q https://github.com/sharkdp/bat/releases/download/v0.24.0/bat_0.24.0_`dpkg --print-architecture`.deb -O bat.deb &&  dpkg -i bat.deb && rm bat.deb
 RUN mkdir -p /opt/z.lua && wget https://github.com/skywind3000/z.lua/archive/refs/tags/1.8.18.zip -qO- | bsdtar xf - --strip-components=1 -C /opt/z.lua
 RUN curl -sS https://starship.rs/install.sh | sh -s -- -y -v v1.18.1
+RUN wget -q https://github.com/charmbracelet/gum/releases/download/v0.13.0/gum_0.13.0_`dpkg --print-architecture`.deb -O gum.deb && dpkg -i gum.deb && rm gum.deb

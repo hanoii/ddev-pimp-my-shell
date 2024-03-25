@@ -1,0 +1,4 @@
+#ddev-generated
+hooks:
+  post-start:
+    - exec: nohup bash -c 'if [ -z "${DDEV_README_WATCH_DISABLED-}" ]; then { ahoy -f /var/www/html/.ddev/readme/.ahoy.readme.yml watch & } ; fi' > /dev/null 2>&1

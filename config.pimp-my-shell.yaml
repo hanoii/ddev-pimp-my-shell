@@ -1,0 +1,2 @@
+#ddev-generated
+webimage_extra_packages: [boxes, bsdmainutils, build-essential, kitty-terminfo, libarchive-tools, lua5.4, pv]

@@ -8,3 +8,5 @@ webimage_extra_packages:
   - libarchive-tools
   - lua5.4
   - pv
+web_environment:
+  - COLORTERM=${COLORTERM}

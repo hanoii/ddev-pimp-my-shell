@@ -1,11 +1,12 @@
 name: readme
 repository: https://github.com/hanoii/ddev-readme/tarball/main
 version: ""
-install_date: "2024-03-25T12:33:22-03:00"
+install_date: "2024-03-25T14:24:23-03:00"
 project_files:
     - web-build/Dockerfile.readme
     - readme/watch.js
     - readme/.prettierrc
+    - readme/build.sh
     - readme/.ahoy.readme.yml
     - web-build/Dockerfile.readme
     - config.readme.yaml

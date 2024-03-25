@@ -1,5 +1,8 @@
 #ddev-generated
 
+# This is so that child processes have appropriate access to this var
+export SHELL
+
 # ahoy
 COMP_WORDBREAKS=${COMP_WORDBREAKS//:}
 

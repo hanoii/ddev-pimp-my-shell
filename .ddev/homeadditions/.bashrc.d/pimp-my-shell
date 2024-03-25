@@ -1,7 +1,12 @@
 #ddev-generated
 
+# ahoy
+COMP_WORDBREAKS=${COMP_WORDBREAKS//:}
+
+# fzf
 [ -f /opt/.fzf.bash ] && source /opt/.fzf.bash
 
+# fzf-git
 if ! grep -qxF "source /opt/fzf-git.sh/fzf-git.sh" ~/.bashrc ; then
   echo -e "\n# Added by ddev-fzf add-on on $(date -u "+%Y-%m-%d %H:%m") \nsource /opt/fzf-git.sh/fzf-git.sh" >> ~/.bashrc
 fi

@@ -3,3 +3,5 @@ project_files:
   - web-build/Dockerfile.pimp-my-shell
   - homeadditions/.bashrc.d/pimp-my-shell
   - config.pimp-my-shell.yaml
+  - commands/web/ahoy
+  - homeadditions/.local/share/bash-completion/completions/ahoy

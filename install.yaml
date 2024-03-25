@@ -4,5 +4,6 @@ project_files:
   - homeadditions/.bashrc.d/pimp-my-shell.sh
   - config.pimp-my-shell.yaml
   - commands/web/ahoy
+  - commands/web/gum
   - homeadditions/.local/share/bash-completion/completions/ahoy
   - homeadditions/.config/starship.toml

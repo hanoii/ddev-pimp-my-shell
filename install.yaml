@@ -10,3 +10,4 @@ project_files:
   - pimp-my-shell/hooks/README.md
   - pimp-my-shell/hooks/post-import-db.sh
   - pimp-my-shell/hooks/post-import-db.d
+  - pimp-my-shell/scripts/drush-uli.sh

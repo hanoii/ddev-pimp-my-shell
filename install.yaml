@@ -7,3 +7,6 @@ project_files:
   - commands/web/gum
   - homeadditions/.local/share/bash-completion/completions/ahoy
   - homeadditions/.config/starship.toml
+  - pimp-my-shell/hooks/README.md
+  - pimp-my-shell/hooks/post-import-db.sh
+  - pimp-my-shell/hooks/post-import-db.d

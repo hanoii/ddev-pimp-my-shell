@@ -1,8 +1,32 @@
 #ddev-generated
+
+# ahoy
 RUN wget -q https://github.com/ahoy-cli/ahoy/releases/download/v2.1.1/ahoy-bin-linux-`dpkg --print-architecture` -O - > /usr/local/bin/ahoy && chmod +x /usr/local/bin/ahoy
+
+# fzf et al
 RUN mkdir -p /opt/fzf && cd /opt/fzf && git init && git remote add origin https://github.com/junegunn/fzf.git && git fetch --depth 1 origin db6db49ed642caf9cbe716f80d4fa40052118068 && git checkout FETCH_HEAD && /opt/fzf/install --all && cp /root/.fzf.bash /opt
 RUN mkdir -p /opt/fzf-git.sh && cd /opt/fzf-git.sh && git init && git remote add origin https://github.com/junegunn/fzf-git.sh.git && git fetch --depth 1 origin 0f1e52079ffd9741eec723f8fd92aa09f376602f && git checkout FETCH_HEAD
+
+# bat
 RUN wget -q https://github.com/sharkdp/bat/releases/download/v0.24.0/bat_0.24.0_`dpkg --print-architecture`.deb -O bat.deb &&  dpkg -i bat.deb && rm bat.deb
+
+# z.lua
 RUN mkdir -p /opt/z.lua && wget https://github.com/skywind3000/z.lua/archive/refs/tags/1.8.18.zip -qO- | bsdtar xf - --strip-components=1 -C /opt/z.lua
+
+# starship
 RUN curl -sS https://starship.rs/install.sh | sh -s -- -y -v v1.18.1
+
+# gum
 RUN wget -q https://github.com/charmbracelet/gum/releases/download/v0.13.0/gum_0.13.0_`dpkg --print-architecture`.deb -O gum.deb && dpkg -i gum.deb && rm gum.deb
+
+# fish
+RUN echo "deb http://download.opensuse.org/repositories/shells:/fish:/release:/3/Debian_`lsb_release -rs`/ /" | sudo tee /etc/apt/sources.list.d/shells:fish:release:3.list
+RUN curl -fsSL https://download.opensuse.org/repositories/shells:fish:release:3/Debian_`lsb_release -rs`/Release.key | gpg --dearmor | sudo tee /etc/apt/trusted.gpg.d/shells_fish_release_3.gpg > /dev/null
+RUN apt update && apt satisfy -y "fish (>=3.7)"
+USER $uid:$gid
+# The ?v= is only there to bust the Dockerfile build cache if there's
+# a new version we wan't to make sure it'll get into the builds. It doesn't
+# change the installed version or the version of the install script,
+# it will always be the latest at the time of the build.
+RUN echo "curl -sL 'https://raw.githubusercontent.com/jorgebucaran/fisher/main/functions/fisher.fish?4.4.4' | source && fisher install jorgebucaran/fisher" | fish
+USER root:root

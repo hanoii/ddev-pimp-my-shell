@@ -5,8 +5,10 @@ project_files:
   - config.pimp-my-shell.yaml
   - commands/web/ahoy
   - commands/web/gum
+  - commands/host/fish
   - homeadditions/.local/share/bash-completion/completions/ahoy
   - homeadditions/.config/starship.toml
+  - homeadditions/.config/fish/conf.d/z.fish
   - pimp-my-shell/hooks/README.md
   - pimp-my-shell/hooks/post-import-db.sh
   - pimp-my-shell/hooks/post-import-db.d

@@ -19,11 +19,12 @@ projects, making it easier/nicer to work inside the container with some initial
 defaults.
 
 - https://github.com/ahoy-cli/ahoy
-- https://github.com/skywind3000/z.lua
+- https://github.com/skywind3000/z.lua (working on both bash and fish)
 - https://github.com/junegunn/fzf
 - https://github.com/junegunn/fzf-git.sh
 - https://starship.rs/
 - https://github.com/charmbracelet/gum
+- https://github.com/fish-shell/fish-shell / https://fishshell.com/
 
 It also has:
 

@@ -14,7 +14,7 @@ RUN wget -q https://github.com/sharkdp/bat/releases/download/v0.24.0/bat_0.24.0_
 RUN mkdir -p /opt/z.lua && wget https://github.com/skywind3000/z.lua/archive/refs/tags/1.8.18.zip -qO- | bsdtar xf - --strip-components=1 -C /opt/z.lua
 
 # starship
-RUN curl -sS https://starship.rs/install.sh | sh -s -- -y -v v1.18.1
+RUN curl -sS https://starship.rs/install.sh | sh -s -- -y -v v1.18.2
 
 # gum
 RUN wget -q https://github.com/charmbracelet/gum/releases/download/v0.13.0/gum_0.13.0_`dpkg --print-architecture`.deb -O gum.deb && dpkg -i gum.deb && rm gum.deb

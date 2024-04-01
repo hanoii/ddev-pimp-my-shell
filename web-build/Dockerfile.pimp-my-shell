@@ -29,4 +29,5 @@ USER $uid:$gid
 # change the installed version or the version of the install script,
 # it will always be the latest at the time of the build.
 RUN echo "curl -sL 'https://raw.githubusercontent.com/jorgebucaran/fisher/main/functions/fisher.fish?4.4.4' | source && fisher install jorgebucaran/fisher" | fish
+RUN fish -c "fisher install IlanCosman/tide@v6"
 USER root:root

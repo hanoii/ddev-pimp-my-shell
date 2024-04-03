@@ -9,6 +9,7 @@ project_files:
   - homeadditions/.local/share/bash-completion/completions/ahoy
   - homeadditions/.local/share/fish/vendor_completions.d/ahoy.fish
   - homeadditions/.config/starship.toml
+  - homeadditions/.config/fish/conf.d/pimp-my-shell.fish
   - homeadditions/.config/fish/conf.d/z.fish
   - pimp-my-shell/hooks/README.md
   - pimp-my-shell/hooks/post-import-db.sh

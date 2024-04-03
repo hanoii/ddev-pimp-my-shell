@@ -24,10 +24,6 @@ RUN echo "deb http://download.opensuse.org/repositories/shells:/fish:/release:/3
 RUN curl -fsSL https://download.opensuse.org/repositories/shells:fish:release:3/Debian_`lsb_release -rs`/Release.key | gpg --dearmor | sudo tee /etc/apt/trusted.gpg.d/shells_fish_release_3.gpg > /dev/null
 RUN apt update && apt satisfy -y "fish (>=3.7)"
 USER $uid:$gid
-# The ?v= is only there to bust the Dockerfile build cache if there's
-# a new version we wan't to make sure it'll get into the builds. It doesn't
-# change the installed version or the version of the install script,
-# it will always be the latest at the time of the build.
-RUN echo "curl -sL 'https://raw.githubusercontent.com/jorgebucaran/fisher/main/functions/fisher.fish?4.4.4' | source && fisher install jorgebucaran/fisher" | fish
-RUN fish -c "fisher install IlanCosman/tide@v6"
+RUN fish -c "curl -sL 'https://raw.githubusercontent.com/jorgebucaran/fisher/main/functions/fisher.fish' | source && fisher install jorgebucaran/fisher@4.4.4"
+RUN fish -c "fisher install IlanCosman/tide@v6.1.1"
 USER root:root

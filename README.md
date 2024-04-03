@@ -6,11 +6,10 @@
 <!-- toc -->
 
 - [What is ddev-pimp-my-shell?](#what-is-ddev-pimp-my-shell)
+- [fish](#fish)
 - [ddev `post-import-db` hook](#ddev-post-import-db-hook)
 
 <!-- tocstop -->
-
-<!-- stoptoc -->
 
 ## What is ddev-pimp-my-shell?
 
@@ -29,6 +28,25 @@ defaults.
 It also has:
 
 - Some useful [scripts](pimp-my-shell/scripts)
+
+## fish
+
+This add-on installs:
+
+- https://github.com/jorgebucaran/fisher
+- https://github.com/IlanCosman/tide
+
+For tide, it uses the default configuration, if you want to have your own on all
+of your ddev projects you can create/edit
+`.ddev/homeadditions/.config/fish/conf.d/mytide.fish` with something like the
+following:
+
+```fish
+if tide --version > /dev/null && not test -f ~/.config/fish/conf.d/.mytide
+  tide configure --auto --style=Classic --prompt_colors='True color' --classic_prompt_color=Light --show_time=No --classic_prompt_separators=Angled --powerline_prompt_heads=Sharp --powerline_prompt_tails=Flat --powerline_prompt_style='One line' --prompt_spacing=Compact --icons='Many icons' --transient=Yes
+  touch ~/.config/fish/conf.d/.mytide
+end
+```
 
 ## ddev `post-import-db` hook
 

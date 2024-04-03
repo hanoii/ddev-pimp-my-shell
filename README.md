@@ -42,9 +42,14 @@ of your ddev projects you can create/edit
 following:
 
 ```fish
-if tide --version > /dev/null && not test -f ~/.config/fish/conf.d/.mytide
-  tide configure --auto --style=Classic --prompt_colors='True color' --classic_prompt_color=Light --show_time=No --classic_prompt_separators=Angled --powerline_prompt_heads=Sharp --powerline_prompt_tails=Flat --powerline_prompt_style='One line' --prompt_spacing=Compact --icons='Many icons' --transient=Yes
-  touch ~/.config/fish/conf.d/.mytide
+# Doing it as a fish_prompt event to make sure it is shown the first time it's
+# run. Not sure if this is the best workaround, but otherwise the first `ddev fish`
+# would show no prompt.
+function mytide --on-event fish_prompt
+  if tide --version > /dev/null && not test -f ~/.config/fish/conf.d/.mytide
+    tide configure --auto --style=Classic --prompt_colors='True color' --classic_prompt_color=Light --show_time=No --classic_prompt_separators=Angled --powerline_prompt_heads=Sharp --powerline_prompt_tails=Flat --powerline_prompt_style='One line' --prompt_spacing=Compact --icons='Many icons' --transient=Yes
+    touch ~/.config/fish/conf.d/.mytide
+  end
 end
 ```
 

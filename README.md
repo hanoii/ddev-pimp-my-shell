@@ -7,6 +7,18 @@ This a an addon that adds several nice command line utitlites I use across all
 projects, making it easier/nicer to work inside the container with some initial
 defaults.
 
+<!-- toc -->
+
+- [Features](#features)
+- [Tweaks](#tweaks)
+  * [starship](#starship)
+  * [fish](#fish)
+  * [ddev `post-import-db` hook](#ddev-post-import-db-hook)
+
+<!-- tocstop -->
+
+## Features
+
 - https://github.com/ahoy-cli/ahoy
 - https://github.com/skywind3000/z.lua (working on both bash and fish)
 - https://github.com/junegunn/fzf
@@ -18,15 +30,6 @@ defaults.
 It also has:
 
 - Some useful [scripts](pimp-my-shell/scripts)
-
-<!-- toc -->
-
-- [Tweaks](#tweaks)
-  * [starship](#starship)
-  * [fish](#fish)
-  * [ddev `post-import-db` hook](#ddev-post-import-db-hook)
-
-<!-- tocstop -->
 
 ## Tweaks
 

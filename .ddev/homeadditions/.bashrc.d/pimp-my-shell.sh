@@ -26,4 +26,9 @@ if [[ "$BASHOPTS" =~ login_shell ]]; then
 fi
 
 # starship prompt
+function set_win_title(){
+  echo -ne "\033]0; ddev[$DDEV_PROJECT]@$PWD - $@\007"
+}
+starship_precmd_user_func="set_win_title"
 eval "$(starship init bash)"
+trap "set_win_title \${BASH_COMMAND}" DEBUG

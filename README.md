@@ -37,7 +37,7 @@ are many ways you can achieve that. I am personally editing my global
 `~/.ddev/global_config.yaml` on the host and adding a `STARSHIP_CONFIG`
 environment variable pointing to an alternative config file which I also added
 to `~/.ddev/homeadditions/.config` on the host with the content of this add-on's
-[`starship.toml`](homeaddiotions/.config/starship.toml) and merging it with
+[`starship.toml`](homeadditions/.config/starship.toml) and merging it with
 (`[directory]` is in both):
 
 ```

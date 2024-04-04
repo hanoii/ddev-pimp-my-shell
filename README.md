@@ -6,6 +6,7 @@
 <!-- toc -->
 
 - [What is ddev-pimp-my-shell?](#what-is-ddev-pimp-my-shell)
+- [starship](#starship)
 - [fish](#fish)
 - [ddev `post-import-db` hook](#ddev-post-import-db-hook)
 
@@ -29,6 +30,20 @@ It also has:
 
 - Some useful [scripts](pimp-my-shell/scripts)
 
+## starship
+
+If you want to use a [Nerd font](https://starship.rs/presets/nerd-font), there
+are many ways you can achieve that. I am personally editing my global
+`~/.ddev/global_config.yaml` on the host and adding a `STARSHIP_CONFIG`
+environment variable pointing to an alternative config file which I also added
+to `~/.ddev/homeadditions/.config` on the host with the content of this add-on's
+[`starship.toml`](homeaddiotions/.config/starship.toml) and merging it with
+(`[directory]` is in both):
+
+```
+starship preset nerd-font-symbols
+```
+
 ## fish
 
 This add-on installs:
@@ -38,8 +53,8 @@ This add-on installs:
 
 For tide, it uses the default configuration, if you want to have your own on all
 of your ddev projects you can create/edit
-`.ddev/homeadditions/.config/fish/conf.d/mytide.fish` with something like the
-following:
+`~/.ddev/homeadditions/.config/fish/conf.d/mytide.fish` on the host with
+something like the following:
 
 ```fish
 # Doing it as a fish_prompt event to make sure it is shown the first time it's
@@ -50,7 +65,7 @@ function mytide --on-event fish_prompt
     tide configure --auto --style=Classic --prompt_colors='True color' --classic_prompt_color=Light --show_time=No --classic_prompt_separators=Angled --powerline_prompt_heads=Sharp --powerline_prompt_tails=Flat --powerline_prompt_style='One line' --prompt_spacing=Compact --icons='Many icons' --transient=Yes
     touch ~/.config/fish/conf.d/.mytide
   end
-end
+endkkk
 ```
 
 ## ddev `post-import-db` hook

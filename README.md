@@ -3,17 +3,6 @@
 
 # ddev-pimp-my-shell <!-- omit in toc -->
 
-<!-- toc -->
-
-- [What is ddev-pimp-my-shell?](#what-is-ddev-pimp-my-shell)
-- [starship](#starship)
-- [fish](#fish)
-- [ddev `post-import-db` hook](#ddev-post-import-db-hook)
-
-<!-- tocstop -->
-
-## What is ddev-pimp-my-shell?
-
 This a an addon that adds several nice command line utitlites I use across all
 projects, making it easier/nicer to work inside the container with some initial
 defaults.
@@ -30,21 +19,32 @@ It also has:
 
 - Some useful [scripts](pimp-my-shell/scripts)
 
-## starship
+<!-- toc -->
+
+- [Tweaks](#tweaks)
+  * [starship](#starship)
+  * [fish](#fish)
+  * [ddev `post-import-db` hook](#ddev-post-import-db-hook)
+
+<!-- tocstop -->
+
+## Tweaks
+
+### starship
 
 If you want to use a [Nerd font](https://starship.rs/presets/nerd-font), there
 are many ways you can achieve that. I am personally editing my global
 `~/.ddev/global_config.yaml` on the host and adding a `STARSHIP_CONFIG`
 environment variable pointing to an alternative config file which I also added
 to `~/.ddev/homeadditions/.config` on the host with the content of this add-on's
-[`starship.toml`](homeadditions/.config/starship.toml) and merging it with
-(`[directory]` is in both):
+[`starship.toml`](homeadditions/.config/starship.toml) and merging it with the
+output of (`[directory]` is in both):
 
 ```
 starship preset nerd-font-symbols
 ```
 
-## fish
+### fish
 
 This add-on installs:
 
@@ -68,7 +68,7 @@ function mytide --on-event fish_prompt
 endkkk
 ```
 
-## ddev `post-import-db` hook
+### ddev `post-import-db` hook
 
 I generally have import scripts that I ship either from other add-ons or
 specific to projects and those scripts usually download the database from within

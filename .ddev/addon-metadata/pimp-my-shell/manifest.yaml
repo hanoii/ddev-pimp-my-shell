@@ -1,7 +1,7 @@
 name: pimp-my-shell
 repository: .
 version: ""
-install_date: "2024-04-06T19:16:47-03:00"
+install_date: "2024-04-09T17:47:01-03:00"
 project_files:
     - web-build/Dockerfile.pimp-my-shell
     - homeadditions/.bashrc.d/pimp-my-shell.sh
@@ -13,7 +13,6 @@ project_files:
     - homeadditions/.local/share/fish/vendor_completions.d/ahoy.fish
     - homeadditions/.config/starship.toml
     - homeadditions/.config/fish/conf.d/pimp-my-shell.fish
-    - homeadditions/.config/fish/conf.d/z.fish
     - pimp-my-shell/hooks/README.md
     - pimp-my-shell/hooks/post-import-db.sh
     - pimp-my-shell/hooks/post-import-db.d

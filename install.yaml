@@ -10,8 +10,18 @@ project_files:
   - homeadditions/.local/share/fish/vendor_completions.d/ahoy.fish
   - homeadditions/.config/starship.toml
   - homeadditions/.config/fish/conf.d/pimp-my-shell.fish
-  - homeadditions/.config/fish/conf.d/z.fish
   - pimp-my-shell/hooks/README.md
   - pimp-my-shell/hooks/post-import-db.sh
   - pimp-my-shell/hooks/post-import-db.d
   - pimp-my-shell/scripts/drush-uli.sh
+post_install_actions:
+  - |
+    #ddev-description: Remove deprecated z.fish file
+    remove_file="homeadditions/.config/fish/conf.d/z.fish"
+    if [ -f "$remove_file" ]; then
+      if grep '#ddev-generated' "$remove_file"; then
+        rm "$remove_file"
+      else
+        echo "Existing "$remove_file" does not have #ddev-generated, so can't be removed"
+      fi
+    fi

@@ -1,12 +1,5 @@
 #ddev-generated
 
-# xdg
-# https://specifications.freedesktop.org/basedir-spec/basedir-spec-latest.html
-# This is used mostly by fish, but setting it here in case it's one by something
-# else
-mkdir -p /mnt/ddev-global-cache/xdg/$HOSTNAME/data
-export XDG_DATA_HOME=/mnt/ddev-global-cache/xdg/$HOSTNAME/data
-
 # If not running interactively, don't do anything
 case $- in
     *i*) ;;

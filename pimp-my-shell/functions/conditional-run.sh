@@ -1,3 +1,5 @@
+#ddev-generated
+
 cr_init() {
   if [ "$#" -lt 3 ]; then
     >&2 echo -e "\033[0;31m[error/${FUNCNAME[0]}] You need to pass an ID, an extra string (or empty), and a list of tar extra parameters followed by a list of files and/or directories.\033[0m"

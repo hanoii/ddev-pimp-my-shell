@@ -22,8 +22,8 @@ cr_should_run() {
   local id=$1
   local hash_filename=".cr.hash.$id"
   local hash_filepath="/tmp/${hash_filename}"
-  local stored_hash_filepath = "/mnt/ddev-global-cache/pimp-my-shell/${HOSTNAME}/cr/${hash_filename}"
-  [[ ! -f $stored_hash_filepath ]] || ! cmp -s "$stored_hash_filepath" $hash_filename
+  local stored_hash_filepath="/mnt/ddev-global-cache/pimp-my-shell/${HOSTNAME}/cr/${hash_filename}"
+  [[ ! -f $stored_hash_filepath ]] || ! cmp -s "$stored_hash_filepath" $hash_filepath
 }
 
 cr_success() {
@@ -34,6 +34,6 @@ cr_success() {
   local id=$1
   local hash_filename=".cr.hash.$id"
   local hash_filepath="/tmp/${hash_filename}"
-  local stored_hash_filepath = "/mnt/ddev-global-cache/pimp-my-shell/${HOSTNAME}/cr/${hash_filename}"
+  local stored_hash_filepath="/mnt/ddev-global-cache/pimp-my-shell/${HOSTNAME}/cr/${hash_filename}"
   cp $hash_filepath $stored_hash_filepath
 }

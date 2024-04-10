@@ -1,7 +1,7 @@
 name: pimp-my-shell
 repository: .
 version: ""
-install_date: "2024-04-09T19:59:24-03:00"
+install_date: "2024-04-10T11:23:15-03:00"
 project_files:
     - web-build/Dockerfile.pimp-my-shell
     - homeadditions/.bashrc.d/pimp-my-shell.sh
@@ -17,5 +17,6 @@ project_files:
     - pimp-my-shell/hooks/post-import-db.sh
     - pimp-my-shell/hooks/post-import-db.d
     - pimp-my-shell/scripts/drush-uli.sh
+    - pimp-my-shell/functions/conditional-run.sh
 global_files: []
 removal_actions: []

@@ -19,5 +19,9 @@ if test -f /mnt/ddev-global-cache/fishhistory/$HOSTNAME/fish_history
 end
 
 function fish_title
-  echo "$DDEV_PROJECT ddev@"(fish_prompt_pwd_dir_length=1 prompt_pwd) - $argv
+  set --local title "$DDEV_PROJECT/ddev: "(fish_prompt_pwd_dir_length=1 prompt_pwd)
+  if count $argv > /dev/null
+    set title "$title - $argv"
+  end
+  echo $title
 end

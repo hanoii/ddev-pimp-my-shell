@@ -9,9 +9,6 @@ esac
 # This is so that child processes have appropriate access to this var
 export SHELL
 
-# Default $EDITOR to vim
-export EDITOR=${DDEV_PIMP_MY_SHELL_EDITOR-/usr/bin/vim}
-
 # ahoy
 COMP_WORDBREAKS=${COMP_WORDBREAKS//:}
 

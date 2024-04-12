@@ -11,5 +11,6 @@ webimage_extra_packages:
   - libarchive-tools
   - lua5.4
   - pv
+  - vim-nox
 web_environment:
   - COLORTERM=${COLORTERM}

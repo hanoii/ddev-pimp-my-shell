@@ -25,3 +25,8 @@ function fish_title
   end
   echo $title
 end
+
+# A helper env var to be used from bash scripts
+if status --is-interactive
+  set -x IS_FISH_SHELL 1
+end

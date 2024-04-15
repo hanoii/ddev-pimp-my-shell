@@ -27,6 +27,7 @@ function fish_title
 end
 
 # A helper env var to be used from bash scripts
+set -x IS_FISH_SHELL 1
 if status --is-interactive
-  set -x IS_FISH_SHELL 1
+  set -x IS_FISH_INTERACTIVE_SHELL 1
 end

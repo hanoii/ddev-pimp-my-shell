@@ -21,7 +21,7 @@ end
 function fish_title
   set --local title "$DDEV_PROJECT/ddev: "(fish_prompt_pwd_dir_length=1 prompt_pwd)
   if count $argv > /dev/null
-    set title "$title - $argv"
+    set title "$argv - $title"
   end
   echo $title
 end

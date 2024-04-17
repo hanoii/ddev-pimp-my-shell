@@ -7,8 +7,11 @@ webimage_extra_packages:
   - boxes
   - bsdmainutils
   - build-essential
+  - cowsay
+  - figlet
   - kitty-terminfo
   - libarchive-tools
+  - lolcat
   - lua5.4
   - pv
   - vim-nox

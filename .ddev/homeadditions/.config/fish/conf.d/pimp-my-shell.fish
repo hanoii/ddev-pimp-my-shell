@@ -1,5 +1,8 @@
 #ddev-generated
 
+# PATH
+fish_add_path /usr/games
+
 # z.lua
 mkdir -p /mnt/ddev-global-cache/z.lua/$HOSTNAME
 set -x _ZL_DATA /mnt/ddev-global-cache/z.lua/$HOSTNAME/.zlua

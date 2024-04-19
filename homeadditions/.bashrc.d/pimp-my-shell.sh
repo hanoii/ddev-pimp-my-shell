@@ -6,6 +6,9 @@ case $- in
       *) return;;
 esac
 
+# Path
+export PATH=$PATH:/usr/games
+
 # This is so that child processes have appropriate access to this var
 export SHELL
 

@@ -34,6 +34,9 @@ function set_win_title(){
   if [[ $@ == *"starship_precmd"* ]]; then
     return
   fi
+  if [[ $@ == *"__fzf_"* ]]; then
+    return
+  fi
   # Shortening $PWD
   # /var/www/html -> /v/w/html
   local short_pwd=$(echo "$PWD" | sed 's/\([^\/]\)[^\/]*\//\1\//g')

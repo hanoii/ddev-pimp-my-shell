@@ -8,6 +8,7 @@ webimage_extra_packages:
   - bsdmainutils
   - build-essential
   - cowsay
+  - dialog
   - figlet
   - kitty-terminfo
   - libarchive-tools

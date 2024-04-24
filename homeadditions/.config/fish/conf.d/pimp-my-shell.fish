@@ -3,6 +3,12 @@
 # PATH
 fish_add_path /usr/games
 
+# fzf
+fish_add_path /opt/fzf/bin
+function fish_user_key_bindings
+  fzf --fish | source
+end
+
 # z.lua
 mkdir -p /mnt/ddev-global-cache/z.lua/$HOSTNAME
 set -x _ZL_DATA /mnt/ddev-global-cache/z.lua/$HOSTNAME/.zlua

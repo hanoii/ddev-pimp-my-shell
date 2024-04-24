@@ -25,7 +25,10 @@ RUN curl -fsSL https://download.opensuse.org/repositories/shells:fish:release:3/
 RUN apt update && apt satisfy -y "fish (>=3.7)"
 USER $uid:$gid
 RUN fish -c "curl -sL 'https://raw.githubusercontent.com/jorgebucaran/fisher/main/functions/fisher.fish' | source && fisher install jorgebucaran/fisher@4.4.4"
-RUN fish -c "fisher install IlanCosman/tide@v6.1.1"
+RUN \
+    fish -c "fisher install IlanCosman/tide@v6.1.1" ; \
+    fish -c "fisher install edc/bass@v1.0"
+
 USER root:root
 
 # vim

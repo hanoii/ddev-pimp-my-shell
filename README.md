@@ -11,6 +11,7 @@ defaults.
 
 - [Features](#features)
 - [Tweaks](#tweaks)
+  * [ahoy](#ahoy)
   * [starship](#starship)
   * [fish](#fish)
   * [ddev `post-import-db` hook](#ddev-post-import-db-hook)
@@ -33,6 +34,10 @@ It also has:
 
 ## Tweaks
 
+### ahoy
+
+It bundles autocomplete for both bash and fish.
+
 ### starship
 
 If you want to use a [Nerd font](https://starship.rs/presets/nerd-font), there
@@ -53,6 +58,7 @@ This add-on installs:
 
 - https://github.com/jorgebucaran/fisher
 - https://github.com/IlanCosman/tide
+- https://github.com/edc/bass
 
 For tide, it uses the default configuration, if you want to have your own on all
 of your ddev projects you can create/edit

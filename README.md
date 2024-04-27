@@ -15,6 +15,7 @@ defaults.
   * [starship](#starship)
   * [fish](#fish)
   * [ddev `post-import-db` hook](#ddev-post-import-db-hook)
+- [Install the dev version](#install-the-dev-version)
 
 <!-- tocstop -->
 
@@ -98,5 +99,13 @@ Example on how I am using it:
 
 - https://github.com/hanoii/ddev-platformsh-lite/blob/ce4b95d578e82f942b75ec9fa6fa60f63473c90b/platformsh-lite/scripts/db-pull.sh#L91
 - https://github.com/hanoii/ddev-platformsh-lite/blob/ce4b95d578e82f942b75ec9fa6fa60f63473c90b/pimp-my-shell/hooks/post-import-db.d/00-drupal.sh
+
+## Install the dev version
+
+You can always install the latest code with
+
+```
+ddev get https://github.com/hanoii/ddev-pimp-my-shell/tarball/main
+```
 
 **Contributed and maintained by [@hanoii](https://github.com/hanoii)**

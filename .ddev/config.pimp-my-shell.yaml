@@ -3,13 +3,16 @@ hooks:
   post-import-db:
     - exec: /var/www/html/.ddev/pimp-my-shell/hooks/post-import-db.sh
 webimage_extra_packages:
+  - ansilove
   - bash-completion
   - boxes
   - bsdmainutils
   - build-essential
+  - colorized-logs
   - cowsay
   - dialog
   - figlet
+  - htop
   - kitty-terminfo
   - libarchive-tools
   - lolcat

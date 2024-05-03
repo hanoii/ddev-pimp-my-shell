@@ -17,7 +17,7 @@ RUN mkdir -p /opt/z.lua && wget https://github.com/skywind3000/z.lua/archive/ref
 RUN curl -sS https://starship.rs/install.sh | sh -s -- -y -v v1.18.2
 
 # gum
-RUN wget -q https://github.com/charmbracelet/gum/releases/download/v0.13.0/gum_0.13.0_`dpkg --print-architecture`.deb -O gum.deb && dpkg -i gum.deb && rm gum.deb
+RUN wget -q https://github.com/charmbracelet/gum/releases/download/v0.14.0/gum_0.14.0_`dpkg --print-architecture`.deb -O gum.deb && dpkg -i gum.deb && rm gum.deb
 
 # fish
 RUN echo "deb http://download.opensuse.org/repositories/shells:/fish:/release:/3/Debian_`lsb_release -rs`/ /" | sudo tee /etc/apt/sources.list.d/shells:fish:release:3.list

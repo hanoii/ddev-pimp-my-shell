@@ -17,6 +17,7 @@ webimage_extra_packages:
   - libarchive-tools
   - lolcat
   - lua5.4
+  - net-tools
   - pv
   - vim-nox
 web_environment:

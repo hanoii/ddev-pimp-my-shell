@@ -19,6 +19,8 @@ webimage_extra_packages:
   - lua5.4
   - net-tools
   - pv
+  - screen
   - vim-nox
 web_environment:
   - COLORTERM=${COLORTERM}
+  - TERM=${TERM}

@@ -28,8 +28,19 @@ RUN fish -c "curl -sL 'https://raw.githubusercontent.com/jorgebucaran/fisher/mai
 RUN \
     fish -c "fisher install IlanCosman/tide@v6.1.1" ; \
     fish -c "fisher install edc/bass@v1.0"
-
 USER root:root
+
+# kitty-terminfo from unstable
+RUN set -eux; \
+    pkg_url=$(curl -s https://packages.debian.org/unstable/all/kitty-terminfo/download | grep -oP 'http://http.us.debian.org/debian/pool/main/.*?\.deb'); \
+    mkdir -p /tmp/kitty-terminfo ; \
+    cd /tmp/kitty-terminfo ; \
+    wget -q "$pkg_url" -O kitty-terminfo.deb ; \
+    ar x kitty-terminfo.deb; \
+    tar -xf data.tar.xz; \
+    cp -R usr/share/terminfo/* /usr/share/terminfo; \
+    cd; \
+    rm -fr /tmp/kitty-terminfo;
 
 # vim
 RUN update-alternatives --set editor /usr/bin/vim.nox

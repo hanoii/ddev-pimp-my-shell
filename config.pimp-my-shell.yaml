@@ -13,7 +13,6 @@ webimage_extra_packages:
   - dialog
   - figlet
   - htop
-  - kitty-terminfo
   - libarchive-tools
   - lolcat
   - lua5.4

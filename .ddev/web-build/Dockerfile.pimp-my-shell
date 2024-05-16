@@ -5,7 +5,7 @@ RUN wget -q https://github.com/ahoy-cli/ahoy/releases/download/v2.1.1/ahoy-bin-l
 
 # fzf et al
 RUN mkdir -p /opt/fzf && cd /opt/fzf && git init && git remote add origin https://github.com/junegunn/fzf.git && git fetch --depth 1 origin 6432f00f0d026c61f683c83ded4d2e15317e927e && git checkout FETCH_HEAD && /opt/fzf/install --all && cp /root/.fzf.bash /opt
-RUN mkdir -p /opt/fzf-git.sh && cd /opt/fzf-git.sh && git init && git remote add origin https://github.com/junegunn/fzf-git.sh.git && git fetch --depth 1 origin 23a74efafac72b0a131a9f897a5da2fc9bbc04ee && git checkout FETCH_HEAD
+RUN mkdir -p /opt/fzf-git.sh && cd /opt/fzf-git.sh && git init && git remote add origin https://github.com/junegunn/fzf-git.sh.git && git fetch --depth 1 origin bd8ac4ba4c9d7d12b34f7fa2b0d334f50cdb5254 && git checkout FETCH_HEAD
 
 # bat
 RUN wget -q https://github.com/sharkdp/bat/releases/download/v0.24.0/bat_0.24.0_`dpkg --print-architecture`.deb -O bat.deb &&  dpkg -i bat.deb && rm bat.deb

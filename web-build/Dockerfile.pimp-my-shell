@@ -30,9 +30,11 @@ RUN \
     fish -c "fisher install edc/bass@v1.0"
 USER root:root
 
-# kitty-terminfo from unstable
+# kitty-terminfo from unstable, using its snapshot to make sure there's always gonna ver a version
+# this can be updated manually by looking at
+# https://snapshot.debian.org/binary/kitty-terminfo/
 RUN set -eux; \
-    pkg_url=$(curl -s https://packages.debian.org/unstable/all/kitty-terminfo/download | grep -oP 'http://http.us.debian.org/debian/pool/main/.*?\.deb'); \
+    pkg_url="https://snapshot.debian.org/archive/debian/20240501T150311Z/pool/main/k/kitty/kitty-terminfo_0.34.1-1_all.deb"; \
     mkdir -p /tmp/kitty-terminfo ; \
     cd /tmp/kitty-terminfo ; \
     wget -q "$pkg_url" -O kitty-terminfo.deb ; \

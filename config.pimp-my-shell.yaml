@@ -17,6 +17,7 @@ webimage_extra_packages:
   - lolcat
   - lua5.4
   - net-tools
+  - pipx
   - pv
   - screen
   - vim-nox

@@ -1,16 +1,16 @@
 #ddev-generated
 
+# Path
+export PATH=~/.local/bin:$PATH:/usr/games
+
+# This is so that child processes have appropriate access to this var
+export SHELL
+
 # If not running interactively, don't do anything
 case $- in
     *i*) ;;
       *) return;;
 esac
-
-# Path
-export PATH=$PATH:/usr/games
-
-# This is so that child processes have appropriate access to this var
-export SHELL
 
 # ahoy
 COMP_WORDBREAKS=${COMP_WORDBREAKS//:}

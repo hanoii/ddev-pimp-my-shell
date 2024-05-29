@@ -28,6 +28,10 @@ defaults.
 - https://starship.rs/
 - https://github.com/charmbracelet/gum
 - https://github.com/fish-shell/fish-shell / https://fishshell.com/
+  - https://github.com/jorgebucaran/fisher
+  - https://github.com/IlanCosman/tide
+  - https://github.com/edc/bass
+- https://chrisbuilds.github.io/terminaltexteffects/
 
 It also has:
 
@@ -54,12 +58,6 @@ starship preset nerd-font-symbols
 ```
 
 ### fish
-
-This add-on installs:
-
-- https://github.com/jorgebucaran/fisher
-- https://github.com/IlanCosman/tide
-- https://github.com/edc/bass
 
 For tide, it uses the default configuration, if you want to have your own on all
 of your ddev projects you can create/edit

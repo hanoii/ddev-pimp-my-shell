@@ -23,11 +23,22 @@ RUN wget -q https://github.com/charmbracelet/gum/releases/download/v0.14.1/gum_0
 RUN echo "deb http://download.opensuse.org/repositories/shells:/fish:/release:/3/Debian_`lsb_release -rs`/ /" | sudo tee /etc/apt/sources.list.d/shells:fish:release:3.list
 RUN curl -fsSL https://download.opensuse.org/repositories/shells:fish:release:3/Debian_`lsb_release -rs`/Release.key | gpg --dearmor | sudo tee /etc/apt/trusted.gpg.d/shells_fish_release_3.gpg > /dev/null
 RUN apt update && apt satisfy -y "fish (>=3.7.1)"
+
+##
+# Tools to install under ddev non-root user
+#
 USER $uid:$gid
+
+# Fish plugins
 RUN fish -c "curl -sL 'https://raw.githubusercontent.com/jorgebucaran/fisher/main/functions/fisher.fish' | source && fisher install jorgebucaran/fisher@4.4.4"
 RUN \
     fish -c "fisher install IlanCosman/tide@v6.1.1" ; \
     fish -c "fisher install edc/bass@v1.0"
+
+# bun.sh
+RUN curl -fsSL https://bun.sh/install | bash -s "bun-v1.1.11"
+
+# Go back to root
 USER root:root
 
 # kitty-terminfo from unstable, using its snapshot to make sure there's always gonna ver a version

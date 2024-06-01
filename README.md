@@ -32,6 +32,7 @@ defaults.
   - https://github.com/IlanCosman/tide
   - https://github.com/edc/bass
 - https://chrisbuilds.github.io/terminaltexteffects/
+- https://bun.sh/
 
 It also has:
 

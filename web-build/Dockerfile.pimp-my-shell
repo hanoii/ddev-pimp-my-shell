@@ -36,7 +36,7 @@ RUN \
     fish -c "fisher install edc/bass@v1.0"
 
 # bun.sh
-RUN curl -fsSL https://bun.sh/install | bash -s "bun-v1.1.11"
+RUN curl -fsSL https://bun.sh/install | bash -s "bun-v1.1.12"
 
 # Go back to root
 USER root:root

@@ -13,12 +13,21 @@ project_files:
   - pimp-my-shell/hooks/README.md
   - pimp-my-shell/hooks/post-import-db.sh
   - pimp-my-shell/hooks/post-import-db.d
-  - pimp-my-shell/scripts/drush-uli.sh
   - pimp-my-shell/functions/conditional-run.sh
 post_install_actions:
   - |
     #ddev-description: Remove deprecated z.fish file
     remove_file="homeadditions/.config/fish/conf.d/z.fish"
+    if [ -f "$remove_file" ]; then
+      if grep '#ddev-generated' "$remove_file"; then
+        rm "$remove_file"
+      else
+        echo "Existing "$remove_file" does not have #ddev-generated, so can't be removed"
+      fi
+    fi
+  - |
+    #ddev-description: Remove deprecated drush-uli.sh file, moved to another addon (hanoii/ddev-drupal)
+    remove_file="pimp-my-shell/scripts/drush-uli.sh"
     if [ -f "$remove_file" ]; then
       if grep '#ddev-generated' "$remove_file"; then
         rm "$remove_file"

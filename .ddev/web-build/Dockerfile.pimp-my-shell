@@ -17,12 +17,17 @@ RUN mkdir -p /opt/z.lua && wget https://github.com/skywind3000/z.lua/archive/ref
 RUN curl -sS https://starship.rs/install.sh | sh -s -- -y -v v1.19.0
 
 # gum
-RUN wget -q https://github.com/charmbracelet/gum/releases/download/v0.14.1/gum_0.14.1_`dpkg --print-architecture`.deb -O gum.deb && dpkg -i gum.deb && rm gum.deb
+RUN wget -q https://github.com/charmbracelet/gum/releases/download/v0.14.3/gum_0.14.3_`dpkg --print-architecture`.deb -O gum.deb && dpkg -i gum.deb && rm gum.deb
 
-# fish
+# apt/repos
+# - fish
+# - eza
 RUN echo "deb http://download.opensuse.org/repositories/shells:/fish:/release:/3/Debian_`lsb_release -rs`/ /" | sudo tee /etc/apt/sources.list.d/shells:fish:release:3.list
 RUN curl -fsSL https://download.opensuse.org/repositories/shells:fish:release:3/Debian_`lsb_release -rs`/Release.key | gpg --dearmor | sudo tee /etc/apt/trusted.gpg.d/shells_fish_release_3.gpg > /dev/null
-RUN apt update && apt satisfy -y "fish (>=3.7.1)"
+RUN wget -qO- https://raw.githubusercontent.com/eza-community/eza/main/deb.asc | sudo gpg --dearmor -o /etc/apt/keyrings/gierens.gpg
+RUN echo "deb [signed-by=/etc/apt/keyrings/gierens.gpg] http://deb.gierens.de stable main" | sudo tee /etc/apt/sources.list.d/gierens.list
+RUN chmod 644 /etc/apt/keyrings/gierens.gpg /etc/apt/sources.list.d/gierens.list
+RUN apt update && apt satisfy -y "fish (>=3.7.1)" && apt-get install eza
 
 ##
 # Tools to install under ddev non-root user
@@ -36,7 +41,7 @@ RUN \
     fish -c "fisher install edc/bass@v1.0"
 
 # bun.sh
-RUN curl -fsSL https://bun.sh/install | bash -s "bun-v1.1.18"
+RUN curl -fsSL https://bun.sh/install | bash -s "bun-v1.1.20"
 
 # Go back to root
 USER root:root

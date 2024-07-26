@@ -33,6 +33,7 @@ defaults.
   - https://github.com/edc/bass
 - https://chrisbuilds.github.io/terminaltexteffects/
 - https://bun.sh/
+- https://github.com/eza-community/eza
 
 It also has:
 

@@ -27,7 +27,7 @@ RUN curl -fsSL https://download.opensuse.org/repositories/shells:fish:release:3/
 RUN wget -qO- https://raw.githubusercontent.com/eza-community/eza/main/deb.asc | sudo gpg --dearmor -o /etc/apt/keyrings/gierens.gpg
 RUN echo "deb [signed-by=/etc/apt/keyrings/gierens.gpg] http://deb.gierens.de stable main" | sudo tee /etc/apt/sources.list.d/gierens.list
 RUN chmod 644 /etc/apt/keyrings/gierens.gpg /etc/apt/sources.list.d/gierens.list
-RUN apt update && apt satisfy -y "fish (>=3.7.1)" && apt satisfy -y "eza (>=0.19.1)"
+RUN apt update && apt satisfy -y "fish (>=3.7.1)" && apt satisfy -y "eza (>=0.19.0)"
 
 ##
 # Tools to install under ddev non-root user

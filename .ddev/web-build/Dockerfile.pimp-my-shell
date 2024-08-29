@@ -4,8 +4,8 @@
 RUN wget -q https://github.com/ahoy-cli/ahoy/releases/download/v2.1.1/ahoy-bin-linux-`dpkg --print-architecture` -O - > /usr/local/bin/ahoy && chmod +x /usr/local/bin/ahoy
 
 # fzf et al
-RUN mkdir -p /opt/fzf && cd /opt/fzf && git init && git remote add origin https://github.com/junegunn/fzf.git && git fetch --depth 1 origin 4e85f72f0ee237bef7a1617e0cf8c811a4091d72 && git checkout FETCH_HEAD && /opt/fzf/install --all && cp /root/.fzf.bash /opt
-RUN mkdir -p /opt/fzf-git.sh && cd /opt/fzf-git.sh && git init && git remote add origin https://github.com/junegunn/fzf-git.sh.git && git fetch --depth 1 origin 6df84d71fe8b532b6e1d7c4a754ea6c7c032f553 && git checkout FETCH_HEAD
+RUN mkdir -p /opt/fzf && cd /opt/fzf && git init && git remote add origin https://github.com/junegunn/fzf.git && git fetch --depth 1 origin fc69308057cf8486d2753efd76682fd613471da6 && git checkout FETCH_HEAD && /opt/fzf/install --all && cp /root/.fzf.bash /opt
+RUN mkdir -p /opt/fzf-git.sh && cd /opt/fzf-git.sh && git init && git remote add origin https://github.com/junegunn/fzf-git.sh.git && git fetch --depth 1 origin 6a5d4a923b86908abd9545c8646ae5dd44dff607 && git checkout FETCH_HEAD
 
 # bat
 RUN wget -q https://github.com/sharkdp/bat/releases/download/v0.24.0/bat_0.24.0_`dpkg --print-architecture`.deb -O bat.deb &&  dpkg -i bat.deb && rm bat.deb
@@ -27,7 +27,7 @@ RUN curl -fsSL https://download.opensuse.org/repositories/shells:fish:release:3/
 RUN wget -qO- https://raw.githubusercontent.com/eza-community/eza/main/deb.asc | sudo gpg --dearmor -o /etc/apt/keyrings/gierens.gpg
 RUN echo "deb [signed-by=/etc/apt/keyrings/gierens.gpg] http://deb.gierens.de stable main" | sudo tee /etc/apt/sources.list.d/gierens.list
 RUN chmod 644 /etc/apt/keyrings/gierens.gpg /etc/apt/sources.list.d/gierens.list
-RUN apt update && apt satisfy -y "fish (>=3.7.1)" && apt satisfy -y "eza (>=0.18.24)"
+RUN apt update && apt satisfy -y "fish (>=3.7.1)" && apt satisfy -y "eza (>=0.19.1)"
 
 ##
 # Tools to install under ddev non-root user

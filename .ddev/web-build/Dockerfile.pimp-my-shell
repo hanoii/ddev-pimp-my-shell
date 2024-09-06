@@ -1,7 +1,7 @@
 #ddev-generated
 
 # ahoy
-RUN wget -q https://github.com/ahoy-cli/ahoy/releases/download/v2.1.1/ahoy-bin-linux-`dpkg --print-architecture` -O - > /usr/local/bin/ahoy && chmod +x /usr/local/bin/ahoy
+RUN wget -q https://github.com/ahoy-cli/ahoy/releases/download/v2.2.0/ahoy-bin-linux-`dpkg --print-architecture` -O - > /usr/local/bin/ahoy && chmod +x /usr/local/bin/ahoy
 
 # fzf et al
 RUN mkdir -p /opt/fzf && cd /opt/fzf && git init && git remote add origin https://github.com/junegunn/fzf.git && git fetch --depth 1 origin fc69308057cf8486d2753efd76682fd613471da6 && git checkout FETCH_HEAD && /opt/fzf/install --all && cp /root/.fzf.bash /opt

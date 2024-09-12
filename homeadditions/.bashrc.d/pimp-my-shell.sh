@@ -45,3 +45,8 @@ function set_win_title(){
 starship_precmd_user_func="set_win_title"
 trap "set_win_title \"\${BASH_COMMAND} - \"" DEBUG
 eval "$(starship init bash)"
+
+# eza aliases to ls
+# https://gist.github.com/AppleBoiy/04a249b6f64fd0fe1744aff759a0563b
+alias ls='eza --color=always --group-directories-first --icons'
+alias ll='eza -la --icons --octal-permissions --group-directories-first'

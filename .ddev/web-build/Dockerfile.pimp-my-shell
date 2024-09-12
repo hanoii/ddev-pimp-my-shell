@@ -21,13 +21,19 @@ RUN wget -q https://github.com/charmbracelet/gum/releases/download/v0.14.5/gum_0
 
 # apt/repos
 # - fish
-# - eza
-RUN echo "deb http://download.opensuse.org/repositories/shells:/fish:/release:/3/Debian_`lsb_release -rs`/ /" | sudo tee /etc/apt/sources.list.d/shells:fish:release:3.list
-RUN curl -fsSL https://download.opensuse.org/repositories/shells:fish:release:3/Debian_`lsb_release -rs`/Release.key | gpg --dearmor | sudo tee /etc/apt/trusted.gpg.d/shells_fish_release_3.gpg > /dev/null
-RUN wget -qO- https://raw.githubusercontent.com/eza-community/eza/main/deb.asc | sudo gpg --dearmor -o /etc/apt/keyrings/gierens.gpg
-RUN echo "deb [signed-by=/etc/apt/keyrings/gierens.gpg] http://deb.gierens.de stable main" | sudo tee /etc/apt/sources.list.d/gierens.list
-RUN chmod 644 /etc/apt/keyrings/gierens.gpg /etc/apt/sources.list.d/gierens.list
-RUN apt update && apt satisfy -y "fish (>=3.7.1)" && apt satisfy -y "eza (>=0.19.0)"
+RUN set -eux; \
+    echo "deb http://download.opensuse.org/repositories/shells:/fish:/release:/3/Debian_`lsb_release -rs`/ /" | sudo tee /etc/apt/sources.list.d/shells:fish:release:3.list ; \
+    curl -fsSL https://download.opensuse.org/repositories/shells:fish:release:3/Debian_`lsb_release -rs`/Release.key | gpg --dearmor | sudo tee /etc/apt/trusted.gpg.d/shells_fish_release_3.gpg > /dev/null ; \
+    apt update && apt satisfy -y "fish (>=3.7.1)" ;
+
+# eza
+RUN set -eux; \
+    EZA_VERSION=0.19.3 ; \
+    wget -q https://github.com/eza-community/eza/releases/download/v${EZA_VERSION}/eza_`uname -m`-unknown-linux-gnu.tar.gz -O- | tar -zxf - -C /usr/local/bin ; \
+    wget https://github.com/eza-community/eza/releases/download/v${EZA_VERSION}/completions-${EZA_VERSION}.tar.gz -O eza-completions.tar.gz ; \
+    tar -xzf eza-completions.tar.gz --strip-components=3 -C /etc/bash_completion.d/ ./target/completions-${EZA_VERSION}/eza ; \
+    tar -xzf eza-completions.tar.gz --strip-components=3 -C /usr/share/fish/vendor_completions.d/ ./target/completions-${EZA_VERSION}/eza.fish ; \
+    rm eza-completions.tar.gz ;
 
 ##
 # Tools to install under ddev non-root user
@@ -49,16 +55,16 @@ USER root:root
 # kitty-terminfo from unstable, using its snapshot to make sure there's always gonna ver a version
 # this can be updated manually by looking at
 # https://snapshot.debian.org/binary/kitty-terminfo/
-RUN set -eux; \
-    pkg_url="https://snapshot.debian.org/archive/debian/20240501T150311Z/pool/main/k/kitty/kitty-terminfo_0.34.1-1_all.deb"; \
+RUN set -eux ; \
+    pkg_url="https://snapshot.debian.org/archive/debian/20240501T150311Z/pool/main/k/kitty/kitty-terminfo_0.34.1-1_all.deb" ; \
     mkdir -p /tmp/kitty-terminfo ; \
     cd /tmp/kitty-terminfo ; \
     wget -q "$pkg_url" -O kitty-terminfo.deb ; \
-    ar x kitty-terminfo.deb; \
-    tar -xf data.tar.xz; \
-    cp -R usr/share/terminfo/* /usr/share/terminfo; \
-    cd; \
-    rm -fr /tmp/kitty-terminfo;
+    ar x kitty-terminfo.deb ; \
+    tar -xf data.tar.xz ; \
+    cp -R usr/share/terminfo/* /usr/share/terminfo ; \
+    cd ; \
+    rm -fr /tmp/kitty-terminfo ;
 
 # vim
 RUN update-alternatives --set editor /usr/bin/vim.nox

@@ -40,3 +40,13 @@ set -x IS_FISH_SHELL 1
 if status --is-interactive
   set -x IS_FISH_INTERACTIVE_SHELL 1
 end
+
+# eza aliases
+# https://gist.github.com/AppleBoiy/04a249b6f64fd0fe1744aff759a0563b
+function ls --wraps eza --description "alias ls='eza --color=always --group-directories-first --icons'"
+    eza --color=always --group-directories-first --icons $argv
+end
+
+function ll --wraps eza --description "eza -la --icons --octal-permissions --group-directories-first"
+    eza -la --icons --octal-permissions --group-directories-first $argv
+end

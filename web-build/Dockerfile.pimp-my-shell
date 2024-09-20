@@ -28,7 +28,7 @@ RUN set -eux; \
 
 # eza
 RUN set -eux; \
-    EZA_VERSION=0.19.3 ; \
+    EZA_VERSION=0.19.4 ; \
     wget -q https://github.com/eza-community/eza/releases/download/v${EZA_VERSION}/eza_`uname -m`-unknown-linux-gnu.tar.gz -O- | tar -zxf - -C /usr/local/bin ; \
     wget https://github.com/eza-community/eza/releases/download/v${EZA_VERSION}/completions-${EZA_VERSION}.tar.gz -O eza-completions.tar.gz ; \
     tar -xzf eza-completions.tar.gz --strip-components=3 -C /etc/bash_completion.d/ ./target/completions-${EZA_VERSION}/eza ; \
@@ -47,7 +47,7 @@ RUN \
     fish -c "fisher install edc/bass@v1.0"
 
 # bun.sh
-RUN curl -fsSL https://bun.sh/install | bash -s "bun-v1.1.27"
+RUN curl -fsSL https://bun.sh/install | bash -s "bun-v1.1.29"
 
 # Go back to root
 USER root:root
@@ -56,7 +56,7 @@ USER root:root
 # this can be updated manually by looking at
 # https://snapshot.debian.org/binary/kitty-terminfo/
 RUN set -eux ; \
-    pkg_url="https://snapshot.debian.org/archive/debian/20240501T150311Z/pool/main/k/kitty/kitty-terminfo_0.34.1-1_all.deb" ; \
+    pkg_url="https://snapshot.debian.org/archive/debian/20240824T143345Z/pool/main/k/kitty/kitty-terminfo_0.36.1-1_all.deb" ; \
     mkdir -p /tmp/kitty-terminfo ; \
     cd /tmp/kitty-terminfo ; \
     wget -q "$pkg_url" -O kitty-terminfo.deb ; \

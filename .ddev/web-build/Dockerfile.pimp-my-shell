@@ -72,3 +72,8 @@ RUN update-alternatives --set editor /usr/bin/vim.nox
 # tte
 # https://chrisbuilds.github.io/terminaltexteffects/
 RUN PIPX_HOME=/opt/pipx PIPX_BIN_DIR=/usr/local/bin pipx install terminaltexteffects==0.11.0
+
+# lazygit
+RUN set -eux; \
+    LAZYGIT_VERSION=0.44.1 ; \
+    wget -q https://github.com/jesseduffield/lazygit/releases/download/v${LAZYGIT_VERSION}/lazygit_${LAZYGIT_VERSION}_Linux_`dpkg --print-architecture`.tar.gz -O- | tar -zxf - -C /usr/local/bin ;

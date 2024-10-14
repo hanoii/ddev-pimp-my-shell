@@ -14,6 +14,7 @@ defaults.
   * [ahoy](#ahoy)
   * [starship](#starship)
   * [fish](#fish)
+  * [lazygit](#lazygit)
   * [ddev `post-import-db` hook](#ddev-post-import-db-hook)
 - [Install the dev version](#install-the-dev-version)
 
@@ -33,9 +34,8 @@ defaults.
   - https://github.com/edc/bass
 - https://chrisbuilds.github.io/terminaltexteffects/
 - https://bun.sh/
-- https://github.com/eza-community/eza
-
-It also has:
+- https://github.com/eza-community/eza/
+- https://github.com/jesseduffield/lazygit/
 
 - Some useful [scripts](pimp-my-shell/scripts)
 
@@ -77,6 +77,11 @@ function mytide --on-event fish_prompt
   end
 endkkk
 ```
+
+### lazygit
+
+It adds a [config.yml](homeadditions/.config/lazygit/config.yml) diabling the
+startup popups.
 
 ### ddev `post-import-db` hook
 

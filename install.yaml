@@ -5,6 +5,7 @@ project_files:
   - config.pimp-my-shell.yaml
   - commands/web/ahoy
   - commands/web/gum
+  - commands/web/lazygit
   - commands/host/fish
   - homeadditions/.local/share/bash-completion/completions/ahoy
   - homeadditions/.local/share/fish/vendor_completions.d/ahoy.fish

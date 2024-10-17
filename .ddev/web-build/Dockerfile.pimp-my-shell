@@ -1,23 +1,42 @@
 #ddev-generated
 
 # ahoy
-RUN wget -q https://github.com/ahoy-cli/ahoy/releases/download/v2.2.0/ahoy-bin-linux-`dpkg --print-architecture` -O - > /usr/local/bin/ahoy && chmod +x /usr/local/bin/ahoy
+RUN set -eux; \
+    wget -q https://github.com/ahoy-cli/ahoy/releases/download/v2.2.0/ahoy-bin-linux-`dpkg --print-architecture` -O - > /usr/local/bin/ahoy && chmod +x /usr/local/bin/ahoy
 
 # fzf et al
-RUN mkdir -p /opt/fzf && cd /opt/fzf && git init && git remote add origin https://github.com/junegunn/fzf.git && git fetch --depth 1 origin fc69308057cf8486d2753efd76682fd613471da6 && git checkout FETCH_HEAD && /opt/fzf/install --all && cp /root/.fzf.bash /opt
-RUN mkdir -p /opt/fzf-git.sh && cd /opt/fzf-git.sh && git init && git remote add origin https://github.com/junegunn/fzf-git.sh.git && git fetch --depth 1 origin 6a5d4a923b86908abd9545c8646ae5dd44dff607 && git checkout FETCH_HEAD
+RUN set -eux; \
+    mkdir -p /opt/fzf ; \
+    cd /opt/fzf ; \
+    git init ; \
+    git remote add origin https://github.com/junegunn/fzf.git ; \
+    git fetch --depth 1 origin fc69308057cf8486d2753efd76682fd613471da6 ; \
+    git checkout FETCH_HEAD; \
+    /opt/fzf/install --all ; \
+    cp /root/.fzf.bash /opt ; \
+    \
+    mkdir -p /opt/fzf-git.sh ; \
+    cd /opt/fzf-git.sh ; \
+    git init ; \
+    git remote add origin https://github.com/junegunn/fzf-git.sh.git ; \
+    git fetch --depth 1 origin 6a5d4a923b86908abd9545c8646ae5dd44dff607 ; \
+    git checkout FETCH_HEAD ;
 
 # bat
-RUN wget -q https://github.com/sharkdp/bat/releases/download/v0.24.0/bat_0.24.0_`dpkg --print-architecture`.deb -O bat.deb &&  dpkg -i bat.deb && rm bat.deb
+RUN set -eux; \
+    wget -q https://github.com/sharkdp/bat/releases/download/v0.24.0/bat_0.24.0_`dpkg --print-architecture`.deb -O bat.deb &&  dpkg -i bat.deb && rm bat.deb
 
 # z.lua
-RUN mkdir -p /opt/z.lua && wget https://github.com/skywind3000/z.lua/archive/refs/tags/1.8.19.zip -qO- | bsdtar xf - --strip-components=1 -C /opt/z.lua
+RUN set -eux; \
+    mkdir -p /opt/z.lua && wget https://github.com/skywind3000/z.lua/archive/refs/tags/1.8.19.zip -qO- | bsdtar xf - --strip-components=1 -C /opt/z.lua
 
 # starship
-RUN curl -sS https://starship.rs/install.sh | sh -s -- -y -v v1.20.1
+RUN set -eux; \
+    curl -sS https://starship.rs/install.sh | sh -s -- -y -v v1.20.1
 
 # gum
-RUN wget -q https://github.com/charmbracelet/gum/releases/download/v0.14.5/gum_0.14.5_`dpkg --print-architecture`.deb -O gum.deb && dpkg -i gum.deb && rm gum.deb
+RUN set -eux; \
+    wget -q https://github.com/charmbracelet/gum/releases/download/v0.14.5/gum_0.14.5_`dpkg --print-architecture`.deb -O gum.deb && dpkg -i gum.deb && rm gum.deb
 
 # apt/repos
 # - fish
@@ -28,7 +47,7 @@ RUN set -eux; \
 
 # eza
 RUN set -eux; \
-    EZA_VERSION=0.20.2 ; \
+    EZA_VERSION=0.20.3 ; \
     wget -q https://github.com/eza-community/eza/releases/download/v${EZA_VERSION}/eza_`uname -m`-unknown-linux-gnu.tar.gz -O- | tar -zxf - -C /usr/local/bin ; \
     wget https://github.com/eza-community/eza/releases/download/v${EZA_VERSION}/completions-${EZA_VERSION}.tar.gz -O eza-completions.tar.gz ; \
     tar -xzf eza-completions.tar.gz --strip-components=3 -C /etc/bash_completion.d/ ./target/completions-${EZA_VERSION}/eza ; \
@@ -41,13 +60,14 @@ RUN set -eux; \
 USER $uid:$gid
 
 # Fish plugins
-RUN fish -c "curl -sL 'https://raw.githubusercontent.com/jorgebucaran/fisher/main/functions/fisher.fish' | source && fisher install jorgebucaran/fisher@4.4.4"
-RUN \
+RUN set -eux; \
+    fish -c "curl -sL 'https://raw.githubusercontent.com/jorgebucaran/fisher/main/functions/fisher.fish' | source && fisher install jorgebucaran/fisher@4.4.4" ; \
     fish -c "fisher install IlanCosman/tide@v6.1.1" ; \
     fish -c "fisher install edc/bass@v1.0"
 
 # bun.sh
-RUN curl -fsSL https://bun.sh/install | bash -s "bun-v1.1.30"
+RUN set -eux; \
+    curl -fsSL https://bun.sh/install | bash -s "bun-v1.1.30"
 
 # Go back to root
 USER root:root
@@ -67,13 +87,17 @@ RUN set -eux ; \
     rm -fr /tmp/kitty-terminfo ;
 
 # vim
-RUN update-alternatives --set editor /usr/bin/vim.nox
+RUN set -eux; \
+    update-alternatives --set editor /usr/bin/vim.nox
 
 # tte
 # https://chrisbuilds.github.io/terminaltexteffects/
-RUN PIPX_HOME=/opt/pipx PIPX_BIN_DIR=/usr/local/bin pipx install terminaltexteffects==0.11.0
+RUN set -eux; \
+    PIPX_HOME=/opt/pipx PIPX_BIN_DIR=/usr/local/bin pipx install terminaltexteffects==0.11.0
 
 # lazygit
 RUN set -eux; \
     LAZYGIT_VERSION=0.44.1 ; \
-    wget -q https://github.com/jesseduffield/lazygit/releases/download/v${LAZYGIT_VERSION}/lazygit_${LAZYGIT_VERSION}_Linux_`dpkg --print-architecture`.tar.gz -O- | tar -zxf - -C /usr/local/bin ;
+    AARCH=$(dpkg --print-architecture) ; \
+    AARCH=${AARCH/amd64/x86_64} ; \
+    wget -q https://github.com/jesseduffield/lazygit/releases/download/v${LAZYGIT_VERSION}/lazygit_${LAZYGIT_VERSION}_Linux_${AARCH}.tar.gz -O- | tar -zxf - -C /usr/local/bin ;

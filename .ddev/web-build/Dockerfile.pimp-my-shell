@@ -28,15 +28,18 @@ RUN set -eux; \
 
 # z.lua
 RUN set -eux; \
-    mkdir -p /opt/z.lua && wget https://github.com/skywind3000/z.lua/archive/refs/tags/1.8.19.zip -qO- | bsdtar xf - --strip-components=1 -C /opt/z.lua
+    ZLUA_VERSION=1.8.20 ; \
+    mkdir -p /opt/z.lua && wget https://github.com/skywind3000/z.lua/archive/refs/tags/${ZLUA_VERSION}.zip -qO- | bsdtar xf - --strip-components=1 -C /opt/z.lua
 
 # starship
 RUN set -eux; \
-    curl -sS https://starship.rs/install.sh | sh -s -- -y -v v1.20.1
+    STARSHIP_VERSION=1.21.1 ; \
+    curl -sS https://starship.rs/install.sh | sh -s -- -y -v v${STARSHIP_VERSION}
 
 # gum
 RUN set -eux; \
-    wget -q https://github.com/charmbracelet/gum/releases/download/v0.14.5/gum_0.14.5_`dpkg --print-architecture`.deb -O gum.deb && dpkg -i gum.deb && rm gum.deb
+    GUM_VERSION=0.14.5 ; \
+    wget -q https://github.com/charmbracelet/gum/releases/download/v${GUM_VERSION}/gum_${GUM_VERSION}_`dpkg --print-architecture`.deb -O gum.deb && dpkg -i gum.deb && rm gum.deb
 
 # apt/repos
 # - fish
@@ -47,7 +50,7 @@ RUN set -eux; \
 
 # eza
 RUN set -eux; \
-    EZA_VERSION=0.20.3 ; \
+    EZA_VERSION=0.20.4 ; \
     wget -q https://github.com/eza-community/eza/releases/download/v${EZA_VERSION}/eza_`uname -m`-unknown-linux-gnu.tar.gz -O- | tar -zxf - -C /usr/local/bin ; \
     wget https://github.com/eza-community/eza/releases/download/v${EZA_VERSION}/completions-${EZA_VERSION}.tar.gz -O eza-completions.tar.gz ; \
     tar -xzf eza-completions.tar.gz --strip-components=3 -C /etc/bash_completion.d/ ./target/completions-${EZA_VERSION}/eza ; \
@@ -67,7 +70,8 @@ RUN set -eux; \
 
 # bun.sh
 RUN set -eux; \
-    curl -fsSL https://bun.sh/install | bash -s "bun-v1.1.30"
+    BUN_VERSION=1.1.31 ; \
+    curl -fsSL https://bun.sh/install | bash -s "bun-v${BUN_VERSION}"
 
 # Go back to root
 USER root:root
@@ -76,7 +80,7 @@ USER root:root
 # this can be updated manually by looking at
 # https://snapshot.debian.org/binary/kitty-terminfo/
 RUN set -eux ; \
-    pkg_url="https://snapshot.debian.org/archive/debian/20240824T143345Z/pool/main/k/kitty/kitty-terminfo_0.36.1-1_all.deb" ; \
+    pkg_url="https://snapshot.debian.org/archive/debian/20241018T203641Z/pool/main/k/kitty/kitty-terminfo_0.36.4-3_all.deb" ; \
     mkdir -p /tmp/kitty-terminfo ; \
     cd /tmp/kitty-terminfo ; \
     wget -q "$pkg_url" -O kitty-terminfo.deb ; \

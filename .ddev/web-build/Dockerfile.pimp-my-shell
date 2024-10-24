@@ -2,7 +2,10 @@
 
 # ahoy
 RUN set -eux; \
-    wget -q https://github.com/ahoy-cli/ahoy/releases/download/v2.2.0/ahoy-bin-linux-`dpkg --print-architecture` -O - > /usr/local/bin/ahoy && chmod +x /usr/local/bin/ahoy
+    AHOY_VERSION=2.2.0; \
+    AARCH=$(dpkg --print-architecture); \
+    wget -q https://github.com/ahoy-cli/ahoy/releases/download/v${AHOY_VERSION}/ahoy-bin-linux-${AARCH} -O - > /usr/local/bin/ahoy; \
+    chmod +x /usr/local/bin/ahoy;
 
 # fzf et al
 RUN set -eux; \
@@ -24,14 +27,17 @@ RUN set -eux; \
 
 # bat
 RUN set -eux; \
-    wget -q https://github.com/sharkdp/bat/releases/download/v0.24.0/bat_0.24.0_`dpkg --print-architecture`.deb -O bat.deb; \
+    BAT_VERSION=0.24.0; \
+    AARCH=$(dpkg --print-architecture); \
+    wget -q https://github.com/sharkdp/bat/releases/download/v${BAT_VERSION}/bat_${BAT_VERSION}_${AARCH}.deb -O bat.deb; \
     dpkg -i bat.deb; \
     rm bat.deb;
 
 # z.lua
 RUN set -eux; \
     ZLUA_VERSION=1.8.20; \
-    mkdir -p /opt/z.lua && wget https://github.com/skywind3000/z.lua/archive/refs/tags/${ZLUA_VERSION}.zip -qO- | bsdtar xf - --strip-components=1 -C /opt/z.lua
+    mkdir -p /opt/z.lua; \
+    wget https://github.com/skywind3000/z.lua/archive/refs/tags/${ZLUA_VERSION}.zip -qO- | bsdtar xf - --strip-components=1 -C /opt/z.lua
 
 # starship
 RUN set -eux; \
@@ -41,14 +47,17 @@ RUN set -eux; \
 # gum
 RUN set -eux; \
     GUM_VERSION=0.14.5; \
-    wget -q https://github.com/charmbracelet/gum/releases/download/v${GUM_VERSION}/gum_${GUM_VERSION}_`dpkg --print-architecture`.deb -O gum.deb && dpkg -i gum.deb && rm gum.deb
+    wget -q https://github.com/charmbracelet/gum/releases/download/v${GUM_VERSION}/gum_${GUM_VERSION}_`dpkg --print-architecture`.deb -O gum.deb; \
+    dpkg -i gum.deb; \
+    rm gum.deb;
 
 # apt/repos
 # - fish
 RUN set -eux; \
     echo "deb http://download.opensuse.org/repositories/shells:/fish:/release:/3/Debian_`lsb_release -rs`/ /" | sudo tee /etc/apt/sources.list.d/shells:fish:release:3.list; \
     curl -fsSL https://download.opensuse.org/repositories/shells:fish:release:3/Debian_`lsb_release -rs`/Release.key | gpg --dearmor | sudo tee /etc/apt/trusted.gpg.d/shells_fish_release_3.gpg > /dev/null; \
-    apt update && apt satisfy -y "fish (>=3.7.1)";
+    apt update; \
+    apt satisfy -y "fish (>=3.7.1)";
 
 # eza
 RUN set -eux; \
@@ -66,7 +75,8 @@ USER $uid:$gid
 
 # Fish plugins
 RUN set -eux; \
-    fish -c "curl -sL 'https://raw.githubusercontent.com/jorgebucaran/fisher/main/functions/fisher.fish' | source && fisher install jorgebucaran/fisher@4.4.4"; \
+    fish -c "curl -sL 'https://raw.githubusercontent.com/jorgebucaran/fisher/main/functions/fisher.fish' | source; \
+    fisher install jorgebucaran/fisher@4.4.4"; \
     fish -c "fisher install IlanCosman/tide@v6.1.1"; \
     fish -c "fisher install edc/bass@v1.0"
 

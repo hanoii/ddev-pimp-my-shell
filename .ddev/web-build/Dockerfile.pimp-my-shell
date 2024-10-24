@@ -6,21 +6,21 @@ RUN set -eux; \
 
 # fzf et al
 RUN set -eux; \
-    mkdir -p /opt/fzf ; \
-    cd /opt/fzf ; \
-    git init ; \
-    git remote add origin https://github.com/junegunn/fzf.git ; \
-    git fetch --depth 1 origin fc69308057cf8486d2753efd76682fd613471da6 ; \
+    mkdir -p /opt/fzf; \
+    cd /opt/fzf; \
+    git init; \
+    git remote add origin https://github.com/junegunn/fzf.git; \
+    git fetch --depth 1 origin fc69308057cf8486d2753efd76682fd613471da6; \
     git checkout FETCH_HEAD; \
-    /opt/fzf/install --all ; \
-    cp /root/.fzf.bash /opt ; \
+    /opt/fzf/install --all; \
+    cp /root/.fzf.bash /opt; \
     \
-    mkdir -p /opt/fzf-git.sh ; \
-    cd /opt/fzf-git.sh ; \
-    git init ; \
-    git remote add origin https://github.com/junegunn/fzf-git.sh.git ; \
-    git fetch --depth 1 origin 6a5d4a923b86908abd9545c8646ae5dd44dff607 ; \
-    git checkout FETCH_HEAD ;
+    mkdir -p /opt/fzf-git.sh; \
+    cd /opt/fzf-git.sh; \
+    git init; \
+    git remote add origin https://github.com/junegunn/fzf-git.sh.git; \
+    git fetch --depth 1 origin 6a5d4a923b86908abd9545c8646ae5dd44dff607; \
+    git checkout FETCH_HEAD;
 
 # bat
 RUN set -eux; \
@@ -30,34 +30,34 @@ RUN set -eux; \
 
 # z.lua
 RUN set -eux; \
-    ZLUA_VERSION=1.8.20 ; \
+    ZLUA_VERSION=1.8.20; \
     mkdir -p /opt/z.lua && wget https://github.com/skywind3000/z.lua/archive/refs/tags/${ZLUA_VERSION}.zip -qO- | bsdtar xf - --strip-components=1 -C /opt/z.lua
 
 # starship
 RUN set -eux; \
-    STARSHIP_VERSION=1.21.1 ; \
+    STARSHIP_VERSION=1.21.1; \
     curl -sS https://starship.rs/install.sh | sh -s -- -y -v v${STARSHIP_VERSION}
 
 # gum
 RUN set -eux; \
-    GUM_VERSION=0.14.5 ; \
+    GUM_VERSION=0.14.5; \
     wget -q https://github.com/charmbracelet/gum/releases/download/v${GUM_VERSION}/gum_${GUM_VERSION}_`dpkg --print-architecture`.deb -O gum.deb && dpkg -i gum.deb && rm gum.deb
 
 # apt/repos
 # - fish
 RUN set -eux; \
-    echo "deb http://download.opensuse.org/repositories/shells:/fish:/release:/3/Debian_`lsb_release -rs`/ /" | sudo tee /etc/apt/sources.list.d/shells:fish:release:3.list ; \
-    curl -fsSL https://download.opensuse.org/repositories/shells:fish:release:3/Debian_`lsb_release -rs`/Release.key | gpg --dearmor | sudo tee /etc/apt/trusted.gpg.d/shells_fish_release_3.gpg > /dev/null ; \
-    apt update && apt satisfy -y "fish (>=3.7.1)" ;
+    echo "deb http://download.opensuse.org/repositories/shells:/fish:/release:/3/Debian_`lsb_release -rs`/ /" | sudo tee /etc/apt/sources.list.d/shells:fish:release:3.list; \
+    curl -fsSL https://download.opensuse.org/repositories/shells:fish:release:3/Debian_`lsb_release -rs`/Release.key | gpg --dearmor | sudo tee /etc/apt/trusted.gpg.d/shells_fish_release_3.gpg > /dev/null; \
+    apt update && apt satisfy -y "fish (>=3.7.1)";
 
 # eza
 RUN set -eux; \
-    EZA_VERSION=0.20.4 ; \
-    wget -q https://github.com/eza-community/eza/releases/download/v${EZA_VERSION}/eza_`uname -m`-unknown-linux-gnu.tar.gz -O- | tar -zxf - -C /usr/local/bin ; \
-    wget https://github.com/eza-community/eza/releases/download/v${EZA_VERSION}/completions-${EZA_VERSION}.tar.gz -O eza-completions.tar.gz ; \
-    tar -xzf eza-completions.tar.gz --strip-components=3 -C /etc/bash_completion.d/ ./target/completions-${EZA_VERSION}/eza ; \
-    tar -xzf eza-completions.tar.gz --strip-components=3 -C /usr/share/fish/vendor_completions.d/ ./target/completions-${EZA_VERSION}/eza.fish ; \
-    rm eza-completions.tar.gz ;
+    EZA_VERSION=0.20.4; \
+    wget -q https://github.com/eza-community/eza/releases/download/v${EZA_VERSION}/eza_`uname -m`-unknown-linux-gnu.tar.gz -O- | tar -zxf - -C /usr/local/bin; \
+    wget https://github.com/eza-community/eza/releases/download/v${EZA_VERSION}/completions-${EZA_VERSION}.tar.gz -O eza-completions.tar.gz; \
+    tar -xzf eza-completions.tar.gz --strip-components=3 -C /etc/bash_completion.d/ ./target/completions-${EZA_VERSION}/eza; \
+    tar -xzf eza-completions.tar.gz --strip-components=3 -C /usr/share/fish/vendor_completions.d/ ./target/completions-${EZA_VERSION}/eza.fish; \
+    rm eza-completions.tar.gz;
 
 ##
 # Tools to install under ddev non-root user
@@ -66,13 +66,13 @@ USER $uid:$gid
 
 # Fish plugins
 RUN set -eux; \
-    fish -c "curl -sL 'https://raw.githubusercontent.com/jorgebucaran/fisher/main/functions/fisher.fish' | source && fisher install jorgebucaran/fisher@4.4.4" ; \
-    fish -c "fisher install IlanCosman/tide@v6.1.1" ; \
+    fish -c "curl -sL 'https://raw.githubusercontent.com/jorgebucaran/fisher/main/functions/fisher.fish' | source && fisher install jorgebucaran/fisher@4.4.4"; \
+    fish -c "fisher install IlanCosman/tide@v6.1.1"; \
     fish -c "fisher install edc/bass@v1.0"
 
 # bun.sh
 RUN set -eux; \
-    BUN_VERSION=1.1.33 ; \
+    BUN_VERSION=1.1.33; \
     curl -fsSL https://bun.sh/install | bash -s "bun-v${BUN_VERSION}"
 
 # Go back to root
@@ -81,16 +81,16 @@ USER root:root
 # kitty-terminfo from unstable, using its snapshot to make sure there's always gonna ver a version
 # this can be updated manually by looking at
 # https://snapshot.debian.org/binary/kitty-terminfo/
-RUN set -eux ; \
-    pkg_url="https://snapshot.debian.org/archive/debian/20241018T203641Z/pool/main/k/kitty/kitty-terminfo_0.36.4-3_all.deb" ; \
-    mkdir -p /tmp/kitty-terminfo ; \
-    cd /tmp/kitty-terminfo ; \
-    wget -q "$pkg_url" -O kitty-terminfo.deb ; \
-    ar x kitty-terminfo.deb ; \
-    tar -xf data.tar.xz ; \
-    cp -R usr/share/terminfo/* /usr/share/terminfo ; \
-    cd ; \
-    rm -fr /tmp/kitty-terminfo ;
+RUN set -eux; \
+    pkg_url="https://snapshot.debian.org/archive/debian/20241018T203641Z/pool/main/k/kitty/kitty-terminfo_0.36.4-3_all.deb"; \
+    mkdir -p /tmp/kitty-terminfo; \
+    cd /tmp/kitty-terminfo; \
+    wget -q "$pkg_url" -O kitty-terminfo.deb; \
+    ar x kitty-terminfo.deb; \
+    tar -xf data.tar.xz; \
+    cp -R usr/share/terminfo/* /usr/share/terminfo; \
+    cd; \
+    rm -fr /tmp/kitty-terminfo;
 
 # vim
 RUN set -eux; \
@@ -103,10 +103,10 @@ RUN set -eux; \
 
 # lazygit
 RUN set -eux; \
-    LAZYGIT_VERSION=0.44.1 ; \
-    AARCH=$(dpkg --print-architecture) ; \
-    AARCH=${AARCH/amd64/x86_64} ; \
-    wget -q https://github.com/jesseduffield/lazygit/releases/download/v${LAZYGIT_VERSION}/lazygit_${LAZYGIT_VERSION}_Linux_${AARCH}.tar.gz -O- | tar -zxf - -C /usr/local/bin ;
+    LAZYGIT_VERSION=0.44.1; \
+    AARCH=$(dpkg --print-architecture); \
+    AARCH=${AARCH/amd64/x86_64}; \
+    wget -q https://github.com/jesseduffield/lazygit/releases/download/v${LAZYGIT_VERSION}/lazygit_${LAZYGIT_VERSION}_Linux_${AARCH}.tar.gz -O- | tar -zxf - -C /usr/local/bin;
 
 # ov
 RUN set -eux; \

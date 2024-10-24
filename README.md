@@ -36,6 +36,7 @@ defaults.
 - https://bun.sh/
 - https://github.com/eza-community/eza/
 - https://github.com/jesseduffield/lazygit/
+- https://github.com/noborus/ov
 
 - Some useful [scripts](pimp-my-shell/scripts)
 

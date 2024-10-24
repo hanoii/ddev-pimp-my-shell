@@ -107,9 +107,17 @@ Example on how I am using it:
 
 ## Install the dev version
 
-You can always install the latest code with
+You can always install the latest code:
 
+For DDEV v1.23.5 or above run
+
+```sh
+ddev add-on get https://github.com/hanoii/ddev-pimp-my-shell/tarball/main
 ```
+
+For earlier versions of DDEV run
+
+```sh
 ddev get https://github.com/hanoii/ddev-pimp-my-shell/tarball/main
 ```
 

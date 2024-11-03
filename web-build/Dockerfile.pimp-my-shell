@@ -82,25 +82,19 @@ RUN set -eux; \
 
 # bun.sh
 RUN set -eux; \
-    BUN_VERSION=1.1.33; \
+    BUN_VERSION=1.1.34; \
     curl -fsSL https://bun.sh/install | bash -s "bun-v${BUN_VERSION}"
 
 # Go back to root
 USER root:root
 
-# kitty-terminfo from unstable, using its snapshot to make sure there's always gonna ver a version
-# this can be updated manually by looking at
+# kitty-terminfo from directoy from their GitHub repo @ master
 # https://snapshot.debian.org/binary/kitty-terminfo/
 RUN set -eux; \
-    pkg_url="https://snapshot.debian.org/archive/debian/20241018T203641Z/pool/main/k/kitty/kitty-terminfo_0.36.4-3_all.deb"; \
-    mkdir -p /tmp/kitty-terminfo; \
-    cd /tmp/kitty-terminfo; \
-    wget -q "$pkg_url" -O kitty-terminfo.deb; \
-    ar x kitty-terminfo.deb; \
-    tar -xf data.tar.xz; \
-    cp -R usr/share/terminfo/* /usr/share/terminfo; \
-    cd; \
-    rm -fr /tmp/kitty-terminfo;
+    url="https://github.com/kovidgoyal/kitty/raw/refs/heads/master/terminfo/x/xterm-kitty"; \
+    mkdir -p /usr/share/terminfo/x; \
+    cd /usr/share/terminfo/x; \
+    wget -q "${url}";
 
 # vim
 RUN set -eux; \

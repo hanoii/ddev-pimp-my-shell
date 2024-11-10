@@ -13,7 +13,7 @@ RUN set -eux; \
     cd /opt/fzf; \
     git init; \
     git remote add origin https://github.com/junegunn/fzf.git; \
-    git fetch --depth 1 origin fc69308057cf8486d2753efd76682fd613471da6; \
+    git fetch --depth 1 origin 64c61603e9b50470ba79737ade9e0a7d8402f1d7; \
     git checkout FETCH_HEAD; \
     /opt/fzf/install --all; \
     cp /root/.fzf.bash /opt; \
@@ -22,7 +22,7 @@ RUN set -eux; \
     cd /opt/fzf-git.sh; \
     git init; \
     git remote add origin https://github.com/junegunn/fzf-git.sh.git; \
-    git fetch --depth 1 origin 6a5d4a923b86908abd9545c8646ae5dd44dff607; \
+    git fetch --depth 1 origin f730cfa1860acdb64597a0cf060d4949f1cd02a8; \
     git checkout FETCH_HEAD;
 
 # bat
@@ -61,7 +61,7 @@ RUN set -eux; \
 
 # eza
 RUN set -eux; \
-    EZA_VERSION=0.20.6; \
+    EZA_VERSION=0.20.7; \
     wget -q https://github.com/eza-community/eza/releases/download/v${EZA_VERSION}/eza_`uname -m`-unknown-linux-gnu.tar.gz -O- | tar -zxf - -C /usr/local/bin; \
     wget https://github.com/eza-community/eza/releases/download/v${EZA_VERSION}/completions-${EZA_VERSION}.tar.gz -O eza-completions.tar.gz; \
     tar -xzf eza-completions.tar.gz --strip-components=3 -C /etc/bash_completion.d/ ./target/completions-${EZA_VERSION}/eza; \

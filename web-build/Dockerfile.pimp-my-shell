@@ -13,7 +13,7 @@ RUN set -eux; \
     cd /opt/fzf; \
     git init; \
     git remote add origin https://github.com/junegunn/fzf.git; \
-    git fetch --depth 1 origin fc69308057cf8486d2753efd76682fd613471da6; \
+    git fetch --depth 1 origin 64c61603e9b50470ba79737ade9e0a7d8402f1d7; \
     git checkout FETCH_HEAD; \
     /opt/fzf/install --all; \
     cp /root/.fzf.bash /opt; \
@@ -22,7 +22,7 @@ RUN set -eux; \
     cd /opt/fzf-git.sh; \
     git init; \
     git remote add origin https://github.com/junegunn/fzf-git.sh.git; \
-    git fetch --depth 1 origin 6a5d4a923b86908abd9545c8646ae5dd44dff607; \
+    git fetch --depth 1 origin f730cfa1860acdb64597a0cf060d4949f1cd02a8; \
     git checkout FETCH_HEAD;
 
 # bat

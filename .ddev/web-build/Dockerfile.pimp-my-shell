@@ -9,11 +9,13 @@ RUN set -eux; \
 
 # fzf et al
 RUN set -eux; \
+    FZF_SHA1=215ab48222ac5fa8855c1e5bbf56742276b57324; \
+    FZFGIT_SHA1=f730cfa1860acdb64597a0cf060d4949f1cd02a8; \
     mkdir -p /opt/fzf; \
     cd /opt/fzf; \
     git init; \
     git remote add origin https://github.com/junegunn/fzf.git; \
-    git fetch --depth 1 origin 64c61603e9b50470ba79737ade9e0a7d8402f1d7; \
+    git fetch --depth 1 origin ${FZF_SHA1}; \
     git checkout FETCH_HEAD; \
     /opt/fzf/install --all; \
     cp /root/.fzf.bash /opt; \
@@ -22,7 +24,7 @@ RUN set -eux; \
     cd /opt/fzf-git.sh; \
     git init; \
     git remote add origin https://github.com/junegunn/fzf-git.sh.git; \
-    git fetch --depth 1 origin f730cfa1860acdb64597a0cf060d4949f1cd02a8; \
+    git fetch --depth 1 origin ${FZFGIT_SHA1}; \
     git checkout FETCH_HEAD;
 
 # bat
@@ -51,13 +53,20 @@ RUN set -eux; \
     dpkg -i gum.deb; \
     rm gum.deb;
 
-# apt/repos
-# - fish
+# fish
 RUN set -eux; \
-    echo "deb http://download.opensuse.org/repositories/shells:/fish:/release:/3/Debian_`lsb_release -rs`/ /" | sudo tee /etc/apt/sources.list.d/shells:fish:release:3.list; \
-    curl -fsSL https://download.opensuse.org/repositories/shells:fish:release:3/Debian_`lsb_release -rs`/Release.key | gpg --dearmor | sudo tee /etc/apt/trusted.gpg.d/shells_fish_release_3.gpg > /dev/null; \
-    apt update; \
-    apt satisfy -y "fish (>=3.7.1)";
+    FISH_VERSION=3.7.1-1; \
+    DEBIAN=$(lsb_release -rs); \
+    AARCH=$(dpkg --print-architecture); \
+    # the two wget are because for some time, at least in Argentina, download.opensuse.org
+    # was redirecting to mirrorcache-us, which was down at a time.
+    # on a us server I was getting ftp.gwdg.de mirror which was working, so as a
+    # temporary workaround, I am trying first the regular url, and if not I try the
+    # other mirror
+    wget -q https://download.opensuse.org/repositories/shells:/fish:/release:/3/Debian_${DEBIAN}/${AARCH}/fish_${FISH_VERSION}_${AARCH}.deb -O fish.deb \
+    || wget -q https://ftp.gwdg.de/pub/opensuse/repositories/shells%3A/fish%3A/release%3A/3/Debian_${DEBIAN}/${AARCH}/fish_${FISH_VERSION}_${AARCH}.deb -O fish.deb; \
+    dpkg -i fish.deb; \
+    rm fish.deb;
 
 # eza
 RUN set -eux; \

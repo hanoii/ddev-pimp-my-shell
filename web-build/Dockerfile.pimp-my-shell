@@ -58,13 +58,7 @@ RUN set -eux; \
     FISH_VERSION=3.7.1-1; \
     DEBIAN=$(lsb_release -rs); \
     AARCH=$(dpkg --print-architecture); \
-    # the two wget are because for some time, at least in Argentina, download.opensuse.org
-    # was redirecting to mirrorcache-us, which was down at a time.
-    # on a us server I was getting ftp.gwdg.de mirror which was working, so as a
-    # temporary workaround, I am trying first the regular url, and if not I try the
-    # other mirror
-    wget -q https://download.opensuse.org/repositories/shells:/fish:/release:/3/Debian_${DEBIAN}/${AARCH}/fish_${FISH_VERSION}_${AARCH}.deb -O fish.deb \
-    || wget -q https://ftp.gwdg.de/pub/opensuse/repositories/shells%3A/fish%3A/release%3A/3/Debian_${DEBIAN}/${AARCH}/fish_${FISH_VERSION}_${AARCH}.deb -O fish.deb; \
+    wget -q https://download.opensuse.org/repositories/shells:/fish:/release:/3/Debian_${DEBIAN}/${AARCH}/fish_${FISH_VERSION}_${AARCH}.deb -O fish.deb ; \
     dpkg -i fish.deb; \
     rm fish.deb;
 

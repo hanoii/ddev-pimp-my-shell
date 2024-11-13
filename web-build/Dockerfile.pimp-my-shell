@@ -92,7 +92,6 @@ RUN set -eux; \
 USER root:root
 
 # kitty-terminfo from directoy from their GitHub repo @ master
-# https://snapshot.debian.org/binary/kitty-terminfo/
 RUN set -eux; \
     url="https://github.com/kovidgoyal/kitty/raw/refs/tags/v0.37.0/terminfo/x/xterm-kitty"; \
     mkdir -p /usr/share/terminfo/x; \

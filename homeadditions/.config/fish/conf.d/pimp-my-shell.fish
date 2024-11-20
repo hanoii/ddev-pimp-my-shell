@@ -9,6 +9,12 @@ function fish_user_key_bindings
   fzf --fish | source
 end
 
+# go
+fish_add_path /usr/local/go/bin
+fish_add_path ~/go/bin
+set -x GOOS
+set -x GOARCH
+
 # z.lua
 mkdir -p /mnt/ddev-global-cache/z.lua/$HOSTNAME
 set -x _ZL_DATA /mnt/ddev-global-cache/z.lua/$HOSTNAME/.zlua

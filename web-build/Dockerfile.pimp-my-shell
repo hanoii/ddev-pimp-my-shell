@@ -71,6 +71,14 @@ RUN set -eux; \
     tar -xzf eza-completions.tar.gz --strip-components=3 -C /usr/share/fish/vendor_completions.d/ ./target/completions-${EZA_VERSION}/eza.fish; \
     rm eza-completions.tar.gz;
 
+# go
+RUN set -eux; \
+    GO_VERSION=1.23.3; \
+    AARCH=$(dpkg --print-architecture); \
+    wget -q https://go.dev/dl/go${GO_VERSION}.linux-${AARCH}.tar.gz -O go.tar.gz; \
+    tar -C /usr/local -xzf go.tar.gz; \
+    rm go.tar.gz;
+
 ##
 # Tools to install under ddev non-root user
 #
@@ -83,10 +91,17 @@ RUN set -eux; \
     fish -c "fisher install IlanCosman/tide@v6.1.1"; \
     fish -c "fisher install edc/bass@v1.0"
 
-# bun.sh
+# bun.sh - it's installed by on the user as it adds stuff to .bashrc
 RUN set -eux; \
     BUN_VERSION=1.1.36;/ \
     curl -fsSL https://bun.sh/install | bash -s "bun-v${BUN_VERSION}"
+
+# go tools - it's installed on the user so so that bin and pkgs are available on the user's home
+RUN set -eux; \
+    unset GOARCH; \
+    unset GOOS; \
+    SYSBOX_VERSION=0.19.0; \
+    /usr/local/go/bin/go install github.com/skx/sysbox@release-${SYSBOX_VERSION};
 
 # Go back to root
 USER root:root

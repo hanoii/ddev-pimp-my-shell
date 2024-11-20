@@ -9,16 +9,35 @@ defaults.
 
 <!-- toc -->
 
+- [Install](#install)
 - [Features](#features)
 - [Tweaks](#tweaks)
   * [ahoy](#ahoy)
   * [starship](#starship)
   * [fish](#fish)
   * [lazygit](#lazygit)
+  * [go](#go)
   * [ddev `post-import-db` hook](#ddev-post-import-db-hook)
-- [Install the dev version](#install-the-dev-version)
 
 <!-- tocstop -->
+
+## Install
+
+You can always install the latest code:
+
+For DDEV v1.23.5 or above run
+
+```sh
+ddev add-on get https://github.com/hanoii/ddev-pimp-my-shell/tarball/main
+```
+
+For earlier versions of DDEV run
+
+```sh
+ddev get https://github.com/hanoii/ddev-pimp-my-shell/tarball/main
+```
+
+**Contributed and maintained by [@hanoii](https://github.com/hanoii)**
 
 ## Features
 
@@ -37,6 +56,8 @@ defaults.
 - https://github.com/eza-community/eza/
 - https://github.com/jesseduffield/lazygit/
 - https://github.com/noborus/ov
+- https://go.dev
+- https://github.com/skx/sysbox
 - Some useful [scripts](pimp-my-shell/scripts)
 
 ## Tweaks
@@ -83,6 +104,13 @@ endkkk
 It adds a [config.yml](homeadditions/.config/lazygit/config.yml) diabling the
 startup popups.
 
+### go
+
+Other than adding itself to the path and installing some packages I am unsetting
+`GOARCH` and `GOOS` for both `ddev ssh` and `ddev fish` so that are not in
+conflict with the container OS as
+[they are added by ddev from the host](https://github.com/ddev/ddev/issues/6748).
+
 ### ddev `post-import-db` hook
 
 I generally have import scripts that I ship either from other add-ons or
@@ -104,21 +132,3 @@ Example on how I am using it:
 
 - https://github.com/hanoii/ddev-platformsh-lite/blob/ce4b95d578e82f942b75ec9fa6fa60f63473c90b/platformsh-lite/scripts/db-pull.sh#L91
 - https://github.com/hanoii/ddev-platformsh-lite/blob/ce4b95d578e82f942b75ec9fa6fa60f63473c90b/pimp-my-shell/hooks/post-import-db.d/00-drupal.sh
-
-## Install the dev version
-
-You can always install the latest code:
-
-For DDEV v1.23.5 or above run
-
-```sh
-ddev add-on get https://github.com/hanoii/ddev-pimp-my-shell/tarball/main
-```
-
-For earlier versions of DDEV run
-
-```sh
-ddev get https://github.com/hanoii/ddev-pimp-my-shell/tarball/main
-```
-
-**Contributed and maintained by [@hanoii](https://github.com/hanoii)**

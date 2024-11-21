@@ -58,6 +58,7 @@ ddev get https://github.com/hanoii/ddev-pimp-my-shell/tarball/main
 - https://github.com/noborus/ov
 - https://go.dev
 - https://github.com/skx/sysbox
+- https://github.com/dbohdan/recur
 - Some useful [scripts](pimp-my-shell/scripts)
 
 ## Tweaks

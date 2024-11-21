@@ -12,6 +12,8 @@ defaults.
 - [Install](#install)
 - [Features](#features)
 - [Tweaks](#tweaks)
+  * [terminal window title](#terminal-window-title)
+  * [ls replacement](#ls-replacement)
   * [ahoy](#ahoy)
   * [starship](#starship)
   * [fish](#fish)
@@ -62,6 +64,23 @@ ddev get https://github.com/hanoii/ddev-pimp-my-shell/tarball/main
 - Some useful [scripts](pimp-my-shell/scripts)
 
 ## Tweaks
+
+### terminal window title
+
+Both for bash and fish, this add-on changes the window terminal with a better
+default if working inside the container:
+
+- Adds the ddev project name
+- shows that is a ddev project
+- includes the current $PWD shortenning it.
+- shows the currently running command
+
+i.e. for this add-on `sleep 10 - ddev-pimp-my-shell/ddev: /v/w/html`
+
+### ls replacement
+
+It aliases `ls` and `ll` to use [eza](https://github.com/eza-community/eza/)
+instead of ls.
 
 ### ahoy
 

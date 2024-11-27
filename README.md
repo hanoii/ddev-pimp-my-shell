@@ -12,6 +12,7 @@ defaults.
 - [Install](#install)
 - [Features](#features)
 - [Tweaks](#tweaks)
+  * [Xdebug command inside the container](#xdebug-command-inside-the-container)
   * [terminal window title](#terminal-window-title)
   * [ls replacement](#ls-replacement)
   * [ahoy](#ahoy)
@@ -19,7 +20,7 @@ defaults.
   * [fish](#fish)
   * [lazygit](#lazygit)
   * [go](#go)
-  * [ddev `post-import-db` hook](#ddev-post-import-db-hook)
+  * [DDEV `post-import-db` hook](#ddev-post-import-db-hook)
 
 <!-- tocstop -->
 
@@ -65,13 +66,26 @@ ddev get https://github.com/hanoii/ddev-pimp-my-shell/tarball/main
 
 ## Tweaks
 
+### Xdebug command inside the container
+
+While you can enable Xdebug by following the [DDEV's guide][ddev-xdebug], I work
+a lot inside the container.
+
+I found that you can use DDEV's own `enable_xdebug` and `disable_xdebug` inside
+the container but I wanted a shortcut to that so this add-on
+[ships a small script](homeadditions/.local/bin/xdebug) that simply toggles
+Xdebug state by running `xdebug` inside the container.
+
+[ddev-xdebug]:
+  https://ddev.readthedocs.io/en/stable/users/debugging-profiling/step-debugging/
+
 ### terminal window title
 
 Both for bash and fish, this add-on changes the window terminal with a better
 default if working inside the container:
 
-- Adds the ddev project name
-- shows that is a ddev project
+- Adds the DDEV project name
+- shows that is a DDEV project
 - includes the current $PWD shortenning it.
 - shows the currently running command
 
@@ -103,7 +117,7 @@ starship preset nerd-font-symbols
 ### fish
 
 For tide, it uses the default configuration, if you want to have your own on all
-of your ddev projects you can create/edit
+of your DDEV projects you can create/edit
 `~/.ddev/homeadditions/.config/fish/conf.d/mytide.fish` on the host with
 something like the following:
 
@@ -129,9 +143,9 @@ startup popups.
 Other than adding itself to the path and installing some packages I am unsetting
 `GOARCH` and `GOOS` for both `ddev ssh` and `ddev fish` so that are not in
 conflict with the container OS as
-[they are added by ddev from the host](https://github.com/ddev/ddev/issues/6748).
+[they are added by DDEV from the host](https://github.com/ddev/ddev/issues/6748).
 
-### ddev `post-import-db` hook
+### DDEV `post-import-db` hook
 
 I generally have import scripts that I ship either from other add-ons or
 specific to projects and those scripts usually download the database from within

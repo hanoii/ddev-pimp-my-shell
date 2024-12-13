@@ -64,7 +64,7 @@ RUN set -eux; \
 
 # eza
 RUN set -eux; \
-    EZA_VERSION=0.20.11; \
+    EZA_VERSION=0.20.12; \
     wget -q https://github.com/eza-community/eza/releases/download/v${EZA_VERSION}/eza_`uname -m`-unknown-linux-gnu.tar.gz -O- | tar -zxf - -C /usr/local/bin; \
     wget https://github.com/eza-community/eza/releases/download/v${EZA_VERSION}/completions-${EZA_VERSION}.tar.gz -O eza-completions.tar.gz; \
     tar -xzf eza-completions.tar.gz --strip-components=3 -C /etc/bash_completion.d/ ./target/completions-${EZA_VERSION}/eza; \
@@ -113,7 +113,8 @@ USER root:root
 
 # kitty-terminfo from directoy from their GitHub repo @ master
 RUN set -eux; \
-    url="https://github.com/kovidgoyal/kitty/raw/refs/tags/v0.37.0/terminfo/x/xterm-kitty"; \
+    KITTY_VERSION=0.37.0; \
+    url="https://github.com/kovidgoyal/kitty/raw/refs/tags/v${KITTY_VERSION}/terminfo/x/xterm-kitty"; \
     mkdir -p /usr/share/terminfo/x; \
     cd /usr/share/terminfo/x; \
     wget -q "${url}";

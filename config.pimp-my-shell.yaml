@@ -17,6 +17,7 @@ webimage_extra_packages:
   - lolcat
   - lua5.4
   - man-db
+  - moreutils
   - net-tools
   - pipx
   - pv

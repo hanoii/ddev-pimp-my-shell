@@ -108,6 +108,14 @@ RUN set -eux; \
     RECUR_VERSION=1.1.0; \
     /usr/local/go/bin/go install github.com/dbohdan/recur@v${RECUR_VERSION};
 
+RUN set -eux; \
+    RUST_VERSION=1.83.0; \
+    curl -sSf https://sh.rustup.rs/ | sh -s -- --default-toolchain=${RUST_VERSION} -y
+RUN set -eux; \
+    SPACER_VERSION=0.3.0; \
+    ~/.cargo/bin/cargo install spacer@${SPACER_VERSION};
+
+
 # Go back to root
 USER root:root
 

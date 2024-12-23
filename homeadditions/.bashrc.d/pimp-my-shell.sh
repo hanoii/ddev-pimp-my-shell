@@ -55,3 +55,6 @@ alias ll='eza -la --icons --octal-permissions --group-directories-first'
 export PATH=$PATH:/usr/local/go/bin:~/go/bin
 unset GOARCH
 unset GOOS
+
+# rust
+. ~/.cargo/env

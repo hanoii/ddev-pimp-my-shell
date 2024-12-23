@@ -56,3 +56,6 @@ end
 function ll --wraps eza --description "eza -la --icons --octal-permissions --group-directories-first"
     eza -la --icons --octal-permissions --group-directories-first $argv
 end
+
+# rust
+source ~/.cargo/env.fish

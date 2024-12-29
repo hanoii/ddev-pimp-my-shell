@@ -2,7 +2,7 @@
 
 # ahoy
 RUN set -eux; \
-    AHOY_VERSION=2.2.0; \
+    AHOY_VERSION=2.3.0; \
     AARCH=$(dpkg --print-architecture); \
     wget -q https://github.com/ahoy-cli/ahoy/releases/download/v${AHOY_VERSION}/ahoy-bin-linux-${AARCH} -O - > /usr/local/bin/ahoy; \
     chmod +x /usr/local/bin/ahoy;

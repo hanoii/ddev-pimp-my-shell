@@ -9,8 +9,8 @@ RUN set -eux; \
 
 # fzf et al
 RUN set -eux; \
-    FZF_SHA1=0476a65fca287a1cd17ae3cbdfd8155eb0fb40ad; \
-    FZFGIT_SHA1=28b544a7b6d284b8e46e227b36000089b45e9e00; \
+    FZF_SHA1=fcd2baa9457a6486866a6a52248c43f31e05831a; \
+    FZFGIT_SHA1=4efe76b0b582e9883e19af50fb364b95d93baaf5; \
     mkdir -p /opt/fzf; \
     cd /opt/fzf; \
     git init; \
@@ -29,7 +29,7 @@ RUN set -eux; \
 
 # bat
 RUN set -eux; \
-    BAT_VERSION=0.24.0; \
+    BAT_VERSION=0.25.0; \
     AARCH=$(dpkg --print-architecture); \
     wget -q https://github.com/sharkdp/bat/releases/download/v${BAT_VERSION}/bat_${BAT_VERSION}_${AARCH}.deb -O bat.deb; \
     dpkg -i bat.deb; \
@@ -48,7 +48,7 @@ RUN set -eux; \
 
 # gum
 RUN set -eux; \
-    GUM_VERSION=0.14.5; \
+    GUM_VERSION=0.15.2; \
     wget -q https://github.com/charmbracelet/gum/releases/download/v${GUM_VERSION}/gum_${GUM_VERSION}_`dpkg --print-architecture`.deb -O gum.deb; \
     dpkg -i gum.deb; \
     rm gum.deb;
@@ -64,7 +64,7 @@ RUN set -eux; \
 
 # eza
 RUN set -eux; \
-    EZA_VERSION=0.20.15; \
+    EZA_VERSION=0.20.19; \
     wget -q https://github.com/eza-community/eza/releases/download/v${EZA_VERSION}/eza_`uname -m`-unknown-linux-gnu.tar.gz -O- | tar -zxf - -C /usr/local/bin; \
     wget https://github.com/eza-community/eza/releases/download/v${EZA_VERSION}/completions-${EZA_VERSION}.tar.gz -O eza-completions.tar.gz; \
     tar -xzf eza-completions.tar.gz --strip-components=3 -C /etc/bash_completion.d/ ./target/completions-${EZA_VERSION}/eza; \
@@ -73,7 +73,7 @@ RUN set -eux; \
 
 # go
 RUN set -eux; \
-    GO_VERSION=1.23.4; \
+    GO_VERSION=1.23.6; \
     AARCH=$(dpkg --print-architecture); \
     wget -q https://go.dev/dl/go${GO_VERSION}.linux-${AARCH}.tar.gz -O go.tar.gz; \
     tar -C /usr/local -xzf go.tar.gz; \
@@ -93,7 +93,7 @@ RUN set -eux; \
 
 # bun.sh - it's installed by on the user as it adds stuff to .bashrc
 RUN set -eux; \
-    BUN_VERSION=1.1.42; \
+    BUN_VERSION=1.2.2; \
     curl -fsSL https://bun.sh/install | bash -s "bun-v${BUN_VERSION}"
 
 # go tools - it's installed on the user so so that bin and pkgs are available on the user's home
@@ -105,14 +105,14 @@ RUN set -eux; \
 RUN set -eux; \
     unset GOARCH; \
     unset GOOS; \
-    RECUR_VERSION=1.1.0; \
-    /usr/local/go/bin/go install github.com/dbohdan/recur@v${RECUR_VERSION};
+    RECUR_VERSION=2.0.4; \
+    /usr/local/go/bin/go install dbohdan.com/recur/v2@v${RECUR_VERSION};
 
 RUN set -eux; \
-    RUST_VERSION=1.83.0; \
+    RUST_VERSION=1.84.1; \
     curl -sSf https://sh.rustup.rs/ | sh -s -- --default-toolchain=${RUST_VERSION} -y
 RUN set -eux; \
-    SPACER_VERSION=0.3.0; \
+    SPACER_VERSION=0.3.1; \
     ~/.cargo/bin/cargo install spacer@${SPACER_VERSION};
 
 
@@ -121,7 +121,7 @@ USER root:root
 
 # kitty-terminfo from directoy from their GitHub repo @ master
 RUN set -eux; \
-    KITTY_VERSION=0.38.1; \
+    KITTY_VERSION=0.39.1; \
     url="https://github.com/kovidgoyal/kitty/raw/refs/tags/v${KITTY_VERSION}/terminfo/x/xterm-kitty"; \
     mkdir -p /usr/share/terminfo/x; \
     cd /usr/share/terminfo/x; \
@@ -145,7 +145,7 @@ RUN set -eux; \
 
 # ov
 RUN set -eux; \
-    OV_VERSION=0.36.0; \
+    OV_VERSION=0.38.0; \
     AARCH=$(dpkg --print-architecture); \
     wget -q https://github.com/noborus/ov/releases/download/v${OV_VERSION}/ov_${OV_VERSION}_linux_${AARCH}.zip -O ov.zip; \
     unzip ov.zip -d /usr/local/bin/ ov; \

@@ -1,7 +1,7 @@
 #ddev-generated
 
 # Path
-export PATH=~/.bun/bin:~/.local/bin:$PATH:/usr/games
+export PATH=~/.bun/bin:~/.local/bin:~/.composer/vendor/bin:$PATH:/usr/games
 
 # This is so that child processes have appropriate access to this var
 export SHELL

@@ -9,7 +9,7 @@ RUN set -eux; \
 
 # fzf et al
 RUN set -eux; \
-    FZF_SHA1=cd1da27ff2df2ba2927db5b1ef8d8127e8e60800; \
+    FZF_SHA1=710ebdf9c14e0c88b0cfc843ce08edcdd4554571; \
     FZFGIT_SHA1=6651e719da630cd8e6e00191af7f225f6d13a801; \
     mkdir -p /opt/fzf; \
     cd /opt/fzf; \
@@ -43,7 +43,7 @@ RUN set -eux; \
 
 # starship
 RUN set -eux; \
-    STARSHIP_VERSION=1.21.1; \
+    STARSHIP_VERSION=1.22.1; \
     curl -sS https://starship.rs/install.sh | sh -s -- -y -v v${STARSHIP_VERSION}
 
 # gum
@@ -86,10 +86,15 @@ USER $uid:$gid
 
 # Fish plugins
 RUN set -eux; \
-    fish -c "curl -sL 'https://raw.githubusercontent.com/jorgebucaran/fisher/main/functions/fisher.fish' | source; \
-    fisher install jorgebucaran/fisher@4.4.4"; \
-    fish -c "fisher install IlanCosman/tide@v6.1.1"; \
-    fish -c "fisher install edc/bass@v1.0"
+    FISHER_VERSION=4.4.5; \
+    TIDE_VERSION=6.1.1; \
+    BASS_VERSION=1.0; \
+    fish -c " \
+        curl -sL 'https://raw.githubusercontent.com/jorgebucaran/fisher/main/functions/fisher.fish' | source; \
+        fisher install jorgebucaran/fisher@${FISHER_VERSION}; \
+    " \
+    fish -c "fisher install IlanCosman/tide@v${TIDE_VERSION}"; \
+    fish -c "fisher install edc/bass@v${BASS_VERSION}"
 
 # bun.sh - it's installed by on the user as it adds stuff to .bashrc
 RUN set -eux; \

@@ -75,6 +75,11 @@ VERSION=$(curl -Ls -o /dev/null -w %{url_effective} "https://github.com/skx/sysb
 echo "sysbox (go) version: $VERSION"
 perl -pi -e "s@SYSBOX_VERSION=.*@SYSBOX_VERSION=${VERSION}; \\\\@g" web-build/Dockerfile.pimp-my-shell
 
+# recur
+VERSION=$(curl -Ls -o /dev/null -w %{url_effective} "https://github.com/dbohdan/recur/releases/latest" | sed 's/.*tag\/v//g')
+echo "recur (go) version: $VERSION"
+perl -pi -e "s@RECUR_VERSION=.*@RECUR_VERSION=${VERSION}; \\\\@g" web-build/Dockerfile.pimp-my-shell
+
 # rust
 VERSION=$(curl -Ls -o /dev/null -w %{url_effective} "https://github.com/rust-lang/rust/releases/latest" | sed 's/.*tag\///g')
 echo "rust version: $VERSION"

@@ -2,15 +2,15 @@
 
 # ahoy
 RUN set -eux; \
-    AHOY_VERSION=2.3.0; \
+    AHOY_VERSION=2.4.0; \
     AARCH=$(dpkg --print-architecture); \
     wget -q https://github.com/ahoy-cli/ahoy/releases/download/v${AHOY_VERSION}/ahoy-bin-linux-${AARCH} -O - > /usr/local/bin/ahoy; \
     chmod +x /usr/local/bin/ahoy;
 
 # fzf et al
 RUN set -eux; \
-    FZF_SHA1=fcd2baa9457a6486866a6a52248c43f31e05831a; \
-    FZFGIT_SHA1=4efe76b0b582e9883e19af50fb364b95d93baaf5; \
+    FZF_SHA1=cd1da27ff2df2ba2927db5b1ef8d8127e8e60800; \
+    FZFGIT_SHA1=6651e719da630cd8e6e00191af7f225f6d13a801; \
     mkdir -p /opt/fzf; \
     cd /opt/fzf; \
     git init; \
@@ -64,7 +64,7 @@ RUN set -eux; \
 
 # eza
 RUN set -eux; \
-    EZA_VERSION=0.20.20; \
+    EZA_VERSION=0.20.22; \
     wget -q https://github.com/eza-community/eza/releases/download/v${EZA_VERSION}/eza_`uname -m`-unknown-linux-gnu.tar.gz -O- | tar -zxf - -C /usr/local/bin; \
     wget https://github.com/eza-community/eza/releases/download/v${EZA_VERSION}/completions-${EZA_VERSION}.tar.gz -O eza-completions.tar.gz; \
     tar -xzf eza-completions.tar.gz --strip-components=3 -C /etc/bash_completion.d/ ./target/completions-${EZA_VERSION}/eza; \
@@ -73,7 +73,7 @@ RUN set -eux; \
 
 # go
 RUN set -eux; \
-    GO_VERSION=1.23.6; \
+    GO_VERSION=1.24.0; \
     AARCH=$(dpkg --print-architecture); \
     wget -q https://go.dev/dl/go${GO_VERSION}.linux-${AARCH}.tar.gz -O go.tar.gz; \
     tar -C /usr/local -xzf go.tar.gz; \
@@ -93,7 +93,7 @@ RUN set -eux; \
 
 # bun.sh - it's installed by on the user as it adds stuff to .bashrc
 RUN set -eux; \
-    BUN_VERSION=1.2.2; \
+    BUN_VERSION=1.2.3; \
     curl -fsSL https://bun.sh/install | bash -s "bun-v${BUN_VERSION}"
 
 # go tools - it's installed on the user so so that bin and pkgs are available on the user's home
@@ -109,11 +109,14 @@ RUN set -eux; \
     /usr/local/go/bin/go install dbohdan.com/recur/v2@v${RECUR_VERSION};
 
 RUN set -eux; \
-    RUST_VERSION=1.84.1; \
+    RUST_VERSION=1.85.0; \
     curl -sSf https://sh.rustup.rs/ | sh -s -- --default-toolchain=${RUST_VERSION} -y
 RUN set -eux; \
-    SPACER_VERSION=0.3.1; \
+    SPACER_VERSION=0.3.8; \
     ~/.cargo/bin/cargo install spacer@${SPACER_VERSION};
+RUN set -eux; \
+    DELTA_VERSION=0.18.2; \
+    ~/.cargo/bin/cargo install git-delta@${DELTA_VERSION};
 
 
 # Go back to root
@@ -138,7 +141,7 @@ RUN set -eux; \
 
 # lazygit
 RUN set -eux; \
-    LAZYGIT_VERSION=0.45.2; \
+    LAZYGIT_VERSION=0.47.1; \
     AARCH=$(dpkg --print-architecture); \
     AARCH=${AARCH/amd64/x86_64}; \
     wget -q https://github.com/jesseduffield/lazygit/releases/download/v${LAZYGIT_VERSION}/lazygit_${LAZYGIT_VERSION}_Linux_${AARCH}.tar.gz -O- | tar -zxf - -C /usr/local/bin;

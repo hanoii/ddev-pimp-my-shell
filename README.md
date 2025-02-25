@@ -64,6 +64,7 @@ ddev get https://github.com/hanoii/ddev-pimp-my-shell/tarball/main
 - https://github.com/dbohdan/recur
 - https://www.rust-lang.org/
 - https://github.com/samwho/spacer
+- https://dandavison.github.io/delta/
 - Some useful [scripts](pimp-my-shell/scripts)
 
 ## Tweaks

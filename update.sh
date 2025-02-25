@@ -70,6 +70,33 @@ VERSION=$(curl -Ls -o /dev/null -w %{url_effective} "https://github.com/oven-sh/
 echo "bun version: $VERSION"
 perl -pi -e "s@BUN_VERSION=.*@BUN_VERSION=${VERSION}; \\\\@g" web-build/Dockerfile.pimp-my-shell
 
+VERSION=$(curl -Ls -o /dev/null -w %{url_effective} "https://github.com/skx/sysbox/releases/latest" | sed 's/.*tag\/release-//g')
+echo "sysbox version: $VERSION"
+perl -pi -e "s@SYSBOX_VERSION=.*@SYSBOX_VERSION=${VERSION}; \\\\@g" web-build/Dockerfile.pimp-my-shell
+
+VERSION=$(curl -Ls -o /dev/null -w %{url_effective} "https://github.com/samwho/spacer/releases/latest" | sed 's/.*tag\/v//g')
+echo "spacer version: $VERSION"
+perl -pi -e "s@SPACER_VERSION=.*@SPACER_VERSION=${VERSION}; \\\\@g" web-build/Dockerfile.pimp-my-shell
+
+VERSION=$(curl -Ls -o /dev/null -w %{url_effective} "https://github.com/dandavison/delta/releases/latest" | sed 's/.*tag\///g')
+echo "git-delta version: $VERSION"
+perl -pi -e "s@DELTA_VERSION=.*@DELTA_VERSION=${VERSION}; \\\\@g" web-build/Dockerfile.pimp-my-shell
+
+VERSION=$(curl -Ls -o /dev/null -w %{url_effective} "https://github.com/kovidgoyal/kitty/releases/latest" | sed 's/.*tag\/v//g')
+echo "kitty version: $VERSION"
+perl -pi -e "s@KITTY_VERSION=.*@KITTY_VERSION=${VERSION}; \\\\@g" web-build/Dockerfile.pimp-my-shell
+
+VERSION=$(curl -Ls -o /dev/null -w %{url_effective} "https://github.com/ChrisBuilds/terminaltexteffects/releases/latest" | sed 's/.*tag\/release-//g')
+echo "terminaltexteffects version: $VERSION"
+perl -pi -e "s@TTE_VERSION=.*@TTE_VERSION=${VERSION}; \\\\@g" web-build/Dockerfile.pimp-my-shell
+
+VERSION=$(curl -Ls -o /dev/null -w %{url_effective} "https://github.com/jesseduffield/lazygit/releases/latest" | sed 's/.*tag\/v//g')
+echo "lazygit version: $VERSION"
+perl -pi -e "s@LAZYGIT_VERSION=.*@LAZYGIT_VERSION=${VERSION}; \\\\@g" web-build/Dockerfile.pimp-my-shell
+
+VERSION=$(curl -Ls -o /dev/null -w %{url_effective} "https://github.com/noborus/ov/releases/latest" | sed 's/.*tag\/v//g')
+echo "ov - feature rich terminal pager version: $VERSION"
+perl -pi -e "s@OV_VERSION=.*@OV_VERSION=${VERSION}; \\\\@g" web-build/Dockerfile.pimp-my-shell
 
 if git diff --exit-code web-build/Dockerfile.pimp-my-shell; then
   echo -e "\nThere are currently no upgrades."

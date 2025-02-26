@@ -1,7 +1,7 @@
 name: pimp-my-shell
 repository: .
 version: ""
-install_date: "2025-02-25T23:35:11-03:00"
+install_date: "2025-02-26T09:52:48-03:00"
 project_files:
     - web-build/Dockerfile.pimp-my-shell
     - homeadditions/.bashrc.d/pimp-my-shell.sh
@@ -9,7 +9,7 @@ project_files:
     - commands/web/ahoy
     - commands/web/gum
     - commands/web/lazygit
-    - commands/host/fish
+    - commands/web/fish
     - homeadditions/.local/bin/xdebug
     - homeadditions/.local/share/bash-completion/completions/ahoy
     - homeadditions/.local/share/fish/vendor_completions.d/ahoy.fish

@@ -6,7 +6,7 @@ project_files:
   - commands/web/ahoy
   - commands/web/gum
   - commands/web/lazygit
-  - commands/host/fish
+  - commands/web/fish
   - homeadditions/.local/bin/xdebug
   - homeadditions/.local/share/bash-completion/completions/ahoy
   - homeadditions/.local/share/fish/vendor_completions.d/ahoy.fish
@@ -20,7 +20,8 @@ project_files:
   - pimp-my-shell/functions/conditional-run.sh
 post_install_actions:
   - |
-    #ddev-description: Remove deprecated z.fish file
+
+    #ddev-description:Remove deprecated z.fish file
     remove_file="homeadditions/.config/fish/conf.d/z.fish"
     if [ -f "$remove_file" ]; then
       if grep '#ddev-generated' "$remove_file"; then
@@ -30,10 +31,22 @@ post_install_actions:
       fi
     fi
   - |
-    #ddev-description: Remove deprecated drush-uli.sh file, moved to another addon (hanoii/ddev-drupal)
+
+    #ddev-description:Remove deprecated drush-uli.sh file, moved to another addon (hanoii/ddev-drupal)
     remove_file="pimp-my-shell/scripts/drush-uli.sh"
     if [ -f "$remove_file" ]; then
       if grep '#ddev-generated' "$remove_file"; then
+        rm "$remove_file"
+      else
+        echo "Existing "$remove_file" does not have #ddev-generated, so can't be removed"
+      fi
+    fi
+  - |
+
+    #ddev-description:Remove fish host command as it is now a web container command
+    remove_file="commands/host/fish"
+    if [ -f "$remove_file" ]; then
+      if grep -q '#ddev-generated' "$remove_file"; then
         rm "$remove_file"
       else
         echo "Existing "$remove_file" does not have #ddev-generated, so can't be removed"

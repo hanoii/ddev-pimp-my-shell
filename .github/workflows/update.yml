@@ -11,6 +11,7 @@ jobs:
     env:
       GH_TOKEN: ${{ github.token }}
     permissions:
+      actions: write
       contents: write
     steps:
       - uses: Homebrew/actions/setup-homebrew@master

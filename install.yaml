@@ -13,6 +13,7 @@ project_files:
   - homeadditions/.config/starship.toml
   - homeadditions/.config/fish/conf.d/pimp-my-shell.fish
   - homeadditions/.config/lazygit/config.yml
+  - pimp-my-shell/hooks/.gitignore
   - pimp-my-shell/hooks/README.md
   - pimp-my-shell/hooks/post-import-db.sh
   - pimp-my-shell/hooks/post-import-db.d

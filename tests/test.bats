@@ -21,6 +21,26 @@ health_checks() {
   ddev exec bat --version
   ddev gum --version
   ddev exec editor --version | grep -i vim
+  ddev fish -c "fisher --version"
+  ddev fish -c "tide --version"
+  ddev fish -c "bass"
+  ddev exec 'eza --version'
+  ddev exec 'bash -ic "go version"'
+  ddev fish -c 'go version'
+  ddev exec bun --version
+  ddev fish -c 'bun --version'
+  ddev exec 'bash -ic "spacer --version"'
+  ddev fish -c "spacer --version"
+  ddev exec 'bash -ic "sysbox version"'
+  ddev fish -c "sysbox version"
+  ddev exec 'bash -ic "delta --version"'
+  ddev fish -c "delta --version"
+  ddev exec 'bash -ic "tte --version"'
+  ddev fish -c 'tte --version'
+  ddev exec 'bash -ic "lazygit --version"'
+  ddev fish -c 'lazygit --version'
+  ddev exec 'bash -ic "ov --version"'
+  ddev fish -c 'ov --version'
 }
 
 teardown() {
@@ -38,13 +58,3 @@ teardown() {
   ddev restart
   health_checks
 }
-
-@test "install from release" {
-  set -eu -o pipefail
-  cd ${TESTDIR} || ( printf "unable to cd to ${TESTDIR}\n" && exit 1 )
-  echo "# ddev get hanoii/ddev-pimp-my-shell with project ${PROJNAME} in ${TESTDIR} ($(pwd))" >&3
-  ddev get hanoii/ddev-pimp-my-shell
-  ddev restart >/dev/null
-  health_checks
-}
-

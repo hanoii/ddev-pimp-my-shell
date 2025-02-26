@@ -1,4 +1,4 @@
-name: Update deps
+name: update
 on:
   schedule:
     - cron: "0 0 * * *"
@@ -23,6 +23,7 @@ jobs:
             git add .
             git commit -m "feat: update.sh updates (GA)"
             git push
+            gh workflow run tests
           fi
 
   keepalive:

@@ -9,7 +9,7 @@ RUN set -eux; \
 
 # fzf et al
 RUN set -eux; \
-    FZF_SHA1=b7248d41155acb830c629e07da08eab8e31d9fca; \
+    FZF_SHA1=3ba82b6d87348b119f9a7fd168ad8a597a18b4b2; \
     FZFGIT_SHA1=6651e719da630cd8e6e00191af7f225f6d13a801; \
     mkdir -p /opt/fzf; \
     cd /opt/fzf; \
@@ -64,7 +64,7 @@ RUN set -eux; \
 
 # eza
 RUN set -eux; \
-    EZA_VERSION=0.20.22; \
+    EZA_VERSION=0.20.23; \
     wget -q https://github.com/eza-community/eza/releases/download/v${EZA_VERSION}/eza_`uname -m`-unknown-linux-gnu.tar.gz -O- | tar -zxf - -C /usr/local/bin; \
     wget https://github.com/eza-community/eza/releases/download/v${EZA_VERSION}/completions-${EZA_VERSION}.tar.gz -O eza-completions.tar.gz; \
     tar -xzf eza-completions.tar.gz --strip-components=3 -C /etc/bash_completion.d/ ./target/completions-${EZA_VERSION}/eza; \

@@ -9,7 +9,7 @@ RUN set -eux; \
 
 # fzf et al
 RUN set -eux; \
-    FZF_SHA1=0012183ede3619e2bf52932c196377f8a7befbf6; \
+    FZF_SHA1=26bcd0c90d4c77938d2011f994d943e531322504; \
     FZFGIT_SHA1=6651e719da630cd8e6e00191af7f225f6d13a801; \
     mkdir -p /opt/fzf; \
     cd /opt/fzf; \

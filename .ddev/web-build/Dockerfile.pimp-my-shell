@@ -9,8 +9,8 @@ RUN set -eux; \
 
 # fzf et al
 RUN set -eux; \
-    FZF_SHA1=26bcd0c90d4c77938d2011f994d943e531322504; \
-    FZFGIT_SHA1=6651e719da630cd8e6e00191af7f225f6d13a801; \
+    FZF_SHA1=; \
+    FZFGIT_SHA1=; \
     mkdir -p /opt/fzf; \
     cd /opt/fzf; \
     git init; \
@@ -129,7 +129,7 @@ USER root:root
 
 # kitty-terminfo from directoy from their GitHub repo @ master
 RUN set -eux; \
-    KITTY_VERSION=0.39.1; \
+    KITTY_VERSION=0.40.0; \
     url="https://github.com/kovidgoyal/kitty/raw/refs/tags/v${KITTY_VERSION}/terminfo/x/xterm-kitty"; \
     mkdir -p /usr/share/terminfo/x; \
     cd /usr/share/terminfo/x; \

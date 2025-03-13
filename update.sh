@@ -22,18 +22,14 @@ perl -pi -e "s@FZFGIT_SHA1=.*@FZFGIT_SHA1=${VERSION}; \\\\@g" web-build/Dockerfi
 # bat
 VERSION=$(curl -Ls -o /dev/null -w %{url_effective} "https://github.com/sharkdp/bat/releases/latest" | sed 's/.*tag\/v//g')
 [ -n "$VERSION" ]
-if [ -n "$VERSION" ]; then
-  echo "bat version: $VERSION"
-  perl -pi -e "s@BAT_VERSION=.*@BAT_VERSION=${VERSION}; \\\\@g" web-build/Dockerfile.pimp-my-shell
-fi
+echo "bat version: $VERSION"
+perl -pi -e "s@BAT_VERSION=.*@BAT_VERSION=${VERSION}; \\\\@g" web-build/Dockerfile.pimp-my-shell
 
 # z.lua
 VERSION=$(curl -Ls -o /dev/null -w %{url_effective} "https://github.com/skywind3000/z.lua/releases/latest" | sed 's/.*tag\///g')
 [ -n "$VERSION" ]
-if [ -n "$VERSION" ]; then
-  echo "z.lua version: $VERSION"
-  perl -pi -e "s@ZLUA_VERSION=.*@ZLUA_VERSION=${VERSION}; \\\\@g" web-build/Dockerfile.pimp-my-shell
-fi
+echo "z.lua version: $VERSION"
+perl -pi -e "s@ZLUA_VERSION=.*@ZLUA_VERSION=${VERSION}; \\\\@g" web-build/Dockerfile.pimp-my-shell
 
 # starship (bash)
 VERSION=$(curl -Ls -o /dev/null -w %{url_effective} "https://github.com/starship/starship/releases/latest" | sed 's/.*tag\/v//g')

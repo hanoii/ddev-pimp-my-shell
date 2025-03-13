@@ -55,10 +55,10 @@ RUN set -eux; \
 
 # fish
 RUN set -eux; \
-    FISH_VERSION=3.7.1-1; \
+    FISH_VERSION=4.0.1-1; \
     DEBIAN=$(lsb_release -rs); \
     AARCH=$(dpkg --print-architecture); \
-    wget -q https://download.opensuse.org/repositories/shells:/fish:/release:/3/Debian_${DEBIAN}/${AARCH}/fish_${FISH_VERSION}_${AARCH}.deb -O fish.deb ; \
+    wget -q https://download.opensuse.org/repositories/shells:/fish:/release:/4/Debian_${DEBIAN}/${AARCH}/fish_${FISH_VERSION}_${AARCH}.deb -O fish.deb ; \
     dpkg -i fish.deb; \
     rm fish.deb;
 

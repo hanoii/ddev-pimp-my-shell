@@ -48,7 +48,7 @@ echo "gum version: $VERSION"
 perl -pi -e "s@GUM_VERSION=.*@GUM_VERSION=${VERSION}; \\\\@g" web-build/Dockerfile.pimp-my-shell
 
 # fish
-VERSION=$(curl -Ls "https://download.opensuse.org/download/repositories/shells:/fish:/release:/3/Debian_12/?jsontable&_=${_timestamp}" | jq -r '.data | .[] | select(.name | endswith(".dsc")) | .name' | sed 's/fish_\(.*\)\.dsc/\1/g')
+VERSION=$(curl -Ls "https://download.opensuse.org/download/repositories/shells:/fish:/release:/4/Debian_12/?jsontable&_=${_timestamp}" | jq -r '.data | .[] | select(.name | endswith(".dsc")) | .name' | sed 's/fish_\(.*\)\.dsc/\1/g')
 [ -n "$VERSION" ]
 echo "fish debian version from opensuse: $VERSION"
 perl -pi -e "s@FISH_VERSION=.*@FISH_VERSION=${VERSION}; \\\\@g" web-build/Dockerfile.pimp-my-shell

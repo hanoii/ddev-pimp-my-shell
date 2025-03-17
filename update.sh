@@ -10,11 +10,13 @@ VERSION=$(curl -Ls -o /dev/null -w %{url_effective} "https://github.com/ahoy-cli
 echo "ahoy version: $VERSION"
 perl -pi -e "s@AHOY_VERSION=.*@AHOY_VERSION=${VERSION}; \\\\@g" web-build/Dockerfile.pimp-my-shell
 
-# fzf*
-VERSION=$(curl -s "https://github.com/junegunn/fzf/commits" | grep -o 'commit/[a-f0-9]\{40\}' | head -1 | cut -d'/' -f2)
+# fzf
+VERSION=$(curl -Ls -o /dev/null -w %{url_effective} "https://github.com/junegunn/fzf/releases/latest" | sed 's/.*tag\/v//g')
 [ -n "$VERSION" ]
-echo "fzf latest commit SHA1: $VERSION"
-perl -pi -e "s@FZF_SHA1=.*@FZF_SHA1=${VERSION}; \\\\@g" web-build/Dockerfile.pimp-my-shell
+echo "fzf version: $VERSION"
+perl -pi -e "s@FZF_VERSION=.*@FZF_VERSION=${VERSION}; \\\\@g" web-build/Dockerfile.pimp-my-shell
+
+# fzfgit.sh
 VERSION=$(curl -s "https://github.com/junegunn/fzf-git.sh/commits" | grep -o 'commit/[a-f0-9]\{40\}' | head -1 | cut -d'/' -f2)
 echo "fzf-git.sh (bash) latest commit SHA1: $VERSION"
 perl -pi -e "s@FZFGIT_SHA1=.*@FZFGIT_SHA1=${VERSION}; \\\\@g" web-build/Dockerfile.pimp-my-shell

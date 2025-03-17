@@ -16,7 +16,7 @@ esac
 COMP_WORDBREAKS=${COMP_WORDBREAKS//:}
 
 # fzf
-source /opt/.fzf.bash
+eval "$(fzf --bash)"
 
 # fzf-git
 source /opt/fzf-git.sh/fzf-git.sh

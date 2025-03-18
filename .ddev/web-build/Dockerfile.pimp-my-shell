@@ -123,7 +123,7 @@ USER root:root
 
 # kitty-terminfo from directoy from their GitHub repo @ master
 RUN set -eux; \
-    KITTY_VERSION=0.40.0; \
+    KITTY_VERSION=0.40.1; \
     url="https://github.com/kovidgoyal/kitty/raw/refs/tags/v${KITTY_VERSION}/terminfo/x/xterm-kitty"; \
     mkdir -p /usr/share/terminfo/x; \
     cd /usr/share/terminfo/x; \

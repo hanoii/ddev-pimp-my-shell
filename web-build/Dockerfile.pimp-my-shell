@@ -29,6 +29,14 @@ RUN set -eux; \
     dpkg -i bat.deb; \
     rm bat.deb;
 
+# fd
+RUN set -eux; \
+    FD_VERSION=10.2.0; \
+    AARCH=$(dpkg --print-architecture); \
+    wget -q https://github.com/sharkdp/fd/releases/download/v${FD_VERSION}/fd_${FD_VERSION}_${AARCH}.deb -O fd.deb; \
+    dpkg -i fd.deb; \
+    rm fd.deb;
+
 # z.lua
 RUN set -eux; \
     ZLUA_VERSION=1.8.20; \

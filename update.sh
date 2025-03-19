@@ -27,6 +27,12 @@ VERSION=$(curl -Ls -o /dev/null -w %{url_effective} "https://github.com/sharkdp/
 echo "bat version: $VERSION"
 perl -pi -e "s@BAT_VERSION=.*@BAT_VERSION=${VERSION}; \\\\@g" web-build/Dockerfile.pimp-my-shell
 
+# fd
+VERSION=$(curl -Ls -o /dev/null -w %{url_effective} "https://github.com/sharkdp/fd/releases/latest" | sed 's/.*tag\/v//g')
+[ -n "$VERSION" ]
+echo "fd version: $VERSION"
+perl -pi -e "s@FD_VERSION=.*@FD_VERSION=${VERSION}; \\\\@g" web-build/Dockerfile.pimp-my-shell
+
 # z.lua
 VERSION=$(curl -Ls -o /dev/null -w %{url_effective} "https://github.com/skywind3000/z.lua/releases/latest" | sed 's/.*tag\///g')
 [ -n "$VERSION" ]

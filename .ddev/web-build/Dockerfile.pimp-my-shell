@@ -116,7 +116,7 @@ RUN set -eux; \
     /usr/local/go/bin/go install dbohdan.com/recur/v2@v${RECUR_VERSION};
 
 RUN set -eux; \
-    RUST_VERSION=1.85.0; \
+    RUST_VERSION=1.85.1; \
     curl -sSf https://sh.rustup.rs/ | sh -s -- --default-toolchain=${RUST_VERSION} -y
 RUN set -eux; \
     SPACER_VERSION=0.3.8; \

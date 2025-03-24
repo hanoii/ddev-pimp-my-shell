@@ -13,7 +13,7 @@ RUN set -eux; \
     AARCH=$(dpkg --print-architecture); \
     wget -q https://github.com/junegunn/fzf/releases/download/v${FZF_VERSION}/fzf-${FZF_VERSION}-linux_${AARCH}.tar.gz -O - | tar -zxf - -C /usr/local/bin; \
     \
-    FZFGIT_SHA1=6651e719da630cd8e6e00191af7f225f6d13a801; \
+    FZFGIT_SHA1=; \
     mkdir -p /opt/fzf-git.sh; \
     cd /opt/fzf-git.sh; \
     git init; \

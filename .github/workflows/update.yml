@@ -23,15 +23,22 @@ jobs:
         id: check-updates
         run: |
           if [[ `git status --porcelain` ]]; then
+            git diff > /tmp/updates.patch
             echo "updates=true" >> "$GITHUB_OUTPUT"
           else
             echo "updates=false" >> "$GITHUB_OUTPUT"
           fi
+      - uses: actions/upload-artifact@v4
+        with:
+          name: patch
+          path: /tmp/updates.patch
+          if-no-files-found: ignore
 
   tests:
     name: Test the updates
     runs-on: ubuntu-latest
     needs: updates
+    if: needs.updates.outputs.updates == 'true'
     strategy:
       matrix:
         ddev_version: [stable, HEAD]
@@ -39,6 +46,12 @@ jobs:
     permissions:
       contents: write
     steps:
+      - uses: actions/checkout@v4
+      - uses: actions/download-artifact@v4
+        with:
+          name: patch
+          path: /tmp/updates.patch
+      - run: git apply /tmp/updates.patch
       - uses: ddev/github-action-add-on-test@v2
         with:
           ddev_version: ${{ matrix.ddev_version }}
@@ -56,6 +69,11 @@ jobs:
     permissions:
       contents: write
     steps:
+      - uses: actions/download-artifact@v4
+        with:
+          name: patch
+          path: /tmp/updates.patch
+      - run: git apply /tmp/updates.patch
       - name: 'Commit changes'
         run: |
           git config user.name "github-actions[bot]"

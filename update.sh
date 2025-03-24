@@ -4,6 +4,12 @@ set -eu
 
 _timestamp=$(date +%s)
 
+# gh
+VERSION=$(curl -Ls -o /dev/null -w %{url_effective} "https://github.com/cli/cli/releases/latest" | sed 's/.*tag\/v//g')
+[ -n "$VERSION" ]
+echo "GitHub CLI version: $VERSION"
+perl -pi -e "s@GH_VERSION=.*@GH_VERSION=${VERSION}; \\\\@g" web-build/Dockerfile.pimp-my-shell
+
 # ahoy
 VERSION=$(curl -Ls -o /dev/null -w %{url_effective} "https://github.com/ahoy-cli/ahoy/releases/latest" | sed 's/.*tag\/v//g')
 [ -n "$VERSION" ]

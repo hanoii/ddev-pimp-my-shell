@@ -118,18 +118,21 @@ RUN set -eux; \
 RUN set -eux; \
     RUST_VERSION=1.85.1; \
     curl -sSf https://sh.rustup.rs/ | sh -s -- --default-toolchain=${RUST_VERSION} -y
+
+# Go back to root
+USER root:root
+
+# spacer
 RUN set -eux; \
     SPACER_VERSION=0.3.8; \
     AARCH=$(uname -m); \
     wget -q https://github.com/samwho/spacer/releases/download/v${SPACER_VERSION}/spacer-${AARCH}-unknown-linux-gnu.tar.gz -O- | tar -zxf - -C /usr/local/bin;
+
+# delta
 RUN set -eux; \
     DELTA_VERSION=0.18.2; \
     AARCH=$(uname -m); \
     wget -q https://github.com/dandavison/delta/releases/download/${DELTA_VERSION}/delta-${DELTA_VERSION}-${AARCH}-unknown-linux-gnu.tar.gz -O- | tar -zxf - --strip-components=1 -C /usr/local/bin --wildcards '*/delta';
-
-
-# Go back to root
-USER root:root
 
 # kitty-terminfo from directoy from their GitHub repo @ master
 RUN set -eux; \
@@ -163,3 +166,9 @@ RUN set -eux; \
     wget -q https://github.com/noborus/ov/releases/download/v${OV_VERSION}/ov_${OV_VERSION}_linux_${AARCH}.zip -O ov.zip; \
     unzip ov.zip -d /usr/local/bin/ ov; \
     rm ov.zip;
+
+# gh
+RUN set -eux; \
+    GH_VERSION=2.69.0; \
+    AARCH=$(dpkg --print-architecture); \
+    wget -q https://github.com/cli/cli/releases/download/v${GH_VERSION}/gh_${GH_VERSION}_linux_${AARCH}.tar.gz -O- | tar -zxf - --strip-components=1 -C /usr/local --wildcards '*/bin/gh' ;

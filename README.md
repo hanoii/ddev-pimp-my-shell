@@ -69,6 +69,7 @@ ddev get https://github.com/hanoii/ddev-pimp-my-shell/tarball/main
 - https://github.com/sharkdp/bat
 - https://github.com/sharkdp/fd
 - Some useful [scripts](pimp-my-shell/scripts)
+- https://github.com/cli/cli
 
 ## Tweaks
 

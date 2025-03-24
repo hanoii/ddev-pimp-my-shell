@@ -29,10 +29,11 @@ jobs:
             echo "updates=false" >> "$GITHUB_OUTPUT"
           fi
       - uses: actions/upload-artifact@v4
+        if: steps.check-updates.outputs.updates == 'true'
         with:
           name: patch
           path: /tmp/updates.patch
-          if-no-files-found: ignore
+          if-no-files-found: error
 
   tests:
     name: Test the updates
@@ -50,7 +51,7 @@ jobs:
       - uses: actions/download-artifact@v4
         with:
           name: patch
-          path: /tmp/updates.patch
+          path: /tmp
       - run: git apply /tmp/updates.patch
       - uses: ddev/github-action-add-on-test@v2
         with:

@@ -12,6 +12,8 @@ jobs:
     # Map a step output to a job output
     outputs:
       updates: ${{ steps.check-updates.outputs.updates }}
+    env:
+      GH_TOKEN: ${{ github.token }}
     steps:
       - uses: Homebrew/actions/setup-homebrew@master
       - run: brew install ddev/ddev/ddev >/dev/null

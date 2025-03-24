@@ -17,8 +17,7 @@ echo "fzf version: $VERSION"
 perl -pi -e "s@FZF_VERSION=.*@FZF_VERSION=${VERSION}; \\\\@g" web-build/Dockerfile.pimp-my-shell
 
 # fzfgit.sh
-curl -v "https://github.com/junegunn/fzf-git.sh/commits"
-VERSION=$(curl -s "https://github.com/junegunn/fzf-git.sh/commits" | grep -o 'commit/[a-f0-9]\{40\}' | head -1 | cut -d'/' -f2)
+VERSION=$(gh api repos/junegunn/fzf-git.sh/commits --jq '.[0].sha')
 [ -n "$VERSION" ]
 echo "fzf-git.sh (bash) latest commit SHA1: $VERSION"
 perl -pi -e "s@FZFGIT_SHA1=.*@FZFGIT_SHA1=${VERSION}; \\\\@g" web-build/Dockerfile.pimp-my-shell

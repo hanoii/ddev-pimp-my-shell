@@ -72,10 +72,11 @@ jobs:
     permissions:
       contents: write
     steps:
+      - uses: actions/checkout@v4
       - uses: actions/download-artifact@v4
         with:
           name: patch
-          path: /tmp/updates.patch
+          path: /tmp
       - run: git apply /tmp/updates.patch
       - name: 'Commit changes'
         run: |

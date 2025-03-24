@@ -120,10 +120,12 @@ RUN set -eux; \
     curl -sSf https://sh.rustup.rs/ | sh -s -- --default-toolchain=${RUST_VERSION} -y
 RUN set -eux; \
     SPACER_VERSION=0.3.8; \
-    ~/.cargo/bin/cargo install spacer@${SPACER_VERSION};
+    AARCH=$(uname -m); \
+    wget -q https://github.com/samwho/spacer/releases/download/v${SPACER_VERSION}/spacer-${AARCH}-unknown-linux-gnu.tar.gz -O- | tar -zxf - -C /usr/local/bin;
 RUN set -eux; \
     DELTA_VERSION=0.18.2; \
-    ~/.cargo/bin/cargo install git-delta@${DELTA_VERSION};
+    AARCH=$(uname -m); \
+    wget -q https://github.com/dandavison/delta/releases/download/${DELTA_VERSION}/delta-${DELTA_VERSION}-${AARCH}-unknown-linux-gnu.tar.gz -O- | tar -zxf - --strip-components=1 -C /usr/local/bin --wildcards '*/delta';
 
 
 # Go back to root

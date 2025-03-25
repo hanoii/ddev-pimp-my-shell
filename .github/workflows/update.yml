@@ -86,6 +86,13 @@ jobs:
           git pull --rebase
           git push
 
+      - name: Slack Notification
+        uses: rtCamp/action-slack-notify@v2
+        if: ${{ !cancelled() }}
+        env:
+          SLACK_CHANNEL: ${{ secrets.SLACK_CHANNEL }}
+          SLACK_TOKEN: ${{ secrets.SLACK_TOKEN }}
+
   keepalive:
     name: Keepalive Workflow
     runs-on: ubuntu-latest

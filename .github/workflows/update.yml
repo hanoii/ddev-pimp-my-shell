@@ -46,8 +46,6 @@ jobs:
       matrix:
         ddev_version: [stable, HEAD]
       fail-fast: false
-    permissions:
-      contents: write
     steps:
       - uses: actions/checkout@v4
       - uses: actions/download-artifact@v4
@@ -63,6 +61,7 @@ jobs:
           addon_repository: ${{ env.GITHUB_REPOSITORY }}
           addon_ref: ${{ env.GITHUB_REF }}
           disable_checkout_action: true
+          keepalive: false
 
   commitpush:
     name: Commit and push the updates

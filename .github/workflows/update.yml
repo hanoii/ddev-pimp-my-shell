@@ -96,6 +96,11 @@ jobs:
         env:
           SLACK_CHANNEL: ${{ secrets.SLACK_CHANNEL }}
           SLACK_TOKEN: ${{ secrets.SLACK_TOKEN }}
+          SLACK_ICON: https://ca.slack-edge.com/T01Q8N63GKV-U021BBD8TUL-b005c7c0d607-72
+          SLACK_USERNAME: ddev-pimp-my-shell
+          MSG_MINIMAL: true
+          SLACK_MESSAGE_ON_SUCCESS: All good updating dependencies <!here>
+          SLACK_MESSAGE_ON_FAILURE: Error updating dependencies <!here>
 
   keepalive:
     name: Keepalive Workflow

@@ -89,7 +89,7 @@ jobs:
   slack:
     runs-on: ubuntu-latest
     needs: [updates, tests, commitpush]
-    if: ${{ !cancelled() }}
+    if: ${{ failure() }}
     name: Slack Notification
     steps:
       - uses: rtCamp/action-slack-notify@v2
@@ -100,7 +100,7 @@ jobs:
           SLACK_USERNAME: ddev-pimp-my-shell
           MSG_MINIMAL: true
           SLACK_COLOR: ${{ job.status }}
-          SLACK_MESSAGE_ON_SUCCESS: All good updating dependencies <!here>
+          SLACK_MESSAGE_ON_SUCCESS: All good updating dependencies!
           SLACK_MESSAGE_ON_FAILURE: Error updating dependencies <!here>
 
   keepalive:

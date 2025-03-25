@@ -99,6 +99,7 @@ jobs:
           SLACK_ICON: https://ca.slack-edge.com/T01Q8N63GKV-U021BBD8TUL-b005c7c0d607-72
           SLACK_USERNAME: ddev-pimp-my-shell
           MSG_MINIMAL: true
+          SLACK_COLOR: ${{ job.status }}
           SLACK_MESSAGE_ON_SUCCESS: All good updating dependencies <!here>
           SLACK_MESSAGE_ON_FAILURE: Error updating dependencies <!here>
 

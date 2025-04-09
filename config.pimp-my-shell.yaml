@@ -8,9 +8,11 @@ webimage_extra_packages:
   - boxes
   - bsdmainutils
   - build-essential
+  - certbot
   - colorized-logs
   - cowsay
   - dialog
+  - dnsutils
   - figlet
   - htop
   - libarchive-tools

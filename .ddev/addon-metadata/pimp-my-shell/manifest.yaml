@@ -1,7 +1,7 @@
 name: pimp-my-shell
 repository: .
 version: ""
-install_date: "2025-04-15T12:30:43Z"
+install_date: "2025-04-17T12:30:42Z"
 project_files:
     - web-build/Dockerfile.pimp-my-shell
     - homeadditions/.bashrc.d/pimp-my-shell.sh

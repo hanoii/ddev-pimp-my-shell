@@ -24,6 +24,7 @@ webimage_extra_packages:
   - pipx
   - pv
   - screen
+  - time
   - vim-nox
 web_environment:
   - COLORTERM=${COLORTERM}

@@ -66,7 +66,7 @@ RUN set -eux; \
 
 # eza
 RUN set -eux; \
-    EZA_VERSION=0.21.1; \
+    EZA_VERSION=0.21.2; \
     wget -q https://github.com/eza-community/eza/releases/download/v${EZA_VERSION}/eza_`uname -m`-unknown-linux-gnu.tar.gz -O- | tar -zxf - -C /usr/local/bin; \
     wget https://github.com/eza-community/eza/releases/download/v${EZA_VERSION}/completions-${EZA_VERSION}.tar.gz -O eza-completions.tar.gz; \
     tar -xzf eza-completions.tar.gz --strip-components=3 -C /etc/bash_completion.d/ ./target/completions-${EZA_VERSION}/eza; \
@@ -169,6 +169,6 @@ RUN set -eux; \
 
 # gh
 RUN set -eux; \
-    GH_VERSION=2.71.0; \
+    GH_VERSION=2.71.2; \
     AARCH=$(dpkg --print-architecture); \
     wget -q https://github.com/cli/cli/releases/download/v${GH_VERSION}/gh_${GH_VERSION}_linux_${AARCH}.tar.gz -O- | tar -zxf - --strip-components=1 -C /usr/local --wildcards '*/bin/gh' ;

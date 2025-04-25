@@ -56,13 +56,20 @@ RUN set -eux; \
     rm gum.deb;
 
 # fish
-RUN set -eux; \
-    FISH_VERSION=4.0.2-2; \
-    DEBIAN=$(lsb_release -rs); \
-    AARCH=$(dpkg --print-architecture); \
-    wget -q https://download.opensuse.org/repositories/shells:/fish:/release:/4/Debian_${DEBIAN}/${AARCH}/fish_${FISH_VERSION}_${AARCH}.deb -O fish.deb ; \
-    dpkg -i fish.deb; \
-    rm fish.deb;
+#
+# Opensuse doesn't keep older files of the fish build, so this will always use
+# the latest regardless of the fish version specified below in the
+# `apt satisfy` command. However, this allows for proper docker build cache
+# busting ensuring you always have the last version when it's updated.
+RUN <<EOF
+set -eux;
+FISH_VERSION=4.0.2-2;
+DEBIAN=$(lsb_release -rs);
+echo "deb http://download.opensuse.org/repositories/shells:/fish:/release:/4/Debian_${DEBIAN}/ /" | sudo tee /etc/apt/sources.list.d/shells:fish:release:4.list
+curl -fsSL https://download.opensuse.org/repositories/shells:fish:release:4/Debian_${DEBIAN}/Release.key | gpg --dearmor | sudo tee /etc/apt/trusted.gpg.d/shells_fish_release_4.gpg > /dev/null
+apt update
+apt satisfy -y "fish (>=${FISH_VERSION})"
+EOF
 
 # eza
 RUN set -eux; \

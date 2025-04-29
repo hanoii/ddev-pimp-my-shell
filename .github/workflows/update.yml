@@ -61,7 +61,6 @@ jobs:
           addon_repository: ${{ env.GITHUB_REPOSITORY }}
           addon_ref: ${{ env.GITHUB_REF }}
           disable_checkout_action: true
-          keepalive: false
 
   commitpush:
     name: Commit and push the updates
@@ -99,15 +98,5 @@ jobs:
           SLACK_ICON: https://ca.slack-edge.com/T01Q8N63GKV-U021BBD8TUL-b005c7c0d607-72
           SLACK_USERNAME: ddev-pimp-my-shell
           MSG_MINIMAL: true
-          SLACK_COLOR: ${{ job.status }}
-          SLACK_MESSAGE_ON_SUCCESS: All good updating dependencies!
-          SLACK_MESSAGE_ON_FAILURE: Error updating dependencies <!here>
-
-  keepalive:
-    name: Keepalive Workflow
-    runs-on: ubuntu-latest
-    permissions:
-      actions: write
-    steps:
-      - uses: actions/checkout@v4
-      - uses: gautamkrishnar/keepalive-workflow@v2
+          SLACK_COLOR: failure
+          SLACK_MESSAGE: Error updating dependencies <!here>

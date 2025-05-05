@@ -57,7 +57,7 @@ function ll --wraps eza --description "eza -la --icons --octal-permissions --gro
 end
 
 # rust
-source ~/.cargo/env.fish
+fish_add_path ~/.cargo/bin
 
 # delta
 git config --global core.pager delta

@@ -1,8 +1,9 @@
 name: pimp-my-shell
 project_files:
+  - web-build/.gitignore
   - web-build/prepend.Dockerfile.pimp-my-shell
-  - web-build/Dockerfile.pimp-my-shell
-  - web-build/Dockerfile.~pimp-my-shell
+  - web-build/1.24.4-Dockerfile.pimp-my-shell
+  - web-build/1.24.5-Dockerfile.~pimp-my-shell
   - homeadditions/.bashrc.d/pimp-my-shell.sh
   - config.pimp-my-shell.yaml
   - commands/web/ahoy
@@ -54,15 +55,15 @@ post_install_actions:
         echo "Existing "$remove_file" does not have #ddev-generated, so can't be removed"
       fi
     fi
+
   - |
 
-    #ddev-description:Support multi-stage on 1.24.5+
-    if ${DDEV_EXECUTABLE} debug match-constraint "> 1.24.4-0 <= 1.24.4-zzzzzz || > 1.24.4" 2>/dev/null ; then
-      rm -f web-build/Dockerfile.pimp-my-shell
-    else
-      rm -f web-build/Dockerfile.~pimp-my-shell
-      echo -e "\n+----------------------------------------------------------------------------\n| [warning]\n| This add-on now supports multi-stage builds for ddev versions 1.24.5+, improving image build time dramatically."
-      echo -e "| It is strongly recommended that you upgrade ddev."
-      echo -e "+----------------------------------------------------------------------------z"
+    #ddev-description:Remove deprecated Dockerfile.pimp-my-shell
+    remove_file="web-build/Dockerfile.pimp-my-shell"
+    if [ -f "$remove_file" ]; then
+      if grep -q '#ddev-generated' "$remove_file"; then
+        rm "$remove_file"
+      else
+        echo "Existing "$remove_file" does not have #ddev-generated, so can't be removed"
+      fi
     fi
-

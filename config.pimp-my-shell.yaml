@@ -4,7 +4,7 @@ hooks:
     - exec-host: |
         if ${DDEV_EXECUTABLE} debug match-constraint "> 1.24.4-0 <= 1.24.4-zzzzzz || > 1.24.4" 2>/dev/null ; then
           cp .ddev/web-build/1.24.5-Dockerfile.~pimp-my-shell .ddev/web-build/Dockerfile.~pimp-my-shell
-          echo -e "\033[0;32m\u26A1 The addon hanoii/ddev-pimp-my-shell is now using multi-stage image builds.\033[0m"
+          echo -e "\033[0;32m\u26A1 The addon hanoii/ddev-pimp-my-shell is now using multi-stage image build.\033[0m"
         else
           cp .ddev/web-build/1.24.4-Dockerfile.pimp-my-shell .ddev/web-build/Dockerfile.~pimp-my-shell
           echo -en "\033[0;33m"

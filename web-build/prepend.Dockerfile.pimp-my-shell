@@ -159,7 +159,7 @@ EOF
 FROM pimp-my-shell-go AS pimp-my-shell-go-recur
 RUN <<EOF
 set -eux
-RECUR_VERSION=2.0.4
+RECUR_VERSION=2.1.0
 /usr/local/go/bin/go install dbohdan.com/recur/v2@v${RECUR_VERSION}
 EOF
 

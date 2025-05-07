@@ -78,7 +78,8 @@ DEBIAN=$(lsb_release -rs)
 echo "deb http://download.opensuse.org/repositories/shells:/fish:/release:/4/Debian_${DEBIAN}/ /" | sudo tee /etc/apt/sources.list.d/shells:fish:release:4.list
 curl -fsSL https://download.opensuse.org/repositories/shells:fish:release:4/Debian_${DEBIAN}/Release.key | gpg --dearmor | sudo tee /etc/apt/trusted.gpg.d/shells_fish_release_4.gpg > /dev/null
 apt update
-apt satisfy -y "fish (>=${FISH_VERSION})"
+apt -o APT::Install-Recommends=false satisfy -y "fish (>=${FISH_VERSION})"
+rm -rf /var/lib/apt/lists/*
 EOF
 
 FROM pimp-my-shell-fish AS pimp-my-shell-fisher
@@ -86,7 +87,10 @@ SHELL ["/bin/fish", "-c"]
 RUN <<EOF
 set fish_trace 1
 export FISHER_VERSION=4.4.5
-curl -sL 'https://raw.githubusercontent.com/jorgebucaran/fisher/main/functions/fisher.fish' | source && fisher install jorgebucaran/fisher@{$FISHER_VERSION}
+curl -fLo /tmp/fisher.fish --retry 3 --retry-delay 2 https://raw.githubusercontent.com/jorgebucaran/fisher/main/functions/fisher.fish
+source /tmp/fisher.fish
+fisher install jorgebucaran/fisher@$FISHER_VERSION
+rm /tmp/fisher.fish
 EOF
 
 FROM pimp-my-shell-fisher AS pimp-my-shell-tide
@@ -166,12 +170,15 @@ SHELL ["/bin/bash", "-c"]
 RUN <<EOF
 set -eux
 apt-get update
-apt-get install -y pipx
+apt-get install -y --no-install-recommends pipx
 TTE_VERSION=0.12.0
 pipx install terminaltexteffects==${TTE_VERSION}
 # Change the shebang to /opt/terminaltexteffects which is where I am going to
 # copy it
 sed -i '1s|^#!/root/.local/pipx/venvs/terminaltexteffects/bin/python|#!/opt/terminaltexteffects/bin/python|' /root/.local/bin/tte
+apt-get purge -y pipx
+apt-get autoremove -y
+rm -rf /var/lib/apt/lists/*
 EOF
 
 # fd

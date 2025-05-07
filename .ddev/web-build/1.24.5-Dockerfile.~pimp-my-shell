@@ -1,9 +1,17 @@
 #ddev-generated
 
-# vim
+##
+# vim as default editor
+#
 RUN set -eux; \
     update-alternatives --set editor /usr/bin/vim.nox
 
+##
+# While any Docker cache on these lines should have negligent impact most run in
+# less than a second, I am leaving the ones that take slightly longer than the
+# others on top.
+#
+COPY --from=pimp-my-shell-go /usr/local/go /usr/local/go
 COPY --from=pimp-my-shell-ahoy /usr/local/bin/ahoy /usr/local/bin
 COPY --from=pimp-my-shell-starship /usr/local/bin/starship /usr/local/bin
 COPY --from=pimp-my-shell-gum /opt/gum /usr/local/bin
@@ -22,7 +30,6 @@ COPY --chown=$uid:$gid --from=pimp-my-shell-tide /root/.config/fish /home/$usern
 COPY --chown=$uid:$gid --from=pimp-my-shell-bass /root/.config/fish /home/$username/.config/fish
 COPY --from=pimp-my-shell-zlua /opt/z.lua/z.lua /opt/z.lua
 COPY --from=pimp-my-shell-xterm-kitty /usr/share/terminfo/x /usr/share/terminfo/x
-COPY --from=pimp-my-shell-go /usr/local/go /usr/local/go
 COPY --from=pimp-my-shell-go-sysbox /root/go/bin/sysbox /usr/local/bin
 COPY --from=pimp-my-shell-go-recur /root/go/bin/recur /usr/local/bin
 COPY --from=pimp-my-shell-tte /root/.local/bin/tte /usr/local/bin

@@ -82,30 +82,27 @@ apt satisfy -y "fish (>=${FISH_VERSION})"
 EOF
 
 FROM pimp-my-shell-fish AS pimp-my-shell-fisher
-SHELL ["/bin/bash", "-c"]
+SHELL ["/bin/fish", "-c"]
 RUN <<EOF
-set -eux
-FISHER_VERSION=4.4.5
-fish -c " \
-  curl -sL 'https://raw.githubusercontent.com/jorgebucaran/fisher/main/functions/fisher.fish' | source; \
-  fisher install jorgebucaran/fisher@${FISHER_VERSION}; \
-"
+set fish_trace 1
+export FISHER_VERSION=4.4.5
+curl -sL 'https://raw.githubusercontent.com/jorgebucaran/fisher/main/functions/fisher.fish' | source && fisher install jorgebucaran/fisher@{$FISHER_VERSION}
 EOF
 
 FROM pimp-my-shell-fisher AS pimp-my-shell-tide
-SHELL ["/bin/bash", "-c"]
+SHELL ["/bin/fish", "-c"]
 RUN <<EOF
-set -eux
-TIDE_VERSION=6.1.1
-fish -c "fisher install IlanCosman/tide@v${TIDE_VERSION}"
+set fish_trace 1
+export TIDE_VERSION=6.1.1
+fisher install IlanCosman/tide@v$TIDE_VERSION
 EOF
 
 FROM pimp-my-shell-fisher AS pimp-my-shell-bass
-SHELL ["/bin/bash", "-c"]
+SHELL ["/bin/fish", "-c"]
 RUN <<EOF
-set -eux
-BASS_VERSION=1.0
-fish -c "fisher install edc/bass@v${BASS_VERSION}"
+set fish_trace 1
+export BASS_VERSION=1.0
+fisher install edc/bass@v$BASS_VERSION
 EOF
 
 #z.lua
@@ -159,7 +156,7 @@ EOF
 FROM pimp-my-shell-go AS pimp-my-shell-go-recur
 RUN <<EOF
 set -eux
-RECUR_VERSION=2.0.4
+RECUR_VERSION=2.1.0
 /usr/local/go/bin/go install dbohdan.com/recur/v2@v${RECUR_VERSION}
 EOF
 

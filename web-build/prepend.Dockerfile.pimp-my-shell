@@ -173,12 +173,14 @@ apt-get update
 apt-get install -y --no-install-recommends pipx
 TTE_VERSION=0.12.0
 pipx install terminaltexteffects==${TTE_VERSION}
-# Change the shebang to /opt/terminaltexteffects which is where I am going to
-# copy it
-sed -i '1s|^#!/root/.local/pipx/venvs/terminaltexteffects/bin/python|#!/opt/terminaltexteffects/bin/python|' /root/.local/bin/tte
 apt-get purge -y pipx
 apt-get autoremove -y
 rm -rf /var/lib/apt/lists/*
+EOF
+RUN <<EOF
+# Change the shebang to /opt/terminaltexteffects which is where I am going to
+# copy it
+sed -i '1s|^#!/root/.local/pipx/venvs/terminaltexteffects/bin/python|#!/opt/terminaltexteffects/bin/python|' /root/.local/pipx/venvs/terminaltexteffects/bin/tte
 EOF
 
 # fd

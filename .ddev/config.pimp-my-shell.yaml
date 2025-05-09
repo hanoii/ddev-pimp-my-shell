@@ -36,7 +36,6 @@ webimage_extra_packages:
   - man-db
   - moreutils
   - net-tools
-  - pipx
   - pv
   - screen
   - time

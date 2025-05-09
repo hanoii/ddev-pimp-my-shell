@@ -47,7 +47,7 @@ EOF
 # fzf-git.sh
 FROM alpine AS pimp-my-shell-fzfgit
 RUN <<EOF
-FZFGIT_SHA1=99a018db37aa06f5984dbf604dfb5b70c88e46ab
+FZFGIT_SHA1=3ec3e97d1cc75ec97c0ab923ed5aa567aee01a5e
 wget https://raw.githubusercontent.com/junegunn/fzf-git.sh/${FZFGIT_SHA1}/fzf-git.sh -O /opt/fzf-git.sh
 EOF
 
@@ -137,7 +137,7 @@ EOF
 FROM alpine AS pimp-my-shell-go
 RUN <<EOF
 set -eux
-GO_VERSION=1.24.2
+GO_VERSION=1.24.3
 AARCH=$(uname -m)
 AARCH=${AARCH/aarch64/arm64}
 AARCH=${AARCH/x86_64/amd64}

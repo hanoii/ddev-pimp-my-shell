@@ -264,7 +264,7 @@ FROM $BASE_IMAGE AS pimp-my-shell-bun
 SHELL ["/bin/bash", "-c"]
 RUN <<EOF
 set -eux
-BUN_VERSION=1.2.12
+BUN_VERSION=1.2.13
 curl --retry 3 --retry-delay 2 -fsSL https://bun.sh/install | bash -s "bun-v${BUN_VERSION}"
 cd /root/.bun/bin
 ln -fs bun bunx

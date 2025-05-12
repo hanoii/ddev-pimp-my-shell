@@ -141,7 +141,7 @@ EOF
 FROM pimp-my-shell-base AS pimp-my-shell-xterm-kitty
 RUN <<EOF
 set -eux
-KITTY_VERSION=0.41.1
+KITTY_VERSION=0.42.0
 mkdir -p /usr/share/terminfo/x
 cd /usr/share/terminfo/x
 curl-pimp-my-shell -o xterm-kitty https://github.com/kovidgoyal/kitty/raw/refs/tags/v${KITTY_VERSION}/terminfo/x/xterm-kitty
@@ -174,7 +174,7 @@ EOF
 FROM pimp-my-shell-go AS pimp-my-shell-go-recur
 RUN <<EOF
 set -eux
-RECUR_VERSION=2.1.0
+RECUR_VERSION=2.2.0
 /usr/local/go/bin/go install dbohdan.com/recur/v2@v${RECUR_VERSION}
 EOF
 

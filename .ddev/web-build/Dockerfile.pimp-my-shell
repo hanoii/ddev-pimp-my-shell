@@ -119,7 +119,7 @@ RUN set -eux; \
 RUN set -eux; \
     unset GOARCH; \
     unset GOOS; \
-    RECUR_VERSION=2.1.0; \
+    RECUR_VERSION=2.2.0; \
     /usr/local/go/bin/go install dbohdan.com/recur/v2@v${RECUR_VERSION};
 
 RUN set -eux; \

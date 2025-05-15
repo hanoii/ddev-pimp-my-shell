@@ -47,3 +47,4 @@ COPY --from=pimp-my-shell-ov /usr/local/bin/ov /usr/local/bin
 COPY --chown=$uid:$gid --from=pimp-my-shell-bun /root/.bun /home/$username/.bun
 COPY --from=pimp-my-shell-gh /opt/bin/gh /usr/local/bin
 COPY --from=pimp-my-shell-delta /opt/delta /usr/local/bin
+COPY --from=pimp-my-shell-spacer /usr/local/bin/spacer /usr/local/bin

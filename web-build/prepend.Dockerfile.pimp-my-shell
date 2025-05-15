@@ -1,9 +1,16 @@
 #ddev-generated
 
-FROM alpine as pimp-my-shell-base
+FROM alpine AS pimp-my-shell-base
 RUN apk add --no-cache curl
 RUN <<EOF
 echo -e '#!/bin/sh\nexec /usr/bin/curl -fL --retry 3 --retry-delay 2 "$@"' > /usr/local/bin/curl-pimp-my-shell
+chmod +x /usr/local/bin/curl-pimp-my-shell
+EOF
+
+FROM $BASE_IMAGE AS pimp-my-shell-ddev-base
+SHELL ["/bin/bash", "-c"]
+RUN <<EOF
+echo -e '#!/usr/bin/env bash\n\nset -eux\n/usr/bin/curl -fL --retry 3 --retry-delay 2 "$@"' > /usr/local/bin/curl-pimp-my-shell
 chmod +x /usr/local/bin/curl-pimp-my-shell
 EOF
 
@@ -84,14 +91,14 @@ EOF
 # the latest regardless of the fish version specified below in the
 # `apt satisfy` command. However, this allows for proper docker build cache
 # busting ensuring you always have the last version when it's updated.
-FROM $BASE_IMAGE AS pimp-my-shell-fish
+FROM pimp-my-shell-ddev-base AS pimp-my-shell-fish
 SHELL ["/bin/bash", "-c"]
 RUN <<EOF
 set -eux
 FISH_VERSION=4.0.2-2
 DEBIAN=$(lsb_release -rs)
 echo "deb http://download.opensuse.org/repositories/shells:/fish:/release:/4/Debian_${DEBIAN}/ /" | sudo tee /etc/apt/sources.list.d/shells:fish:release:4.list
-curl --retry 3 --retry-delay 2 -fsSL https://download.opensuse.org/repositories/shells:fish:release:4/Debian_${DEBIAN}/Release.key | gpg --dearmor | sudo tee /etc/apt/trusted.gpg.d/shells_fish_release_4.gpg > /dev/null
+curl-pimp-my-shell -sS https://download.opensuse.org/repositories/shells:fish:release:4/Debian_${DEBIAN}/Release.key | gpg --dearmor | sudo tee /etc/apt/trusted.gpg.d/shells_fish_release_4.gpg > /dev/null
 apt update
 apt -o APT::Install-Recommends=false satisfy -y "fish (>=${FISH_VERSION})"
 rm -rf /var/lib/apt/lists/*
@@ -102,7 +109,7 @@ SHELL ["/bin/fish", "-c"]
 RUN <<EOF
 set fish_trace 1
 export FISHER_VERSION=4.4.5
-curl --retry 3 --retry-delay 2 -fLo /tmp/fisher.fish https://raw.githubusercontent.com/jorgebucaran/fisher/main/functions/fisher.fish
+curl-pimp-my-shell -o /tmp/fisher.fish https://raw.githubusercontent.com/jorgebucaran/fisher/main/functions/fisher.fish
 source /tmp/fisher.fish
 fisher install jorgebucaran/fisher@$FISHER_VERSION
 rm /tmp/fisher.fish
@@ -179,7 +186,7 @@ RECUR_VERSION=2.2.0
 EOF
 
 # tte
-FROM $BASE_IMAGE AS pimp-my-shell-tte
+FROM pimp-my-shell-ddev-base AS pimp-my-shell-tte
 SHELL ["/bin/bash", "-c"]
 RUN <<EOF
 set -eux
@@ -222,12 +229,12 @@ rm bat.tar.gz
 EOF
 
 # rust
-FROM $BASE_IMAGE AS pimp-my-shell-rust
+FROM pimp-my-shell-ddev-base AS pimp-my-shell-rust
 SHELL ["/bin/bash", "-c"]
 RUN <<EOF
 set -eux
 RUST_VERSION=1.86.0
-curl --retry 3 --retry-delay 2 -sSf https://sh.rustup.rs/ | sh -s -- --profile minimal --default-toolchain=${RUST_VERSION} -y
+curl-pimp-my-shell -sS https://sh.rustup.rs/ | sh -s -- --profile minimal --default-toolchain=${RUST_VERSION} -y
 EOF
 
 # lazygit
@@ -260,12 +267,12 @@ rm ov.zip
 EOF
 
 # bun
-FROM $BASE_IMAGE AS pimp-my-shell-bun
+FROM pimp-my-shell-ddev-base AS pimp-my-shell-bun
 SHELL ["/bin/bash", "-c"]
 RUN <<EOF
 set -eux
 BUN_VERSION=1.2.13
-curl --retry 3 --retry-delay 2 -fsSL https://bun.sh/install | bash -s "bun-v${BUN_VERSION}"
+curl-pimp-my-shell -sS https://bun.sh/install | bash -s "bun-v${BUN_VERSION}"
 cd /root/.bun/bin
 ln -fs bun bunx
 EOF
@@ -294,4 +301,27 @@ AARCH=$(uname -m)
 curl-pimp-my-shell -o delta.tar.gz https://github.com/dandavison/delta/releases/download/${DELTA_VERSION}/delta-${DELTA_VERSION}-${AARCH}-unknown-linux-gnu.tar.gz
 tar -zxf delta.tar.gz --strip-components=1 -C /opt
 rm delta.tar.gz
+EOF
+
+# spacer
+FROM pimp-my-shell-rust AS pimp-my-shell-spacer
+RUN <<EOF
+set -eux
+SPACER_VERSION=0.3.8
+AARCH=$(uname -m)
+if [ "$AARCH" = "x86_64" ] || [ "$AARCH" = "aarch64" ]; then
+  curl-pimp-my-shell -o spacer.tar.gz https://github.com/samwho/spacer/releases/download/v${SPACER_VERSION}/spacer-${AARCH}-unknown-linux-gnu.tar.gz
+  tar -zxf spacer.tar.gz -C /usr/local/bin;
+else
+  apt-get update
+  apt-get install -y --no-install-recommends build-essential
+  . "$HOME/.cargo/env"
+  cargo install spacer@${SPACER_VERSION}
+  apt-get purge -y pipx
+
+  apt-get autoremove -y
+  rm -rf /var/lib/apt/lists/*
+  rm -fr "$HOME/.cargo/registry"
+  mv "$HOME/.cargo/bin/spacer" /usr/local/bin
+fi
 EOF

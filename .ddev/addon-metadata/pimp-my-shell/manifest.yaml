@@ -1,9 +1,12 @@
 name: pimp-my-shell
 repository: .
 version: ""
-install_date: "2025-05-12T12:33:11Z"
+install_date: "2025-05-12T14:07:58-03:00"
 project_files:
-    - web-build/Dockerfile.pimp-my-shell
+    - web-build/.gitignore
+    - web-build/prepend.Dockerfile.pimp-my-shell
+    - web-build/1.24.4-Dockerfile.pimp-my-shell
+    - web-build/1.24.5-Dockerfile.~pimp-my-shell
     - homeadditions/.bashrc.d/pimp-my-shell.sh
     - config.pimp-my-shell.yaml
     - commands/web/ahoy

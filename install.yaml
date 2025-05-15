@@ -1,6 +1,9 @@
 name: pimp-my-shell
 project_files:
-  - web-build/Dockerfile.pimp-my-shell
+  - web-build/.gitignore
+  - web-build/prepend.Dockerfile.pimp-my-shell
+  - web-build/1.24.4-Dockerfile.pimp-my-shell
+  - web-build/1.24.5-Dockerfile.~pimp-my-shell
   - homeadditions/.bashrc.d/pimp-my-shell.sh
   - config.pimp-my-shell.yaml
   - commands/web/ahoy
@@ -45,6 +48,18 @@ post_install_actions:
 
     #ddev-description:Remove fish host command as it is now a web container command
     remove_file="commands/host/fish"
+    if [ -f "$remove_file" ]; then
+      if grep -q '#ddev-generated' "$remove_file"; then
+        rm "$remove_file"
+      else
+        echo "Existing "$remove_file" does not have #ddev-generated, so can't be removed"
+      fi
+    fi
+
+  - |
+
+    #ddev-description:Remove deprecated Dockerfile.pimp-my-shell
+    remove_file="web-build/Dockerfile.pimp-my-shell"
     if [ -f "$remove_file" ]; then
       if grep -q '#ddev-generated' "$remove_file"; then
         rm "$remove_file"

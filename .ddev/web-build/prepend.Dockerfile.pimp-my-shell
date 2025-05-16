@@ -1,13 +1,6 @@
 #ddev-generated
 
-FROM alpine AS pimp-my-shell-base
-RUN apk add --no-cache curl
-RUN <<EOF
-echo -e '#!/bin/sh\nexec /usr/bin/curl -fL --retry 3 --retry-delay 2 "$@"' > /usr/local/bin/curl-pimp-my-shell
-chmod +x /usr/local/bin/curl-pimp-my-shell
-EOF
-
-FROM $BASE_IMAGE AS pimp-my-shell-ddev-base
+FROM $BASE_IMAGE AS pimp-my-shell-base
 SHELL ["/bin/bash", "-c"]
 RUN <<EOF
 echo -e '#!/usr/bin/env bash\n\nset -eux\n/usr/bin/curl -fL --retry 3 --retry-delay 2 "$@"' > /usr/local/bin/curl-pimp-my-shell
@@ -16,6 +9,7 @@ EOF
 
 # ahoy
 FROM pimp-my-shell-base AS pimp-my-shell-ahoy
+SHELL ["/bin/bash", "-c"]
 RUN <<EOF
 set -eux
 AHOY_VERSION=2.4.0
@@ -28,6 +22,7 @@ EOF
 
 # startship
 FROM pimp-my-shell-base AS pimp-my-shell-starship
+SHELL ["/bin/bash", "-c"]
 RUN <<EOF
 set -eux
 STARSHIP_VERSION=1.23.0
@@ -40,6 +35,7 @@ EOF
 
 # gum
 FROM pimp-my-shell-base AS pimp-my-shell-gum
+SHELL ["/bin/bash", "-c"]
 RUN <<EOF
 set -eux
 GUM_VERSION=0.16.0
@@ -53,6 +49,7 @@ EOF
 
 # fzf
 FROM pimp-my-shell-base AS pimp-my-shell-fzf
+SHELL ["/bin/bash", "-c"]
 RUN <<EOF
 set -eux
 FZF_VERSION=0.62.0
@@ -66,6 +63,7 @@ EOF
 
 # fzf-git.sh
 FROM pimp-my-shell-base AS pimp-my-shell-fzfgit
+SHELL ["/bin/bash", "-c"]
 RUN <<EOF
 FZFGIT_SHA1=3ec3e97d1cc75ec97c0ab923ed5aa567aee01a5e
 curl-pimp-my-shell -o /opt/fzf-git.sh https://raw.githubusercontent.com/junegunn/fzf-git.sh/${FZFGIT_SHA1}/fzf-git.sh
@@ -73,6 +71,7 @@ EOF
 
 # eza
 FROM pimp-my-shell-base AS pimp-my-shell-eza
+SHELL ["/bin/bash", "-c"]
 RUN <<EOF
 set -eux
 EZA_VERSION=0.21.3
@@ -91,7 +90,7 @@ EOF
 # the latest regardless of the fish version specified below in the
 # `apt satisfy` command. However, this allows for proper docker build cache
 # busting ensuring you always have the last version when it's updated.
-FROM pimp-my-shell-ddev-base AS pimp-my-shell-fish
+FROM pimp-my-shell-base AS pimp-my-shell-fish
 SHELL ["/bin/bash", "-c"]
 RUN <<EOF
 set -eux
@@ -133,6 +132,7 @@ EOF
 
 #z.lua
 FROM pimp-my-shell-base AS pimp-my-shell-zlua
+SHELL ["/bin/bash", "-c"]
 RUN <<EOF
 set -eux
 ZLUA_VERSION=1.8.21
@@ -146,6 +146,7 @@ EOF
 
 #xterm-kitty
 FROM pimp-my-shell-base AS pimp-my-shell-xterm-kitty
+SHELL ["/bin/bash", "-c"]
 RUN <<EOF
 set -eux
 KITTY_VERSION=0.42.0
@@ -156,6 +157,7 @@ EOF
 
 # go
 FROM pimp-my-shell-base AS pimp-my-shell-go
+SHELL ["/bin/bash", "-c"]
 RUN <<EOF
 set -eux
 GO_VERSION=1.24.3
@@ -171,22 +173,26 @@ EOF
 
 # go - sysbox
 FROM pimp-my-shell-go AS pimp-my-shell-go-sysbox
+SHELL ["/bin/bash", "-c"]
 RUN <<EOF
 set -eux
 SYSBOX_VERSION=0.19.0
 /usr/local/go/bin/go install github.com/skx/sysbox@release-${SYSBOX_VERSION}
+/usr/local/go/bin/go clean -cache -modcache
 EOF
 
 # go - recur
 FROM pimp-my-shell-go AS pimp-my-shell-go-recur
+SHELL ["/bin/bash", "-c"]
 RUN <<EOF
 set -eux
 RECUR_VERSION=2.2.0
 /usr/local/go/bin/go install dbohdan.com/recur/v2@v${RECUR_VERSION}
+/usr/local/go/bin/go clean -cache -modcache
 EOF
 
 # tte
-FROM pimp-my-shell-ddev-base AS pimp-my-shell-tte
+FROM pimp-my-shell-base AS pimp-my-shell-tte
 SHELL ["/bin/bash", "-c"]
 RUN <<EOF
 set -eux
@@ -206,6 +212,7 @@ EOF
 
 # fd
 FROM pimp-my-shell-base AS pimp-my-shell-fd
+SHELL ["/bin/bash", "-c"]
 RUN <<EOF
 set -eux
 FD_VERSION=10.2.0
@@ -218,6 +225,7 @@ EOF
 
 # bat
 FROM pimp-my-shell-base AS pimp-my-shell-bat
+SHELL ["/bin/bash", "-c"]
 RUN <<EOF
 set -eux
 BAT_VERSION=0.25.0
@@ -229,7 +237,7 @@ rm bat.tar.gz
 EOF
 
 # rust
-FROM pimp-my-shell-ddev-base AS pimp-my-shell-rust
+FROM pimp-my-shell-base AS pimp-my-shell-rust
 SHELL ["/bin/bash", "-c"]
 RUN <<EOF
 set -eux
@@ -239,6 +247,7 @@ EOF
 
 # lazygit
 FROM pimp-my-shell-base AS pimp-my-shell-lazygit
+SHELL ["/bin/bash", "-c"]
 RUN <<EOF
 set -eux
 LAZYGIT_VERSION=0.50.0
@@ -253,6 +262,7 @@ EOF
 
 # ov
 FROM pimp-my-shell-base AS pimp-my-shell-ov
+SHELL ["/bin/bash", "-c"]
 RUN <<EOF
 set -eux
 OV_VERSION=0.40.1
@@ -267,7 +277,7 @@ rm ov.zip
 EOF
 
 # bun
-FROM pimp-my-shell-ddev-base AS pimp-my-shell-bun
+FROM pimp-my-shell-base AS pimp-my-shell-bun
 SHELL ["/bin/bash", "-c"]
 RUN <<EOF
 set -eux
@@ -279,6 +289,7 @@ EOF
 
 # gh
 FROM pimp-my-shell-base AS pimp-my-shell-gh
+SHELL ["/bin/bash", "-c"]
 RUN <<EOF
 set -eux
 GH_VERSION=2.72.0
@@ -294,6 +305,7 @@ EOF
 
 # delta
 FROM pimp-my-shell-base AS pimp-my-shell-delta
+SHELL ["/bin/bash", "-c"]
 RUN <<EOF
 set -eux
 DELTA_VERSION=0.18.2
@@ -304,24 +316,13 @@ rm delta.tar.gz
 EOF
 
 # spacer
-FROM pimp-my-shell-rust AS pimp-my-shell-spacer
+FROM pimp-my-shell-base AS pimp-my-shell-spacer
+SHELL ["/bin/bash", "-c"]
 RUN <<EOF
 set -eux
 SPACER_VERSION=0.3.8
 AARCH=$(uname -m)
-if [ "$AARCH" = "x86_64" ] || [ "$AARCH" = "aarch64" ]; then
-  curl-pimp-my-shell -o spacer.tar.gz https://github.com/samwho/spacer/releases/download/v${SPACER_VERSION}/spacer-${AARCH}-unknown-linux-gnu.tar.gz
-  tar -zxf spacer.tar.gz -C /usr/local/bin;
-else
-  apt-get update
-  apt-get install -y --no-install-recommends build-essential
-  . "$HOME/.cargo/env"
-  cargo install spacer@${SPACER_VERSION}
-  apt-get purge -y pipx
-
-  apt-get autoremove -y
-  rm -rf /var/lib/apt/lists/*
-  rm -fr "$HOME/.cargo/registry"
-  mv "$HOME/.cargo/bin/spacer" /usr/local/bin
-fi
+curl-pimp-my-shell -o spacer.tar.gz https://github.com/samwho/spacer/releases/download/v${SPACER_VERSION}/spacer-${AARCH}-unknown-linux-gnu.tar.gz
+tar -zxf spacer.tar.gz -C /usr/local/bin;
+rm spacer.tar.gz
 EOF

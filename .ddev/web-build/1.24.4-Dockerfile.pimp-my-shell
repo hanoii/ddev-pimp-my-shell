@@ -39,7 +39,7 @@ RUN set -eux; \
 
 # z.lua
 RUN set -eux; \
-    ZLUA_VERSION=1.8.20; \
+    ZLUA_VERSION=1.8.21; \
     mkdir -p /opt/z.lua; \
     wget https://github.com/skywind3000/z.lua/archive/refs/tags/${ZLUA_VERSION}.zip -qO- | bsdtar xf - --strip-components=1 -C /opt/z.lua
 
@@ -123,7 +123,7 @@ RUN set -eux; \
     /usr/local/go/bin/go install dbohdan.com/recur/v2@v${RECUR_VERSION};
 
 RUN set -eux; \
-    RUST_VERSION=1.86.0; \
+    RUST_VERSION=1.87.0; \
     curl -sSf https://sh.rustup.rs/ | sh -s -- --profile minimal --default-toolchain=${RUST_VERSION} -y
 
 # Go back to root

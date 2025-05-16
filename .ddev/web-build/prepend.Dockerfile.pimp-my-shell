@@ -135,7 +135,7 @@ EOF
 FROM pimp-my-shell-base AS pimp-my-shell-zlua
 RUN <<EOF
 set -eux
-ZLUA_VERSION=1.8.20
+ZLUA_VERSION=1.8.21
 mkdir -p /opt/z.lua
 cd /opt/z.lua
 curl-pimp-my-shell -o zlua.zip https://github.com/skywind3000/z.lua/archive/refs/tags/${ZLUA_VERSION}.zip
@@ -233,7 +233,7 @@ FROM pimp-my-shell-ddev-base AS pimp-my-shell-rust
 SHELL ["/bin/bash", "-c"]
 RUN <<EOF
 set -eux
-RUST_VERSION=1.86.0
+RUST_VERSION=1.87.0
 curl-pimp-my-shell -sS https://sh.rustup.rs/ | sh -s -- --profile minimal --default-toolchain=${RUST_VERSION} -y
 EOF
 

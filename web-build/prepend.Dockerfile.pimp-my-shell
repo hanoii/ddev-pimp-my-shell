@@ -135,7 +135,7 @@ FROM pimp-my-shell-base AS pimp-my-shell-zlua
 SHELL ["/bin/bash", "-c"]
 RUN <<EOF
 set -eux
-ZLUA_VERSION=1.8.21
+ZLUA_VERSION=1.8.23
 mkdir -p /opt/z.lua
 cd /opt/z.lua
 curl-pimp-my-shell -o zlua.zip https://github.com/skywind3000/z.lua/archive/refs/tags/${ZLUA_VERSION}.zip
@@ -149,7 +149,7 @@ FROM pimp-my-shell-base AS pimp-my-shell-xterm-kitty
 SHELL ["/bin/bash", "-c"]
 RUN <<EOF
 set -eux
-KITTY_VERSION=0.42.0
+KITTY_VERSION=0.42.1
 mkdir -p /usr/share/terminfo/x
 cd /usr/share/terminfo/x
 curl-pimp-my-shell -o xterm-kitty https://github.com/kovidgoyal/kitty/raw/refs/tags/v${KITTY_VERSION}/terminfo/x/xterm-kitty
@@ -265,7 +265,7 @@ FROM pimp-my-shell-base AS pimp-my-shell-ov
 SHELL ["/bin/bash", "-c"]
 RUN <<EOF
 set -eux
-OV_VERSION=0.40.1
+OV_VERSION=0.41.0
 AARCH=$(uname -m)
 AARCH=${AARCH/aarch64/arm64}
 AARCH=${AARCH/x86_64/amd64}

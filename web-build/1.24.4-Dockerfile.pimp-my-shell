@@ -178,6 +178,6 @@ RUN set -eux; \
 
 # gh
 RUN set -eux; \
-    GH_VERSION=2.72.0; \
+    GH_VERSION=2.73.0; \
     AARCH=$(dpkg --print-architecture); \
     wget -q https://github.com/cli/cli/releases/download/v${GH_VERSION}/gh_${GH_VERSION}_linux_${AARCH}.tar.gz -O- | tar -zxf - --strip-components=1 -C /usr/local --wildcards '*/bin/gh' ;

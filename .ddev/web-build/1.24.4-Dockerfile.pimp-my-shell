@@ -163,7 +163,7 @@ RUN set -eux; \
 
 # lazygit
 RUN set -eux; \
-    LAZYGIT_VERSION=0.50.0; \
+    LAZYGIT_VERSION=0.51.1; \
     AARCH=$(dpkg --print-architecture); \
     AARCH=${AARCH/amd64/x86_64}; \
     wget -q https://github.com/jesseduffield/lazygit/releases/download/v${LAZYGIT_VERSION}/lazygit_${LAZYGIT_VERSION}_Linux_${AARCH}.tar.gz -O- | tar -zxf - -C /usr/local/bin;

@@ -39,7 +39,7 @@ RUN set -eux; \
 
 # z.lua
 RUN set -eux; \
-    ZLUA_VERSION=1.8.23; \
+    ZLUA_VERSION=1.8.24; \
     mkdir -p /opt/z.lua; \
     wget https://github.com/skywind3000/z.lua/archive/refs/tags/${ZLUA_VERSION}.zip -qO- | bsdtar xf - --strip-components=1 -C /opt/z.lua
 
@@ -131,7 +131,7 @@ USER root:root
 
 # spacer
 RUN set -eux; \
-    SPACER_VERSION=0.3.8; \
+    SPACER_VERSION=0.3.9; \
     AARCH=$(uname -m); \
     wget -q https://github.com/samwho/spacer/releases/download/v${SPACER_VERSION}/spacer-${AARCH}-unknown-linux-gnu.tar.gz -O- | tar -zxf - -C /usr/local/bin;
 

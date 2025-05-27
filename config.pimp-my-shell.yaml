@@ -10,7 +10,7 @@ hooks:
           echo -en "\033[0;33m"
           echo -e "\n+----------------------------------------------------------------------------"
           echo -e "| \U26A0\UFE0F The addon hanoii/ddev-pimp-my-shell now supports multi-stage builds on"
-          echo -e "| DDEV versions 1.24.5+ (not released yet), improving image build time dramatically."
+          echo -e "| DDEV versions 1.24.5+, improving image build time dramatically."
           echo -e "| \e[1mIt is strongly recommended that you upgrade DDEV.\e[22m"
           echo -e "+----------------------------------------------------------------------------\n"
           echo -en "\033[0m"

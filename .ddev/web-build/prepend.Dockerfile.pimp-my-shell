@@ -292,7 +292,7 @@ FROM pimp-my-shell-base AS pimp-my-shell-gh
 SHELL ["/bin/bash", "-c"]
 RUN <<EOF
 set -eux
-GH_VERSION=2.73.0
+GH_VERSION=2.74.0
 AARCH=$(uname -m)
 AARCH=${AARCH/aarch64/arm64}
 AARCH=${AARCH/x86_64/amd64}

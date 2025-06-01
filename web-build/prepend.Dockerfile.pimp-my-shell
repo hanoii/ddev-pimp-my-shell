@@ -186,7 +186,7 @@ FROM pimp-my-shell-go AS pimp-my-shell-go-recur
 SHELL ["/bin/bash", "-c"]
 RUN <<EOF
 set -eux
-RECUR_VERSION=2.2.0
+RECUR_VERSION=2.3.0
 /usr/local/go/bin/go install dbohdan.com/recur/v2@v${RECUR_VERSION}
 /usr/local/go/bin/go clean -cache -modcache
 EOF

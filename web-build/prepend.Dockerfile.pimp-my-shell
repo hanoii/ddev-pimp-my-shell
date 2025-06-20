@@ -74,7 +74,7 @@ FROM pimp-my-shell-base AS pimp-my-shell-eza
 SHELL ["/bin/bash", "-c"]
 RUN <<EOF
 set -eux
-EZA_VERSION=0.21.4
+EZA_VERSION=0.21.5
 curl-pimp-my-shell -o eza.tar.gz https://github.com/eza-community/eza/releases/download/v${EZA_VERSION}/eza_`uname -m`-unknown-linux-gnu.tar.gz
 curl-pimp-my-shell -o eza-completions.tar.gz https://github.com/eza-community/eza/releases/download/v${EZA_VERSION}/completions-${EZA_VERSION}.tar.gz
 tar -zxf eza.tar.gz -C /usr/local/bin

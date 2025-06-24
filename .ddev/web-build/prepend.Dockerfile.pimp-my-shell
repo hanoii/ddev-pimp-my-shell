@@ -38,7 +38,7 @@ FROM pimp-my-shell-base AS pimp-my-shell-gum
 SHELL ["/bin/bash", "-c"]
 RUN <<EOF
 set -eux
-GUM_VERSION=0.16.1
+GUM_VERSION=0.16.2
 AARCH=$(uname -m)
 AARCH=${AARCH/aarch64/arm64}
 AARCH=${AARCH/i686/i386}

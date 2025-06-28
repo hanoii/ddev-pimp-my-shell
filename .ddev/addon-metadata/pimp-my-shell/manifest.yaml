@@ -1,7 +1,7 @@
 name: pimp-my-shell
 repository: .
 version: ""
-install_date: "2025-06-27T12:33:09Z"
+install_date: "2025-06-28T12:30:22Z"
 project_files:
     - web-build/prepend.Dockerfile.pimp-my-shell
     - web-build/1.24.4-Dockerfile.pimp-my-shell

@@ -73,7 +73,7 @@ EOF
 
 # eza
 RUN set -eux; \
-    EZA_VERSION=0.21.6; \
+    EZA_VERSION=0.22.0; \
     wget -q https://github.com/eza-community/eza/releases/download/v${EZA_VERSION}/eza_`uname -m`-unknown-linux-gnu.tar.gz -O- | tar -zxf - -C /usr/local/bin; \
     wget https://github.com/eza-community/eza/releases/download/v${EZA_VERSION}/completions-${EZA_VERSION}.tar.gz -O eza-completions.tar.gz; \
     tar -xzf eza-completions.tar.gz --strip-components=3 -C /etc/bash_completion.d/ ./target/completions-${EZA_VERSION}/eza; \
@@ -107,7 +107,7 @@ RUN set -eux; \
 
 # bun.sh - it's installed by on the user as it adds stuff to .bashrc
 RUN set -eux; \
-    BUN_VERSION=1.2.17; \
+    BUN_VERSION=1.2.18; \
     curl -fsSL https://bun.sh/install | bash -s "bun-v${BUN_VERSION}"
 
 # go tools - it's installed on the user so so that bin and pkgs are available on the user's home
@@ -163,14 +163,14 @@ RUN set -eux; \
 
 # lazygit
 RUN set -eux; \
-    LAZYGIT_VERSION=0.52.0; \
+    LAZYGIT_VERSION=0.53.0; \
     AARCH=$(dpkg --print-architecture); \
     AARCH=${AARCH/amd64/x86_64}; \
     wget -q https://github.com/jesseduffield/lazygit/releases/download/v${LAZYGIT_VERSION}/lazygit_${LAZYGIT_VERSION}_Linux_${AARCH}.tar.gz -O- | tar -zxf - -C /usr/local/bin;
 
 # ov
 RUN set -eux; \
-    OV_VERSION=0.42.0; \
+    OV_VERSION=0.42.1; \
     AARCH=$(dpkg --print-architecture); \
     wget -q https://github.com/noborus/ov/releases/download/v${OV_VERSION}/ov_${OV_VERSION}_linux_${AARCH}.zip -O ov.zip; \
     unzip ov.zip -d /usr/local/bin/ ov; \

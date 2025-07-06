@@ -74,7 +74,7 @@ FROM pimp-my-shell-base AS pimp-my-shell-eza
 SHELL ["/bin/bash", "-c"]
 RUN <<EOF
 set -eux
-EZA_VERSION=0.21.6
+EZA_VERSION=0.22.0
 curl-pimp-my-shell -o eza.tar.gz https://github.com/eza-community/eza/releases/download/v${EZA_VERSION}/eza_`uname -m`-unknown-linux-gnu.tar.gz
 curl-pimp-my-shell -o eza-completions.tar.gz https://github.com/eza-community/eza/releases/download/v${EZA_VERSION}/completions-${EZA_VERSION}.tar.gz
 tar -zxf eza.tar.gz -C /usr/local/bin
@@ -245,7 +245,7 @@ FROM pimp-my-shell-base AS pimp-my-shell-lazygit
 SHELL ["/bin/bash", "-c"]
 RUN <<EOF
 set -eux
-LAZYGIT_VERSION=0.52.0
+LAZYGIT_VERSION=0.53.0
 AARCH=$(uname -m)
 AARCH=${AARCH/aarch64/arm64}
 AARCH=${AARCH/i386/32-bit}
@@ -260,7 +260,7 @@ FROM pimp-my-shell-base AS pimp-my-shell-ov
 SHELL ["/bin/bash", "-c"]
 RUN <<EOF
 set -eux
-OV_VERSION=0.42.0
+OV_VERSION=0.42.1
 AARCH=$(uname -m)
 AARCH=${AARCH/aarch64/arm64}
 AARCH=${AARCH/x86_64/amd64}
@@ -276,7 +276,7 @@ FROM pimp-my-shell-base AS pimp-my-shell-bun
 SHELL ["/bin/bash", "-c"]
 RUN <<EOF
 set -eux
-BUN_VERSION=1.2.17
+BUN_VERSION=1.2.18
 curl-pimp-my-shell -sS https://bun.sh/install | bash -s "bun-v${BUN_VERSION}"
 cd /root/.bun/bin
 ln -fs bun bunx

@@ -159,3 +159,9 @@ if git diff --exit-code web-build/*.pimp-my-shell; then
 else
   ddev add-on get . > /dev/null 2>&1
 fi
+
+# muiltitail
+VERSION=$(gh api repos/folkertvanheusden/multitail/commits --jq '.[0].sha')
+[ -n "$VERSION" ]
+echo "multitail latest commit SHA1: $VERSION"
+perl -pi -e "s@MULTITAIL_SHA1=[^\s;]*(.*)@MULTITAIL_SHA1=${VERSION}\$1@g" web-build/*.pimp-my-shell

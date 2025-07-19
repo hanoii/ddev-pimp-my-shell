@@ -321,3 +321,22 @@ curl-pimp-my-shell -o spacer.tar.gz https://github.com/samwho/spacer/releases/do
 tar -zxf spacer.tar.gz -C /usr/local/bin;
 rm spacer.tar.gz
 EOF
+
+# multitail with a recent PR of my own included
+# https://github.com/folkertvanheusden/multitail/pull/52
+FROM pimp-my-shell-base AS pimp-my-shell-multitail
+SHELL ["/bin/bash", "-c"]
+RUN <<EOF
+set -eux
+apt-get update
+apt-get install -y --no-install-recommends build-essential cmake libncurses-dev ninja-build
+MULTITAIL_SHA1=78063c0a4d37392599a40ae3c4ccecbd1887027c
+mkdir -p /opt/multitail
+cd /opt/multitail
+curl-pimp-my-shell -o multitail.tar.gz "https://github.com/folkertvanheusden/multitail/tarball/${MULTITAIL_SHA1}"
+tar --strip-components=1 -zxf multitail.tar.gz
+make BUILD_DIR=build
+apt-get purge -y build-essential cmake libncurses-dev ninja-build
+apt-get autoremove -y
+rm -rf /var/lib/apt/lists/*
+EOF

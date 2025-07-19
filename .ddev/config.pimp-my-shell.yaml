@@ -35,7 +35,6 @@ webimage_extra_packages:
   - lua5.4
   - man-db
   - moreutils
-  - multitail
   - net-tools
   - pv
   - screen

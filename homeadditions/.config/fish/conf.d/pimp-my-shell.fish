@@ -33,7 +33,12 @@ if test -f /mnt/ddev-global-cache/fishhistory/$HOSTNAME/fish_history
 end
 
 function fish_title
-  set --local title "$DDEV_PROJECT/ddev: "(fish_prompt_pwd_dir_length=1 prompt_pwd)
+  set --local title (
+    printf "%s%s/ddev: %s" \
+      "$PIMP_MY_SHELL_TITLE_PREFIX" \
+      "$DDEV_PROJECT" \
+      (fish_prompt_pwd_dir_length=1 prompt_pwd)
+  )
   if count $argv > /dev/null
     set title "$argv - $title"
   end

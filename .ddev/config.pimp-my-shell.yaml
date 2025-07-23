@@ -39,6 +39,7 @@ webimage_extra_packages:
   - pv
   - screen
   - time
+  - tmux
   - vim-nox
 web_environment:
   - COLORTERM=${COLORTERM}

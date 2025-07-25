@@ -340,3 +340,22 @@ apt-get purge -y build-essential cmake libncurses-dev ninja-build
 apt-get autoremove -y
 rm -rf /var/lib/apt/lists/*
 EOF
+
+# latest tmux, statically linked
+FROM pimp-my-shell-base AS pimp-my-shell-tmux
+SHELL ["/bin/bash", "-c"]
+RUN <<EOF
+set -eux
+apt-get update
+apt-get install -y --no-install-recommends libevent-dev ncurses-dev build-essential bison pkg-config
+TMUX_VERSION=3.5a
+mkdir -p /opt/tmux
+cd /opt/tmux
+curl-pimp-my-shell -o tmux.tar.gz "https://github.com/tmux/tmux/releases/download/${TMUX_VERSION}/tmux-${TMUX_VERSION}.tar.gz"
+tar --strip-components=1 -zxf tmux.tar.gz
+./configure --enable-static
+make
+apt-get purge -y libevent-dev ncurses-dev build-essential bison pkg-config
+apt-get autoremove -y
+rm -rf /var/lib/apt/lists/*
+EOF

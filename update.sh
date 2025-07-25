@@ -165,3 +165,9 @@ VERSION=$(gh api repos/folkertvanheusden/multitail/commits --jq '.[0].sha')
 [ -n "$VERSION" ]
 echo "multitail latest commit SHA1: $VERSION"
 perl -pi -e "s@MULTITAIL_SHA1=[^\s;]*(.*)@MULTITAIL_SHA1=${VERSION}\$1@g" web-build/*.pimp-my-shell
+
+# tmux
+VERSION=$(curl -Ls -o /dev/null -w %{url_effective} "https://github.com/tmux/tmux/releases/latest" | sed 's/.*tag\///g')
+[ -n "$VERSION" ]
+echo "tmux version: $VERSION"
+perl -pi -e "s@TMUX_VERSION=[^\s;]*(.*)@TMUX_VERSION=${VERSION}\$1@g" web-build/*.pimp-my-shell

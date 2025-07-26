@@ -2,7 +2,7 @@
 
 # ahoy
 RUN set -eux; \
-    AHOY_VERSION=2.4.0; \
+    AHOY_VERSION=2.5.0; \
     AARCH=$(dpkg --print-architecture); \
     wget -q https://github.com/ahoy-cli/ahoy/releases/download/v${AHOY_VERSION}/ahoy-bin-linux-${AARCH} -O - > /usr/local/bin/ahoy; \
     chmod +x /usr/local/bin/ahoy;
@@ -73,7 +73,7 @@ EOF
 
 # eza
 RUN set -eux; \
-    EZA_VERSION=0.22.1; \
+    EZA_VERSION=0.23.0; \
     wget -q https://github.com/eza-community/eza/releases/download/v${EZA_VERSION}/eza_`uname -m`-unknown-linux-gnu.tar.gz -O- | tar -zxf - -C /usr/local/bin; \
     wget https://github.com/eza-community/eza/releases/download/v${EZA_VERSION}/completions-${EZA_VERSION}.tar.gz -O eza-completions.tar.gz; \
     tar -xzf eza-completions.tar.gz --strip-components=3 -C /etc/bash_completion.d/ ./target/completions-${EZA_VERSION}/eza; \
@@ -107,7 +107,7 @@ RUN set -eux; \
 
 # bun.sh - it's installed by on the user as it adds stuff to .bashrc
 RUN set -eux; \
-    BUN_VERSION=1.2.18; \
+    BUN_VERSION=1.2.19; \
     curl -fsSL https://bun.sh/install | bash -s "bun-v${BUN_VERSION}"
 
 # go tools - it's installed on the user so so that bin and pkgs are available on the user's home
@@ -131,7 +131,7 @@ USER root:root
 
 # spacer
 RUN set -eux; \
-    SPACER_VERSION=0.3.9; \
+    SPACER_VERSION=0.4.5; \
     AARCH=$(uname -m); \
     wget -q https://github.com/samwho/spacer/releases/download/v${SPACER_VERSION}/spacer-${AARCH}-unknown-linux-gnu.tar.gz -O- | tar -zxf - -C /usr/local/bin;
 
@@ -178,6 +178,6 @@ RUN set -eux; \
 
 # gh
 RUN set -eux; \
-    GH_VERSION=2.75.1; \
+    GH_VERSION=2.76.1; \
     AARCH=$(dpkg --print-architecture); \
     wget -q https://github.com/cli/cli/releases/download/v${GH_VERSION}/gh_${GH_VERSION}_linux_${AARCH}.tar.gz -O- | tar -zxf - --strip-components=1 -C /usr/local --wildcards '*/bin/gh' ;

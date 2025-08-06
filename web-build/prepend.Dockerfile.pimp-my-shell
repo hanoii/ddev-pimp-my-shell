@@ -52,7 +52,7 @@ FROM pimp-my-shell-base AS pimp-my-shell-fzf
 SHELL ["/bin/bash", "-c"]
 RUN <<EOF
 set -eux
-FZF_VERSION=0.65.0
+FZF_VERSION=0.65.1
 AARCH=$(uname -m)
 AARCH=${AARCH/aarch64/arm64}
 AARCH=${AARCH/x86_64/amd64}
@@ -120,7 +120,7 @@ RUN <<EOF
 set fish_trace 1
 export BASS_VERSION=1.0
 fisher install edc/bass@v$BASS_VERSION
-export TIDE_VERSION=6.1.1
+export TIDE_VERSION=6.2.0
 fisher install IlanCosman/tide@v$TIDE_VERSION
 tide configure --auto --style=Classic --prompt_colors='True color' --classic_prompt_color=Light --show_time='24-hour format' --classic_prompt_separators=Angled --powerline_prompt_heads=Sharp --powerline_prompt_tails=Flat --powerline_prompt_style='One line' --prompt_spacing=Compact --icons='Many icons' --transient=Yes
 EOF
@@ -245,7 +245,7 @@ FROM pimp-my-shell-base AS pimp-my-shell-lazygit
 SHELL ["/bin/bash", "-c"]
 RUN <<EOF
 set -eux
-LAZYGIT_VERSION=0.53.0
+LAZYGIT_VERSION=0.54.1
 AARCH=$(uname -m)
 AARCH=${AARCH/aarch64/arm64}
 AARCH=${AARCH/i386/32-bit}

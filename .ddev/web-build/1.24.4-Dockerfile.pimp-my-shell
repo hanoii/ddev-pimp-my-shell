@@ -9,7 +9,7 @@ RUN set -eux; \
 
 # fzf et al
 RUN set -eux; \
-    FZF_VERSION=0.65.0; \
+    FZF_VERSION=0.65.1; \
     AARCH=$(dpkg --print-architecture); \
     wget -q https://github.com/junegunn/fzf/releases/download/v${FZF_VERSION}/fzf-${FZF_VERSION}-linux_${AARCH}.tar.gz -O - | tar -zxf - -C /usr/local/bin; \
     \
@@ -96,7 +96,7 @@ USER $uid:$gid
 # Fish plugins
 RUN set -eux; \
     FISHER_VERSION=4.4.5; \
-    TIDE_VERSION=6.1.1; \
+    TIDE_VERSION=6.2.0; \
     BASS_VERSION=1.0; \
     fish -c " \
         curl -sL 'https://raw.githubusercontent.com/jorgebucaran/fisher/main/functions/fisher.fish' | source; \
@@ -163,7 +163,7 @@ RUN set -eux; \
 
 # lazygit
 RUN set -eux; \
-    LAZYGIT_VERSION=0.53.0; \
+    LAZYGIT_VERSION=0.54.1; \
     AARCH=$(dpkg --print-architecture); \
     AARCH=${AARCH/amd64/x86_64}; \
     wget -q https://github.com/jesseduffield/lazygit/releases/download/v${LAZYGIT_VERSION}/lazygit_${LAZYGIT_VERSION}_Linux_${AARCH}.tar.gz -O- | tar -zxf - -C /usr/local/bin;

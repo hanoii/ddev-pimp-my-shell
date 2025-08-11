@@ -155,7 +155,7 @@ FROM pimp-my-shell-base AS pimp-my-shell-go
 SHELL ["/bin/bash", "-c"]
 RUN <<EOF
 set -eux
-GO_VERSION=1.24.5
+GO_VERSION=1.24.6
 AARCH=$(uname -m)
 AARCH=${AARCH/aarch64/arm64}
 AARCH=${AARCH/x86_64/amd64}
@@ -181,7 +181,7 @@ FROM pimp-my-shell-go AS pimp-my-shell-go-recur
 SHELL ["/bin/bash", "-c"]
 RUN <<EOF
 set -eux
-RECUR_VERSION=2.3.0
+RECUR_VERSION=2.4.0
 /usr/local/go/bin/go install dbohdan.com/recur/v2@v${RECUR_VERSION}
 /usr/local/go/bin/go clean -cache -modcache
 EOF
@@ -236,7 +236,7 @@ FROM pimp-my-shell-base AS pimp-my-shell-rust
 SHELL ["/bin/bash", "-c"]
 RUN <<EOF
 set -eux
-RUST_VERSION=1.88.0
+RUST_VERSION=1.89.0
 curl-pimp-my-shell -sS https://sh.rustup.rs/ | sh -s -- --profile minimal --default-toolchain=${RUST_VERSION} -y
 EOF
 
@@ -276,7 +276,7 @@ FROM pimp-my-shell-base AS pimp-my-shell-bun
 SHELL ["/bin/bash", "-c"]
 RUN <<EOF
 set -eux
-BUN_VERSION=1.2.19
+BUN_VERSION=1.2.20
 curl-pimp-my-shell -sS https://bun.sh/install | bash -s "bun-v${BUN_VERSION}"
 cd /root/.bun/bin
 ln -fs bun bunx

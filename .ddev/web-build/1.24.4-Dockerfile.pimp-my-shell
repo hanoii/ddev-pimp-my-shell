@@ -82,7 +82,7 @@ RUN set -eux; \
 
 # go
 RUN set -eux; \
-    GO_VERSION=1.24.5; \
+    GO_VERSION=1.24.6; \
     AARCH=$(dpkg --print-architecture); \
     wget -q https://go.dev/dl/go${GO_VERSION}.linux-${AARCH}.tar.gz -O go.tar.gz; \
     tar -C /usr/local -xzf go.tar.gz; \
@@ -107,7 +107,7 @@ RUN set -eux; \
 
 # bun.sh - it's installed by on the user as it adds stuff to .bashrc
 RUN set -eux; \
-    BUN_VERSION=1.2.19; \
+    BUN_VERSION=1.2.20; \
     curl -fsSL https://bun.sh/install | bash -s "bun-v${BUN_VERSION}"
 
 # go tools - it's installed on the user so so that bin and pkgs are available on the user's home
@@ -119,11 +119,11 @@ RUN set -eux; \
 RUN set -eux; \
     unset GOARCH; \
     unset GOOS; \
-    RECUR_VERSION=2.3.0; \
+    RECUR_VERSION=2.4.0; \
     /usr/local/go/bin/go install dbohdan.com/recur/v2@v${RECUR_VERSION};
 
 RUN set -eux; \
-    RUST_VERSION=1.88.0; \
+    RUST_VERSION=1.89.0; \
     curl -sSf https://sh.rustup.rs/ | sh -s -- --profile minimal --default-toolchain=${RUST_VERSION} -y
 
 # Go back to root

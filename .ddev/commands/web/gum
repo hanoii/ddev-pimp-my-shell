@@ -6,5 +6,5 @@
 ## Example: "ddev gum"
 ## ExecRaw: true
 ## HostWorkingDir: true
-
+export DDEV_PIMP_MY_SHELL_GUM=1
 gum "$@"

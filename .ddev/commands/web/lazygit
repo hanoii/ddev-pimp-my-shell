@@ -4,5 +4,5 @@
 ## Description: Run lazygit in the web container
 ## Usage: lazygit
 ## Example: "ddev lazygit"
-
+export DDEV_PIMP_MY_SHELL_LAZYGIT=1
 lazygit "$@"

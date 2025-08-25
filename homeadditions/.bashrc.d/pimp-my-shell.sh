@@ -9,8 +9,11 @@ export SHELL
 # If not running interactively, don't do anything
 case $- in
     *i*) ;;
-      *) return;;
+      *) export DDEV_PIMP_MY_SHELL_NON_INTERACTIVE=true; return;;
 esac
+
+unset DDEV_PIMP_MY_SHELL_NON_INTERACTIVE
+export DDEV_PIMP_MY_SHELL_INTERACTIVE=true
 
 # ahoy
 COMP_WORDBREAKS=${COMP_WORDBREAKS//:}

@@ -49,6 +49,8 @@ end
 set -x IS_FISH_SHELL 1
 if status --is-interactive
   set -x IS_FISH_INTERACTIVE_SHELL 1
+  set -e DDEV_PIMP_MY_SHELL_NON_INTERACTIVE
+  set -x DDEV_PIMP_MY_SHELL_INTERACTIVE true
 end
 
 # eza aliases

@@ -4,5 +4,5 @@
 ## Description: Run ahoy inside the web container
 ## Usage: ahoy [args]
 ## Example: "ddev ahoy some:command"
-
+export DDEV_PIMP_MY_SHELL_AHOY=1
 ahoy $@

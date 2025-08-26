@@ -31,7 +31,7 @@ RUN set -eux; \
 
 # fd
 RUN set -eux; \
-    FD_VERSION=10.2.0; \
+    FD_VERSION=10.3.0; \
     AARCH=$(dpkg --print-architecture); \
     wget -q https://github.com/sharkdp/fd/releases/download/v${FD_VERSION}/fd_${FD_VERSION}_${AARCH}.deb -O fd.deb; \
     dpkg -i fd.deb; \
@@ -107,7 +107,7 @@ RUN set -eux; \
 
 # bun.sh - it's installed by on the user as it adds stuff to .bashrc
 RUN set -eux; \
-    BUN_VERSION=1.2.20; \
+    BUN_VERSION=1.2.21; \
     curl -fsSL https://bun.sh/install | bash -s "bun-v${BUN_VERSION}"
 
 # go tools - it's installed on the user so so that bin and pkgs are available on the user's home
@@ -178,6 +178,6 @@ RUN set -eux; \
 
 # gh
 RUN set -eux; \
-    GH_VERSION=2.76.2; \
+    GH_VERSION=2.78.0; \
     AARCH=$(dpkg --print-architecture); \
     wget -q https://github.com/cli/cli/releases/download/v${GH_VERSION}/gh_${GH_VERSION}_linux_${AARCH}.tar.gz -O- | tar -zxf - --strip-components=1 -C /usr/local --wildcards '*/bin/gh' ;

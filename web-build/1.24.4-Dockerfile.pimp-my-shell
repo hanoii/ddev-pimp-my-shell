@@ -131,7 +131,7 @@ USER root:root
 
 # spacer
 RUN set -eux; \
-    SPACER_VERSION=0.4.5; \
+    SPACER_VERSION=0.5.0; \
     AARCH=$(uname -m); \
     wget -q https://github.com/samwho/spacer/releases/download/v${SPACER_VERSION}/spacer-${AARCH}-unknown-linux-gnu.tar.gz -O- | tar -zxf - -C /usr/local/bin;
 
@@ -170,7 +170,7 @@ RUN set -eux; \
 
 # ov
 RUN set -eux; \
-    OV_VERSION=0.42.1; \
+    OV_VERSION=0.43.0; \
     AARCH=$(dpkg --print-architecture); \
     wget -q https://github.com/noborus/ov/releases/download/v${OV_VERSION}/ov_${OV_VERSION}_linux_${AARCH}.zip -O ov.zip; \
     unzip ov.zip -d /usr/local/bin/ ov; \

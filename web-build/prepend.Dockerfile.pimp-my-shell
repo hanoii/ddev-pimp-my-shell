@@ -260,7 +260,7 @@ FROM pimp-my-shell-base AS pimp-my-shell-ov
 SHELL ["/bin/bash", "-c"]
 RUN <<EOF
 set -eux
-OV_VERSION=0.42.1
+OV_VERSION=0.43.0
 AARCH=$(uname -m)
 AARCH=${AARCH/aarch64/arm64}
 AARCH=${AARCH/x86_64/amd64}
@@ -315,7 +315,7 @@ FROM pimp-my-shell-base AS pimp-my-shell-spacer
 SHELL ["/bin/bash", "-c"]
 RUN <<EOF
 set -eux
-SPACER_VERSION=0.4.5
+SPACER_VERSION=0.5.0
 AARCH=$(uname -m)
 curl-pimp-my-shell -o spacer.tar.gz https://github.com/samwho/spacer/releases/download/v${SPACER_VERSION}/spacer-${AARCH}-unknown-linux-gnu.tar.gz
 tar -zxf spacer.tar.gz -C /usr/local/bin;

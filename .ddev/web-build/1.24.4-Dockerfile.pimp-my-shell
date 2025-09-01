@@ -9,11 +9,11 @@ RUN set -eux; \
 
 # fzf et al
 RUN set -eux; \
-    FZF_VERSION=0.65.1; \
+    FZF_VERSION=0.65.2; \
     AARCH=$(dpkg --print-architecture); \
     wget -q https://github.com/junegunn/fzf/releases/download/v${FZF_VERSION}/fzf-${FZF_VERSION}-linux_${AARCH}.tar.gz -O - | tar -zxf - -C /usr/local/bin; \
     \
-    FZFGIT_SHA1=79e10ccaa8b3bddff95cd1dcb44b0c30a39da71f; \
+    FZFGIT_SHA1=2eef6bf288bf19a6402784a63336f06f87d9a584; \
     mkdir -p /opt/fzf-git.sh; \
     cd /opt/fzf-git.sh; \
     git init; \
@@ -73,7 +73,7 @@ EOF
 
 # eza
 RUN set -eux; \
-    EZA_VERSION=0.23.0; \
+    EZA_VERSION=0.23.1; \
     wget -q https://github.com/eza-community/eza/releases/download/v${EZA_VERSION}/eza_`uname -m`-unknown-linux-gnu.tar.gz -O- | tar -zxf - -C /usr/local/bin; \
     wget https://github.com/eza-community/eza/releases/download/v${EZA_VERSION}/completions-${EZA_VERSION}.tar.gz -O eza-completions.tar.gz; \
     tar -xzf eza-completions.tar.gz --strip-components=3 -C /etc/bash_completion.d/ ./target/completions-${EZA_VERSION}/eza; \

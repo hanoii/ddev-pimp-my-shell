@@ -26,6 +26,12 @@ function __fish_ahoy_config
   find $dirfind -mindepth 1 -maxdepth 1 -type d | sed 's/\.\/\(.*\)/\1/g' | sed 's/$/\//g' | sort
 end
 
+function __fish_ahoy_has_subcommands
+  set -l cmd (commandline)
+  set -l subs (eval $cmd --generate-bash-completion 2>/dev/null | grep -vw h | grep -vw help)
+  test -n "$subs"
+end
+
 complete -c ahoy -f -n "not __fish_seen_subcommand_from (ahoy --generate-bash-completion)" -a "(ahoy --generate-bash-completion)"
-complete -c ahoy -n "__fish_seen_subcommand_from (ahoy -h | grep ▼ | cut -d ' ' -f 4)" -a "(__fish_ahoy_subcommand)"
+complete -c ahoy -f -n "__fish_seen_subcommand_from (ahoy --generate-bash-completion); and __fish_ahoy_has_subcommands" -a "(__fish_ahoy_subcommand)"
 complete -c ahoy -s f -l file -x -a "(__fish_ahoy_config)"

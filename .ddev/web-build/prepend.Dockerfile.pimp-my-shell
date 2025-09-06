@@ -38,7 +38,7 @@ FROM pimp-my-shell-base AS pimp-my-shell-gum
 SHELL ["/bin/bash", "-c"]
 RUN <<EOF
 set -eux
-GUM_VERSION=0.16.2
+GUM_VERSION=0.17.0
 AARCH=$(uname -m)
 AARCH=${AARCH/aarch64/arm64}
 AARCH=${AARCH/i686/i386}
@@ -65,7 +65,7 @@ EOF
 FROM pimp-my-shell-base AS pimp-my-shell-fzfgit
 SHELL ["/bin/bash", "-c"]
 RUN <<EOF
-FZFGIT_SHA1=2eef6bf288bf19a6402784a63336f06f87d9a584
+FZFGIT_SHA1=a6426e615fb9966b99999ae0668847c36e8f53c2
 curl-pimp-my-shell -o /opt/fzf-git.sh https://raw.githubusercontent.com/junegunn/fzf-git.sh/${FZFGIT_SHA1}/fzf-git.sh
 EOF
 
@@ -155,7 +155,7 @@ FROM pimp-my-shell-base AS pimp-my-shell-go
 SHELL ["/bin/bash", "-c"]
 RUN <<EOF
 set -eux
-GO_VERSION=1.25.0
+GO_VERSION=1.25.1
 AARCH=$(uname -m)
 AARCH=${AARCH/aarch64/arm64}
 AARCH=${AARCH/x86_64/amd64}
@@ -181,7 +181,7 @@ FROM pimp-my-shell-go AS pimp-my-shell-go-recur
 SHELL ["/bin/bash", "-c"]
 RUN <<EOF
 set -eux
-RECUR_VERSION=2.4.0
+RECUR_VERSION=2.5.0
 /usr/local/go/bin/go install dbohdan.com/recur/v2@v${RECUR_VERSION}
 /usr/local/go/bin/go clean -cache -modcache
 EOF
@@ -245,7 +245,7 @@ FROM pimp-my-shell-base AS pimp-my-shell-lazygit
 SHELL ["/bin/bash", "-c"]
 RUN <<EOF
 set -eux
-LAZYGIT_VERSION=0.54.2
+LAZYGIT_VERSION=0.55.0
 AARCH=$(uname -m)
 AARCH=${AARCH/aarch64/arm64}
 AARCH=${AARCH/i386/32-bit}

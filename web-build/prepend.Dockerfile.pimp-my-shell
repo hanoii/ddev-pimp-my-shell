@@ -65,7 +65,7 @@ EOF
 FROM pimp-my-shell-base AS pimp-my-shell-fzfgit
 SHELL ["/bin/bash", "-c"]
 RUN <<EOF
-FZFGIT_SHA1=a6426e615fb9966b99999ae0668847c36e8f53c2
+FZFGIT_SHA1=93bc471fcf37358ef4094ffed41dc8002d767a5d
 curl-pimp-my-shell -o /opt/fzf-git.sh https://raw.githubusercontent.com/junegunn/fzf-git.sh/${FZFGIT_SHA1}/fzf-git.sh
 EOF
 
@@ -94,7 +94,7 @@ FROM pimp-my-shell-base AS pimp-my-shell-fish
 SHELL ["/bin/bash", "-c"]
 RUN <<EOF
 set -eux
-FISH_VERSION=4.0.2-2
+FISH_VERSION=4.0.8-1
 DEBIAN=$(lsb_release -rs)
 echo "deb http://download.opensuse.org/repositories/shells:/fish:/release:/4/Debian_${DEBIAN}/ /" | sudo tee /etc/apt/sources.list.d/shells:fish:release:4.list
 curl-pimp-my-shell -sS https://download.opensuse.org/repositories/shells:fish:release:4/Debian_${DEBIAN}/Release.key | gpg --dearmor | sudo tee /etc/apt/trusted.gpg.d/shells_fish_release_4.gpg > /dev/null
@@ -236,7 +236,7 @@ FROM pimp-my-shell-base AS pimp-my-shell-rust
 SHELL ["/bin/bash", "-c"]
 RUN <<EOF
 set -eux
-RUST_VERSION=1.89.0
+RUST_VERSION=1.90.0
 curl-pimp-my-shell -sS https://sh.rustup.rs/ | sh -s -- --profile minimal --default-toolchain=${RUST_VERSION} -y
 EOF
 
@@ -245,7 +245,7 @@ FROM pimp-my-shell-base AS pimp-my-shell-lazygit
 SHELL ["/bin/bash", "-c"]
 RUN <<EOF
 set -eux
-LAZYGIT_VERSION=0.55.0
+LAZYGIT_VERSION=0.55.1
 AARCH=$(uname -m)
 AARCH=${AARCH/aarch64/arm64}
 AARCH=${AARCH/i386/32-bit}
@@ -260,7 +260,7 @@ FROM pimp-my-shell-base AS pimp-my-shell-ov
 SHELL ["/bin/bash", "-c"]
 RUN <<EOF
 set -eux
-OV_VERSION=0.43.0
+OV_VERSION=0.43.1
 AARCH=$(uname -m)
 AARCH=${AARCH/aarch64/arm64}
 AARCH=${AARCH/x86_64/amd64}

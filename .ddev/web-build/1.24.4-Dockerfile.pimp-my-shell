@@ -9,11 +9,11 @@ RUN set -eux; \
 
 # fzf et al
 RUN set -eux; \
-    FZF_VERSION=0.65.2; \
+    FZF_VERSION=0.66.0; \
     AARCH=$(dpkg --print-architecture); \
     wget -q https://github.com/junegunn/fzf/releases/download/v${FZF_VERSION}/fzf-${FZF_VERSION}-linux_${AARCH}.tar.gz -O - | tar -zxf - -C /usr/local/bin; \
     \
-    FZFGIT_SHA1=e0fd42ced3fef08714adc2ee4e11179500c5461b; \
+    FZFGIT_SHA1=279050e2eba5b9f4c5b057ca7dbc7e02e67315a1; \
     mkdir -p /opt/fzf-git.sh; \
     cd /opt/fzf-git.sh; \
     git init; \
@@ -82,7 +82,7 @@ RUN set -eux; \
 
 # go
 RUN set -eux; \
-    GO_VERSION=1.25.2; \
+    GO_VERSION=1.25.3; \
     AARCH=$(dpkg --print-architecture); \
     wget -q https://go.dev/dl/go${GO_VERSION}.linux-${AARCH}.tar.gz -O go.tar.gz; \
     tar -C /usr/local -xzf go.tar.gz; \
@@ -178,6 +178,6 @@ RUN set -eux; \
 
 # gh
 RUN set -eux; \
-    GH_VERSION=2.81.0; \
+    GH_VERSION=2.82.0; \
     AARCH=$(dpkg --print-architecture); \
     wget -q https://github.com/cli/cli/releases/download/v${GH_VERSION}/gh_${GH_VERSION}_linux_${AARCH}.tar.gz -O- | tar -zxf - --strip-components=1 -C /usr/local --wildcards '*/bin/gh' ;

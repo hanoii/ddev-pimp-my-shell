@@ -52,7 +52,7 @@ FROM pimp-my-shell-base AS pimp-my-shell-fzf
 SHELL ["/bin/bash", "-c"]
 RUN <<EOF
 set -eux
-FZF_VERSION=0.65.2
+FZF_VERSION=0.66.0
 AARCH=$(uname -m)
 AARCH=${AARCH/aarch64/arm64}
 AARCH=${AARCH/x86_64/amd64}
@@ -65,7 +65,7 @@ EOF
 FROM pimp-my-shell-base AS pimp-my-shell-fzfgit
 SHELL ["/bin/bash", "-c"]
 RUN <<EOF
-FZFGIT_SHA1=e0fd42ced3fef08714adc2ee4e11179500c5461b
+FZFGIT_SHA1=279050e2eba5b9f4c5b057ca7dbc7e02e67315a1
 curl-pimp-my-shell -o /opt/fzf-git.sh https://raw.githubusercontent.com/junegunn/fzf-git.sh/${FZFGIT_SHA1}/fzf-git.sh
 EOF
 
@@ -155,7 +155,7 @@ FROM pimp-my-shell-base AS pimp-my-shell-go
 SHELL ["/bin/bash", "-c"]
 RUN <<EOF
 set -eux
-GO_VERSION=1.25.2
+GO_VERSION=1.25.3
 AARCH=$(uname -m)
 AARCH=${AARCH/aarch64/arm64}
 AARCH=${AARCH/x86_64/amd64}
@@ -287,7 +287,7 @@ FROM pimp-my-shell-base AS pimp-my-shell-gh
 SHELL ["/bin/bash", "-c"]
 RUN <<EOF
 set -eux
-GH_VERSION=2.81.0
+GH_VERSION=2.82.0
 AARCH=$(uname -m)
 AARCH=${AARCH/aarch64/arm64}
 AARCH=${AARCH/x86_64/amd64}
@@ -330,7 +330,7 @@ RUN <<EOF
 set -eux
 apt-get update
 apt-get install -y --no-install-recommends build-essential cmake libncurses-dev ninja-build
-MULTITAIL_SHA1=78063c0a4d37392599a40ae3c4ccecbd1887027c
+MULTITAIL_SHA1=6aec8039ee6fcb1668e2d7e7aad76808b12b79d4
 mkdir -p /opt/multitail
 cd /opt/multitail
 curl-pimp-my-shell -o multitail.tar.gz "https://github.com/folkertvanheusden/multitail/tarball/${MULTITAIL_SHA1}"

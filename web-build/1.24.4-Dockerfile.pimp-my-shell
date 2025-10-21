@@ -13,7 +13,7 @@ RUN set -eux; \
     AARCH=$(dpkg --print-architecture); \
     wget -q https://github.com/junegunn/fzf/releases/download/v${FZF_VERSION}/fzf-${FZF_VERSION}-linux_${AARCH}.tar.gz -O - | tar -zxf - -C /usr/local/bin; \
     \
-    FZFGIT_SHA1=279050e2eba5b9f4c5b057ca7dbc7e02e67315a1; \
+    FZFGIT_SHA1=c823ffd521cb4a3a65a5cf87f1b1104ef651c3de; \
     mkdir -p /opt/fzf-git.sh; \
     cd /opt/fzf-git.sh; \
     git init; \
@@ -23,7 +23,7 @@ RUN set -eux; \
 
 # bat
 RUN set -eux; \
-    BAT_VERSION=0.25.0; \
+    BAT_VERSION=0.26.0; \
     AARCH=$(dpkg --print-architecture); \
     wget -q https://github.com/sharkdp/bat/releases/download/v${BAT_VERSION}/bat_${BAT_VERSION}_${AARCH}.deb -O bat.deb; \
     dpkg -i bat.deb; \

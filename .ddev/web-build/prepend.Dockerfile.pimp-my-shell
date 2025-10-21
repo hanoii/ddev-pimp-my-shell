@@ -65,7 +65,7 @@ EOF
 FROM pimp-my-shell-base AS pimp-my-shell-fzfgit
 SHELL ["/bin/bash", "-c"]
 RUN <<EOF
-FZFGIT_SHA1=279050e2eba5b9f4c5b057ca7dbc7e02e67315a1
+FZFGIT_SHA1=c823ffd521cb4a3a65a5cf87f1b1104ef651c3de
 curl-pimp-my-shell -o /opt/fzf-git.sh https://raw.githubusercontent.com/junegunn/fzf-git.sh/${FZFGIT_SHA1}/fzf-git.sh
 EOF
 
@@ -223,7 +223,7 @@ FROM pimp-my-shell-base AS pimp-my-shell-bat
 SHELL ["/bin/bash", "-c"]
 RUN <<EOF
 set -eux
-BAT_VERSION=0.25.0
+BAT_VERSION=0.26.0
 AARCH=$(uname -m)
 AARCH=${AARCH/i386/i686}
 curl-pimp-my-shell -o bat.tar.gz https://github.com/sharkdp/bat/releases/download/v${BAT_VERSION}/bat-v${BAT_VERSION}-${AARCH}-unknown-linux-musl.tar.gz
@@ -330,7 +330,7 @@ RUN <<EOF
 set -eux
 apt-get update
 apt-get install -y --no-install-recommends build-essential cmake libncurses-dev ninja-build
-MULTITAIL_SHA1=78063c0a4d37392599a40ae3c4ccecbd1887027c
+MULTITAIL_SHA1=6aec8039ee6fcb1668e2d7e7aad76808b12b79d4
 mkdir -p /opt/multitail
 cd /opt/multitail
 curl-pimp-my-shell -o multitail.tar.gz "https://github.com/folkertvanheusden/multitail/tarball/${MULTITAIL_SHA1}"

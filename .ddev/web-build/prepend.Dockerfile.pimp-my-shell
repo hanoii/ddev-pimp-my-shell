@@ -108,10 +108,13 @@ SHELL ["/bin/fish", "-c"]
 RUN <<EOF
 set fish_trace 1
 export FISHER_VERSION=4.4.5
-curl-pimp-my-shell -o /tmp/fisher.fish https://raw.githubusercontent.com/jorgebucaran/fisher/main/functions/fisher.fish
-source /tmp/fisher.fish
-fisher install jorgebucaran/fisher@$FISHER_VERSION
-rm /tmp/fisher.fish
+curl-pimp-my-shell -o fisher.tar.gz https://github.com/jorgebucaran/fisher/archive/refs/tags/$FISHER_VERSION.tar.gz
+mkdir -p /opt/fisher
+tar -xzf fisher.tar.gz --strip-components=1 -C /opt/fisher
+cp -R /opt/fisher/functions /root/.config/fish/functions
+cp -R /opt/fisher/completions /root/.config/fish/completions
+rm fisher.tar.gz
+rm -fr /opt/fisher
 EOF
 
 FROM pimp-my-shell-fisher AS pimp-my-shell-fisher-plugins
@@ -358,4 +361,18 @@ make
 apt-get purge -y libevent-dev ncurses-dev build-essential bison pkg-config
 apt-get autoremove -y
 rm -rf /var/lib/apt/lists/*
+EOF
+
+# doctl
+FROM pimp-my-shell-base AS pimp-my-shell-doctl
+SHELL ["/bin/bash", "-c"]
+RUN <<EOF
+set -eux
+DOCTL_VERSION=1.146.0
+AARCH=$(uname -m)
+AARCH=${AARCH/aarch64/arm64}
+AARCH=${AARCH/x86_64/amd64}
+curl-pimp-my-shell -o doctl.tar.gz https://github.com/digitalocean/doctl/releases/download/v${DOCTL_VERSION}/doctl-${DOCTL_VERSION}-linux-${AARCH}.tar.gz
+tar -zxf doctl.tar.gz -C /usr/local/bin;
+rm doctl.tar.gz
 EOF

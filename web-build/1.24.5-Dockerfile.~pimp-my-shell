@@ -48,3 +48,4 @@ COPY --from=pimp-my-shell-delta /opt/delta /usr/local/bin
 COPY --from=pimp-my-shell-spacer /usr/local/bin/spacer /usr/local/bin
 COPY --from=pimp-my-shell-multitail /opt/multitail/build/multitail /usr/local/bin
 COPY --from=pimp-my-shell-tmux /opt/tmux/tmux /usr/local/bin
+COPY --from=pimp-my-shell-doctl /usr/local/bin/doctl /usr/local/bin

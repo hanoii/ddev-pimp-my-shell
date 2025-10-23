@@ -171,3 +171,9 @@ VERSION=$(curl -Ls -o /dev/null -w %{url_effective} "https://github.com/tmux/tmu
 [ -n "$VERSION" ]
 echo "tmux version: $VERSION"
 perl -pi -e "s@TMUX_VERSION=[^\s;]*(.*)@TMUX_VERSION=${VERSION}\$1@g" web-build/*.pimp-my-shell
+
+# doctl
+VERSION=$(curl -Ls -o /dev/null -w %{url_effective} "https://github.com/digitalocean/doctl/releases/latest" | sed 's/.*tag\/v//g')
+[ -n "$VERSION" ]
+echo "DigitalOcean CLI version: $VERSION"
+perl -pi -e "s@DOCTL_VERSION=[^\s;]*(.*)@DOCTL_VERSION=${VERSION}\$1@g" web-build/*.pimp-my-shell

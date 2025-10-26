@@ -66,7 +66,9 @@ FROM pimp-my-shell-base AS pimp-my-shell-fzfgit
 SHELL ["/bin/bash", "-c"]
 RUN <<EOF
 FZFGIT_SHA1=c823ffd521cb4a3a65a5cf87f1b1104ef651c3de
-curl-pimp-my-shell -o /opt/fzf-git.sh https://raw.githubusercontent.com/junegunn/fzf-git.sh/${FZFGIT_SHA1}/fzf-git.sh
+curl-pimp-my-shell -o fzf-git-sh.tar.gz https://github.com/junegunn/fzf-git.sh/archive/${FZFGIT_SHA1}.tar.gz
+tar -zxf fzf-git-sh.tar.gz --strip-components=1 -C /opt
+rm fzf-git-sh.tar.gz
 EOF
 
 # eza
@@ -148,9 +150,10 @@ SHELL ["/bin/bash", "-c"]
 RUN <<EOF
 set -eux
 KITTY_VERSION=0.43.1
-mkdir -p /usr/share/terminfo/x
-cd /usr/share/terminfo/x
-curl-pimp-my-shell -o xterm-kitty https://github.com/kovidgoyal/kitty/raw/refs/tags/v${KITTY_VERSION}/terminfo/x/xterm-kitty
+mkdir -p /opt/kitty
+curl-pimp-my-shell -o kitty.tar.gz https://github.com/kovidgoyal/kitty/archive/v${KITTY_VERSION}.tar.gz
+tar -zxf kitty.tar.gz --strip-components=1 -C /opt/kitty
+rm kitty.tar.gz
 EOF
 
 # go

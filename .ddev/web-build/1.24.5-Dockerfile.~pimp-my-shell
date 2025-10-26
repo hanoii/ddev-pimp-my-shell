@@ -7,9 +7,9 @@ RUN set -eux; \
     update-alternatives --set editor /usr/bin/vim.nox
 
 ##
-# While any Docker cache on these lines should have negligent impact most run in
-# less than a second, I am leaving the ones that take slightly longer than the
-# others on top.
+# While any Docker cache on these lines should have negligent impact as most run
+# in less than a second, I am leaving the ones that take slightly longer than
+# the others on top.
 #
 COPY --from=pimp-my-shell-go /usr/local/go /usr/local/go
 COPY --from=pimp-my-shell-ahoy /usr/local/bin/ahoy /usr/local/bin
@@ -18,7 +18,7 @@ COPY --from=pimp-my-shell-gum /opt/gum /usr/local/bin
 COPY --from=pimp-my-shell-gum /opt/completions/gum.bash /usr/share/bash-completion/completions/gum
 COPY --from=pimp-my-shell-gum /opt/completions/gum.fish /usr/share/fish/vendor_completions.d/gum.fish
 COPY --from=pimp-my-shell-fzf /usr/local/bin/fzf /usr/local/bin
-COPY --from=pimp-my-shell-fzfgit /opt/fzf-git.sh /opt/fzf-git.sh/fzf-git.sh
+COPY --from=pimp-my-shell-fzfgit /opt/fzf-git.sh /opt/fzf-git.fish /opt/fzf-git.sh/
 COPY --from=pimp-my-shell-eza /usr/local/bin/eza /usr/local/bin
 COPY --from=pimp-my-shell-eza /opt/eza /usr/share/bash-completion/completions/eza
 COPY --from=pimp-my-shell-eza /opt/eza.fish /usr/share/fish/vendor_completions.d/eza.fish
@@ -27,7 +27,7 @@ COPY --from=pimp-my-shell-fish /etc/fish /etc/fish
 COPY --from=pimp-my-shell-fish /usr/share/fish /usr/share/fish
 COPY --chown=$uid:$gid --from=pimp-my-shell-fisher-plugins /root/.config/fish /home/$username/.config/fish
 COPY --from=pimp-my-shell-zlua /opt/z.lua/z.lua /opt/z.lua
-COPY --from=pimp-my-shell-xterm-kitty /usr/share/terminfo/x /usr/share/terminfo/x
+COPY --from=pimp-my-shell-xterm-kitty /opt/kitty/terminfo/x/xterm-kitty /usr/share/terminfo/x/
 COPY --from=pimp-my-shell-go-sysbox /root/go/bin/sysbox /usr/local/bin
 COPY --from=pimp-my-shell-go-recur /root/go/bin/recur /usr/local/bin
 COPY --from=pimp-my-shell-tte /root/.local/bin/tte /usr/local/bin

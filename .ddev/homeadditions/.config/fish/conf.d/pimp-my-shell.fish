@@ -8,6 +8,9 @@ function fish_user_key_bindings
   fzf --fish | source
 end
 
+# fzf-git
+source /opt/fzf-git.sh/fzf-git.fish
+
 # go
 fish_add_path /usr/local/go/bin
 fish_add_path ~/go/bin

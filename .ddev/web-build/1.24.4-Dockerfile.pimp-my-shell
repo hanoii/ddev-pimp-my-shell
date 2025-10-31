@@ -123,7 +123,7 @@ RUN set -eux; \
     /usr/local/go/bin/go install dbohdan.com/recur/v2@v${RECUR_VERSION};
 
 RUN set -eux; \
-    RUST_VERSION=1.90.0; \
+    RUST_VERSION=1.91.0; \
     curl -sSf https://sh.rustup.rs/ | sh -s -- --profile minimal --default-toolchain=${RUST_VERSION} -y
 
 # Go back to root
@@ -170,7 +170,7 @@ RUN set -eux; \
 
 # ov
 RUN set -eux; \
-    OV_VERSION=0.44.0; \
+    OV_VERSION=0.45.1; \
     AARCH=$(dpkg --print-architecture); \
     wget -q https://github.com/noborus/ov/releases/download/v${OV_VERSION}/ov_${OV_VERSION}_linux_${AARCH}.zip -O ov.zip; \
     unzip ov.zip -d /usr/local/bin/ ov; \

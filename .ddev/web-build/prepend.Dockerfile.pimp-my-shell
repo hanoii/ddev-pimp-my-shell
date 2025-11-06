@@ -149,7 +149,7 @@ FROM pimp-my-shell-base AS pimp-my-shell-xterm-kitty
 SHELL ["/bin/bash", "-c"]
 RUN <<EOF
 set -eux
-KITTY_VERSION=0.43.1
+KITTY_VERSION=0.44.0
 mkdir -p /opt/kitty
 curl-pimp-my-shell -o kitty.tar.gz https://github.com/kovidgoyal/kitty/archive/v${KITTY_VERSION}.tar.gz
 tar -zxf kitty.tar.gz --strip-components=1 -C /opt/kitty
@@ -161,7 +161,7 @@ FROM pimp-my-shell-base AS pimp-my-shell-go
 SHELL ["/bin/bash", "-c"]
 RUN <<EOF
 set -eux
-GO_VERSION=1.25.3
+GO_VERSION=1.25.4
 AARCH=$(uname -m)
 AARCH=${AARCH/aarch64/arm64}
 AARCH=${AARCH/x86_64/amd64}
@@ -293,7 +293,7 @@ FROM pimp-my-shell-base AS pimp-my-shell-gh
 SHELL ["/bin/bash", "-c"]
 RUN <<EOF
 set -eux
-GH_VERSION=2.82.1
+GH_VERSION=2.83.0
 AARCH=$(uname -m)
 AARCH=${AARCH/aarch64/arm64}
 AARCH=${AARCH/x86_64/amd64}

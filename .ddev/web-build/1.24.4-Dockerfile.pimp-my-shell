@@ -82,7 +82,7 @@ RUN set -eux; \
 
 # go
 RUN set -eux; \
-    GO_VERSION=1.25.3; \
+    GO_VERSION=1.25.4; \
     AARCH=$(dpkg --print-architecture); \
     wget -q https://go.dev/dl/go${GO_VERSION}.linux-${AARCH}.tar.gz -O go.tar.gz; \
     tar -C /usr/local -xzf go.tar.gz; \
@@ -143,7 +143,7 @@ RUN set -eux; \
 
 # kitty-terminfo from directoy from their GitHub repo @ master
 RUN set -eux; \
-    KITTY_VERSION=0.43.1; \
+    KITTY_VERSION=0.44.0; \
     url="https://github.com/kovidgoyal/kitty/raw/refs/tags/v${KITTY_VERSION}/terminfo/x/xterm-kitty"; \
     mkdir -p /usr/share/terminfo/x; \
     cd /usr/share/terminfo/x; \
@@ -178,6 +178,6 @@ RUN set -eux; \
 
 # gh
 RUN set -eux; \
-    GH_VERSION=2.82.1; \
+    GH_VERSION=2.83.0; \
     AARCH=$(dpkg --print-architecture); \
     wget -q https://github.com/cli/cli/releases/download/v${GH_VERSION}/gh_${GH_VERSION}_linux_${AARCH}.tar.gz -O- | tar -zxf - --strip-components=1 -C /usr/local --wildcards '*/bin/gh' ;

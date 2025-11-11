@@ -59,7 +59,7 @@ echo "gum version: $VERSION"
 perl -pi -e "s@GUM_VERSION=[^\s;]*(.*)@GUM_VERSION=${VERSION}\$1@g" web-build/*.pimp-my-shell
 
 # fish
-VERSION=$(curl -Ls "https://download.opensuse.org/download/repositories/shells:/fish:/release:/4/Debian_12/?jsontable&_=${_timestamp}" | jq -r '.data | .[] | select(.name | endswith(".dsc")) | .name' | sed 's/fish_\(.*\)\.dsc/\1/g')
+VERSION=$(curl -Ls "https://download.opensuse.org/download/repositories/shells:/fish:/release:/4/Debian_12/?jsontable&_=${_timestamp}" | jq -r '.data | .[] | select(.name | endswith(".dsc")) | .name' | sort -r | head -1 | sed 's/fish_\(.*\)\.dsc/\1/g')
 [ -n "$VERSION" ]
 echo "fish debian version from opensuse: $VERSION"
 perl -pi -e "s@FISH_VERSION=[^\s;]*(.*)@FISH_VERSION=${VERSION}@g" web-build/*.pimp-my-shell
@@ -161,7 +161,7 @@ else
 fi
 
 # muiltitail
-VERSION=$(gh api repos/folkertvanheusden/multitail/commits --jq '.[0].sha')
+VERSION=$(gh api repos/folkertvanheusden/multitail/commits --jq 'sort_by(.commit.author.date) | reverse | .[0].sha')
 [ -n "$VERSION" ]
 echo "multitail latest commit SHA1: $VERSION"
 perl -pi -e "s@MULTITAIL_SHA1=[^\s;]*(.*)@MULTITAIL_SHA1=${VERSION}\$1@g" web-build/*.pimp-my-shell

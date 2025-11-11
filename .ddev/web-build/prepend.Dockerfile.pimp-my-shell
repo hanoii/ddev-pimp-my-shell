@@ -96,7 +96,7 @@ FROM pimp-my-shell-base AS pimp-my-shell-fish
 SHELL ["/bin/bash", "-c"]
 RUN <<EOF
 set -eux
-FISH_VERSION=4.1.2-1
+FISH_VERSION=4.2.0-1
 DEBIAN=$(lsb_release -rs)
 echo "deb http://download.opensuse.org/repositories/shells:/fish:/release:/4/Debian_${DEBIAN}/ /" | sudo tee /etc/apt/sources.list.d/shells:fish:release:4.list
 curl-pimp-my-shell -sS https://download.opensuse.org/repositories/shells:fish:release:4/Debian_${DEBIAN}/Release.key | gpg --dearmor | sudo tee /etc/apt/trusted.gpg.d/shells_fish_release_4.gpg > /dev/null
@@ -242,7 +242,7 @@ FROM pimp-my-shell-base AS pimp-my-shell-rust
 SHELL ["/bin/bash", "-c"]
 RUN <<EOF
 set -eux
-RUST_VERSION=1.91.0
+RUST_VERSION=1.91.1
 curl-pimp-my-shell -sS https://sh.rustup.rs/ | sh -s -- --profile minimal --default-toolchain=${RUST_VERSION} -y
 EOF
 
@@ -282,7 +282,7 @@ FROM pimp-my-shell-base AS pimp-my-shell-bun
 SHELL ["/bin/bash", "-c"]
 RUN <<EOF
 set -eux
-BUN_VERSION=1.3.1
+BUN_VERSION=1.3.2
 curl-pimp-my-shell -sS https://bun.sh/install | bash -s "bun-v${BUN_VERSION}"
 cd /root/.bun/bin
 ln -fs bun bunx
@@ -371,7 +371,7 @@ FROM pimp-my-shell-base AS pimp-my-shell-doctl
 SHELL ["/bin/bash", "-c"]
 RUN <<EOF
 set -eux
-DOCTL_VERSION=1.146.0
+DOCTL_VERSION=1.147.0
 AARCH=$(uname -m)
 AARCH=${AARCH/aarch64/arm64}
 AARCH=${AARCH/x86_64/amd64}

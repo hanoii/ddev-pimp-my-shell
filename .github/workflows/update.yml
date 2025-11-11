@@ -1,5 +1,11 @@
 name: update
 on:
+  workflow_run:
+    workflows: ["tests"]
+    types:
+      - completed
+    branches:
+      - main
   schedule:
     - cron: "0 12 */5 * *"
   workflow_dispatch:
@@ -9,6 +15,7 @@ jobs:
   updates:
     name: Check for updates
     runs-on: ubuntu-latest
+    if: ${{ github.event_name != 'workflow_run' || (github.event.workflow_run.conclusion == 'success' && github.event.workflow_run.event == 'push' && github.event.workflow_run.head_branch == 'main') }}
     # Map a step output to a job output
     outputs:
       updates: ${{ steps.check-updates.outputs.updates }}

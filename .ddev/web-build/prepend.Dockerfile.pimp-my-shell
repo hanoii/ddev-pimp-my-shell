@@ -188,7 +188,8 @@ SHELL ["/bin/bash", "-c"]
 RUN <<EOF
 set -eux
 RECUR_VERSION=2.5.0
-/usr/local/go/bin/go install dbohdan.com/recur/v2@v${RECUR_VERSION}
+RECUR_MAJOR_VERSION=$(echo ${RECUR_VERSION} | cut -d. -f1)
+/usr/local/go/bin/go install dbohdan.com/recur/v${RECUR_MAJOR_VERSION}@v${RECUR_VERSION}
 /usr/local/go/bin/go clean -cache -modcache
 EOF
 

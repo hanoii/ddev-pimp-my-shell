@@ -9,7 +9,7 @@ RUN set -eux; \
 
 # fzf et al
 RUN set -eux; \
-    FZF_VERSION=0.66.1; \
+    FZF_VERSION=0.67.0; \
     AARCH=$(dpkg --print-architecture); \
     wget -q https://github.com/junegunn/fzf/releases/download/v${FZF_VERSION}/fzf-${FZF_VERSION}-linux_${AARCH}.tar.gz -O - | tar -zxf - -C /usr/local/bin; \
     \
@@ -45,7 +45,7 @@ RUN set -eux; \
 
 # starship
 RUN set -eux; \
-    STARSHIP_VERSION=1.24.0; \
+    STARSHIP_VERSION=1.24.1; \
     curl -sS https://starship.rs/install.sh | sh -s -- -y -v v${STARSHIP_VERSION}
 
 # gum
@@ -63,7 +63,7 @@ RUN set -eux; \
 # busting ensuring you always have the last version when it's updated.
 RUN <<EOF
 set -eux
-FISH_VERSION=4.2.0-1
+FISH_VERSION=4.2.1-1
 DEBIAN=$(lsb_release -rs)
 echo "deb http://download.opensuse.org/repositories/shells:/fish:/release:/4/Debian_${DEBIAN}/ /" | sudo tee /etc/apt/sources.list.d/shells:fish:release:4.list
 curl -fsSL https://download.opensuse.org/repositories/shells:fish:release:4/Debian_${DEBIAN}/Release.key | gpg --dearmor | sudo tee /etc/apt/trusted.gpg.d/shells_fish_release_4.gpg > /dev/null
@@ -107,7 +107,7 @@ RUN set -eux; \
 
 # bun.sh - it's installed by on the user as it adds stuff to .bashrc
 RUN set -eux; \
-    BUN_VERSION=1.3.2; \
+    BUN_VERSION=1.3.3; \
     curl -fsSL https://bun.sh/install | bash -s "bun-v${BUN_VERSION}"
 
 # go tools - it's installed on the user so so that bin and pkgs are available on the user's home
@@ -119,7 +119,7 @@ RUN set -eux; \
 RUN set -eux; \
     unset GOARCH; \
     unset GOOS; \
-    RECUR_VERSION=2.5.0; \
+    RECUR_VERSION=3.0.0; \
     RECUR_MAJOR_VERSION=$(echo ${RECUR_VERSION} | cut -d. -f1); \
     /usr/local/go/bin/go install dbohdan.com/recur/v${RECUR_MAJOR_VERSION}@v${RECUR_VERSION}
 
@@ -157,7 +157,7 @@ RUN set -eux; \
 # tte
 # https://chrisbuilds.github.io/terminaltexteffects/
 RUN set -eux; \
-    TTE_VERSION=0.12.1; \
+    TTE_VERSION=0.13.0; \
     apt-get update; \
     apt-get install -y --no-install-recommends pipx; \
     PIPX_HOME=/opt/pipx PIPX_BIN_DIR=/usr/local/bin pipx install terminaltexteffects==${TTE_VERSION}
@@ -179,6 +179,6 @@ RUN set -eux; \
 
 # gh
 RUN set -eux; \
-    GH_VERSION=2.83.0; \
+    GH_VERSION=2.83.1; \
     AARCH=$(dpkg --print-architecture); \
     wget -q https://github.com/cli/cli/releases/download/v${GH_VERSION}/gh_${GH_VERSION}_linux_${AARCH}.tar.gz -O- | tar -zxf - --strip-components=1 -C /usr/local --wildcards '*/bin/gh' ;

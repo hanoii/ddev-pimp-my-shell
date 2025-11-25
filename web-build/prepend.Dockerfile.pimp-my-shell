@@ -25,7 +25,7 @@ FROM pimp-my-shell-base AS pimp-my-shell-starship
 SHELL ["/bin/bash", "-c"]
 RUN <<EOF
 set -eux
-STARSHIP_VERSION=1.24.0
+STARSHIP_VERSION=1.24.1
 AARCH=$(uname -m)
 AARCH=${AARCH/i386/i686}
 curl-pimp-my-shell -o starship.tar.gz https://github.com/starship/starship/releases/download/v${STARSHIP_VERSION}/starship-${AARCH}-unknown-linux-musl.tar.gz
@@ -52,7 +52,7 @@ FROM pimp-my-shell-base AS pimp-my-shell-fzf
 SHELL ["/bin/bash", "-c"]
 RUN <<EOF
 set -eux
-FZF_VERSION=0.66.1
+FZF_VERSION=0.67.0
 AARCH=$(uname -m)
 AARCH=${AARCH/aarch64/arm64}
 AARCH=${AARCH/x86_64/amd64}
@@ -96,7 +96,7 @@ FROM pimp-my-shell-base AS pimp-my-shell-fish
 SHELL ["/bin/bash", "-c"]
 RUN <<EOF
 set -eux
-FISH_VERSION=4.2.0-1
+FISH_VERSION=4.2.1-1
 DEBIAN=$(lsb_release -rs)
 echo "deb http://download.opensuse.org/repositories/shells:/fish:/release:/4/Debian_${DEBIAN}/ /" | sudo tee /etc/apt/sources.list.d/shells:fish:release:4.list
 curl-pimp-my-shell -sS https://download.opensuse.org/repositories/shells:fish:release:4/Debian_${DEBIAN}/Release.key | gpg --dearmor | sudo tee /etc/apt/trusted.gpg.d/shells_fish_release_4.gpg > /dev/null
@@ -187,7 +187,7 @@ FROM pimp-my-shell-go AS pimp-my-shell-go-recur
 SHELL ["/bin/bash", "-c"]
 RUN <<EOF
 set -eux
-RECUR_VERSION=2.5.0
+RECUR_VERSION=3.0.0
 RECUR_MAJOR_VERSION=$(echo ${RECUR_VERSION} | cut -d. -f1)
 /usr/local/go/bin/go install dbohdan.com/recur/v${RECUR_MAJOR_VERSION}@v${RECUR_VERSION}
 /usr/local/go/bin/go clean -cache -modcache
@@ -200,7 +200,7 @@ RUN <<EOF
 set -eux
 apt-get update
 apt-get install -y --no-install-recommends pipx
-TTE_VERSION=0.12.1
+TTE_VERSION=0.13.0
 mkdir -p /opt/terminaltexteffects
 PIPX_HOME=/opt/terminaltexteffects PIPX_BIN_DIR=/usr/local/bin pipx install terminaltexteffects==${TTE_VERSION}
 apt-get purge -y pipx
@@ -279,7 +279,7 @@ FROM pimp-my-shell-base AS pimp-my-shell-bun
 SHELL ["/bin/bash", "-c"]
 RUN <<EOF
 set -eux
-BUN_VERSION=1.3.2
+BUN_VERSION=1.3.3
 curl-pimp-my-shell -sS https://bun.sh/install | bash -s "bun-v${BUN_VERSION}"
 cd /root/.bun/bin
 ln -fs bun bunx
@@ -290,7 +290,7 @@ FROM pimp-my-shell-base AS pimp-my-shell-gh
 SHELL ["/bin/bash", "-c"]
 RUN <<EOF
 set -eux
-GH_VERSION=2.83.0
+GH_VERSION=2.83.1
 AARCH=$(uname -m)
 AARCH=${AARCH/aarch64/arm64}
 AARCH=${AARCH/x86_64/amd64}

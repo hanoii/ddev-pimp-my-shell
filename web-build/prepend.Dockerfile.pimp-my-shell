@@ -200,7 +200,7 @@ RUN <<EOF
 set -eux
 apt-get update
 apt-get install -y --no-install-recommends pipx
-TTE_VERSION=0.13.0
+TTE_VERSION=0.14.2
 mkdir -p /opt/terminaltexteffects
 PIPX_HOME=/opt/terminaltexteffects PIPX_BIN_DIR=/usr/local/bin pipx install terminaltexteffects==${TTE_VERSION}
 apt-get purge -y pipx

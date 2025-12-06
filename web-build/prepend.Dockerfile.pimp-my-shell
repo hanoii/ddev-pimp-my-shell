@@ -161,7 +161,7 @@ FROM pimp-my-shell-base AS pimp-my-shell-go
 SHELL ["/bin/bash", "-c"]
 RUN <<EOF
 set -eux
-GO_VERSION=1.25.4
+GO_VERSION=1.25.5
 AARCH=$(uname -m)
 AARCH=${AARCH/aarch64/arm64}
 AARCH=${AARCH/x86_64/amd64}
@@ -226,7 +226,7 @@ FROM pimp-my-shell-base AS pimp-my-shell-bat
 SHELL ["/bin/bash", "-c"]
 RUN <<EOF
 set -eux
-BAT_VERSION=0.26.0
+BAT_VERSION=0.26.1
 AARCH=$(uname -m)
 AARCH=${AARCH/i386/i686}
 curl-pimp-my-shell -o bat.tar.gz https://github.com/sharkdp/bat/releases/download/v${BAT_VERSION}/bat-v${BAT_VERSION}-${AARCH}-unknown-linux-musl.tar.gz
@@ -263,7 +263,7 @@ FROM pimp-my-shell-base AS pimp-my-shell-ov
 SHELL ["/bin/bash", "-c"]
 RUN <<EOF
 set -eux
-OV_VERSION=0.45.1
+OV_VERSION=0.50.2
 AARCH=$(uname -m)
 AARCH=${AARCH/aarch64/arm64}
 AARCH=${AARCH/x86_64/amd64}
@@ -351,7 +351,7 @@ RUN <<EOF
 set -eux
 apt-get update
 apt-get install -y --no-install-recommends libevent-dev ncurses-dev build-essential bison pkg-config
-TMUX_VERSION=3.6
+TMUX_VERSION=3.6a
 mkdir -p /opt/tmux
 cd /opt/tmux
 curl-pimp-my-shell -o tmux.tar.gz "https://github.com/tmux/tmux/releases/download/${TMUX_VERSION}/tmux-${TMUX_VERSION}.tar.gz"

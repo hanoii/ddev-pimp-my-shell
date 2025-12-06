@@ -23,7 +23,7 @@ RUN set -eux; \
 
 # bat
 RUN set -eux; \
-    BAT_VERSION=0.26.0; \
+    BAT_VERSION=0.26.1; \
     AARCH=$(dpkg --print-architecture); \
     wget -q https://github.com/sharkdp/bat/releases/download/v${BAT_VERSION}/bat_${BAT_VERSION}_${AARCH}.deb -O bat.deb; \
     dpkg -i bat.deb; \
@@ -82,7 +82,7 @@ RUN set -eux; \
 
 # go
 RUN set -eux; \
-    GO_VERSION=1.25.4; \
+    GO_VERSION=1.25.5; \
     AARCH=$(dpkg --print-architecture); \
     wget -q https://go.dev/dl/go${GO_VERSION}.linux-${AARCH}.tar.gz -O go.tar.gz; \
     tar -C /usr/local -xzf go.tar.gz; \
@@ -171,7 +171,7 @@ RUN set -eux; \
 
 # ov
 RUN set -eux; \
-    OV_VERSION=0.45.1; \
+    OV_VERSION=0.50.2; \
     AARCH=$(dpkg --print-architecture); \
     wget -q https://github.com/noborus/ov/releases/download/v${OV_VERSION}/ov_${OV_VERSION}_linux_${AARCH}.zip -O ov.zip; \
     unzip ov.zip -d /usr/local/bin/ ov; \

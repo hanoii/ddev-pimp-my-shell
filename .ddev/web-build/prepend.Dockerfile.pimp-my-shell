@@ -248,7 +248,7 @@ FROM pimp-my-shell-base AS pimp-my-shell-lazygit
 SHELL ["/bin/bash", "-c"]
 RUN <<EOF
 set -eux
-LAZYGIT_VERSION=0.56.0
+LAZYGIT_VERSION=0.57.0
 AARCH=$(uname -m)
 AARCH=${AARCH/aarch64/arm64}
 AARCH=${AARCH/i386/32-bit}
@@ -279,7 +279,7 @@ FROM pimp-my-shell-base AS pimp-my-shell-bun
 SHELL ["/bin/bash", "-c"]
 RUN <<EOF
 set -eux
-BUN_VERSION=1.3.3
+BUN_VERSION=1.3.4
 curl-pimp-my-shell -sS https://bun.sh/install | bash -s "bun-v${BUN_VERSION}"
 cd /root/.bun/bin
 ln -fs bun bunx
@@ -290,7 +290,7 @@ FROM pimp-my-shell-base AS pimp-my-shell-gh
 SHELL ["/bin/bash", "-c"]
 RUN <<EOF
 set -eux
-GH_VERSION=2.83.1
+GH_VERSION=2.83.2
 AARCH=$(uname -m)
 AARCH=${AARCH/aarch64/arm64}
 AARCH=${AARCH/x86_64/amd64}
@@ -351,7 +351,7 @@ RUN <<EOF
 set -eux
 apt-get update
 apt-get install -y --no-install-recommends libevent-dev ncurses-dev build-essential bison pkg-config
-TMUX_VERSION=3.6
+TMUX_VERSION=3.6a
 mkdir -p /opt/tmux
 cd /opt/tmux
 curl-pimp-my-shell -o tmux.tar.gz "https://github.com/tmux/tmux/releases/download/${TMUX_VERSION}/tmux-${TMUX_VERSION}.tar.gz"

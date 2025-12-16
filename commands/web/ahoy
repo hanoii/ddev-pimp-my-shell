@@ -7,4 +7,4 @@
 ## ExecRaw: true
 
 export DDEV_PIMP_MY_SHELL_AHOY=1
-ahoy $@
+ahoy "$@"

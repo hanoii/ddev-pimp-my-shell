@@ -119,12 +119,12 @@ RUN set -eux; \
 RUN set -eux; \
     unset GOARCH; \
     unset GOOS; \
-    RECUR_VERSION=3.0.0; \
+    RECUR_VERSION=3.1.0; \
     RECUR_MAJOR_VERSION=$(echo ${RECUR_VERSION} | cut -d. -f1); \
     /usr/local/go/bin/go install dbohdan.com/recur/v${RECUR_MAJOR_VERSION}@v${RECUR_VERSION}
 
 RUN set -eux; \
-    RUST_VERSION=1.91.1; \
+    RUST_VERSION=1.92.0; \
     curl -sSf https://sh.rustup.rs/ | sh -s -- --profile minimal --default-toolchain=${RUST_VERSION} -y
 
 # Go back to root

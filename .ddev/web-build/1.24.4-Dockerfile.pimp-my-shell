@@ -13,7 +13,7 @@ RUN set -eux; \
     AARCH=$(dpkg --print-architecture); \
     wget -q https://github.com/junegunn/fzf/releases/download/v${FZF_VERSION}/fzf-${FZF_VERSION}-linux_${AARCH}.tar.gz -O - | tar -zxf - -C /usr/local/bin; \
     \
-    FZFGIT_SHA1=c823ffd521cb4a3a65a5cf87f1b1104ef651c3de; \
+    FZFGIT_SHA1=8dd169c08393b4d50c2ddd270da19705a30cbbac; \
     mkdir -p /opt/fzf-git.sh; \
     cd /opt/fzf-git.sh; \
     git init; \
@@ -45,7 +45,7 @@ RUN set -eux; \
 
 # starship
 RUN set -eux; \
-    STARSHIP_VERSION=1.24.1; \
+    STARSHIP_VERSION=1.24.2; \
     curl -sS https://starship.rs/install.sh | sh -s -- -y -v v${STARSHIP_VERSION}
 
 # gum

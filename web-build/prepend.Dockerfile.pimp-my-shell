@@ -25,7 +25,7 @@ FROM pimp-my-shell-base AS pimp-my-shell-starship
 SHELL ["/bin/bash", "-c"]
 RUN <<EOF
 set -eux
-STARSHIP_VERSION=1.24.1
+STARSHIP_VERSION=1.24.2
 AARCH=$(uname -m)
 AARCH=${AARCH/i386/i686}
 curl-pimp-my-shell -o starship.tar.gz https://github.com/starship/starship/releases/download/v${STARSHIP_VERSION}/starship-${AARCH}-unknown-linux-musl.tar.gz
@@ -65,7 +65,7 @@ EOF
 FROM pimp-my-shell-base AS pimp-my-shell-fzfgit
 SHELL ["/bin/bash", "-c"]
 RUN <<EOF
-FZFGIT_SHA1=c823ffd521cb4a3a65a5cf87f1b1104ef651c3de
+FZFGIT_SHA1=8dd169c08393b4d50c2ddd270da19705a30cbbac
 curl-pimp-my-shell -o fzf-git-sh.tar.gz https://github.com/junegunn/fzf-git.sh/archive/${FZFGIT_SHA1}.tar.gz
 tar -zxf fzf-git-sh.tar.gz --strip-components=1 -C /opt
 rm fzf-git-sh.tar.gz

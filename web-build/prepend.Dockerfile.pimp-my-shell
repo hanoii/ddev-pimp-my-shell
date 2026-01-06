@@ -248,7 +248,7 @@ FROM pimp-my-shell-base AS pimp-my-shell-lazygit
 SHELL ["/bin/bash", "-c"]
 RUN <<EOF
 set -eux
-LAZYGIT_VERSION=0.57.0
+LAZYGIT_VERSION=0.58.0
 AARCH=$(uname -m)
 AARCH=${AARCH/aarch64/arm64}
 AARCH=${AARCH/i386/32-bit}
@@ -333,7 +333,7 @@ RUN <<EOF
 set -eux
 apt-get update
 apt-get install -y --no-install-recommends build-essential cmake libncurses-dev ninja-build
-MULTITAIL_SHA1=6aec8039ee6fcb1668e2d7e7aad76808b12b79d4
+MULTITAIL_SHA1=3ebfb5baaced698a50df6ed02485cab41ae432f7
 mkdir -p /opt/multitail
 cd /opt/multitail
 curl-pimp-my-shell -o multitail.tar.gz "https://github.com/folkertvanheusden/multitail/tarball/${MULTITAIL_SHA1}"

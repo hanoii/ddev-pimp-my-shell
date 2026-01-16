@@ -96,7 +96,7 @@ FROM pimp-my-shell-base AS pimp-my-shell-fish
 SHELL ["/bin/bash", "-c"]
 RUN <<EOF
 set -eux
-FISH_VERSION=4.3.3-1
+FISH_VERSION=4.3.3-2
 DEBIAN=$(lsb_release -rs)
 echo "deb http://download.opensuse.org/repositories/shells:/fish:/release:/4/Debian_${DEBIAN}/ /" | sudo tee /etc/apt/sources.list.d/shells:fish:release:4.list
 curl-pimp-my-shell -sS https://download.opensuse.org/repositories/shells:fish:release:4/Debian_${DEBIAN}/Release.key | gpg --dearmor | sudo tee /etc/apt/trusted.gpg.d/shells_fish_release_4.gpg > /dev/null
@@ -161,7 +161,7 @@ FROM pimp-my-shell-base AS pimp-my-shell-go
 SHELL ["/bin/bash", "-c"]
 RUN <<EOF
 set -eux
-GO_VERSION=1.25.5
+GO_VERSION=1.25.6
 AARCH=$(uname -m)
 AARCH=${AARCH/aarch64/arm64}
 AARCH=${AARCH/x86_64/amd64}
@@ -248,7 +248,7 @@ FROM pimp-my-shell-base AS pimp-my-shell-lazygit
 SHELL ["/bin/bash", "-c"]
 RUN <<EOF
 set -eux
-LAZYGIT_VERSION=0.58.0
+LAZYGIT_VERSION=0.58.1
 AARCH=$(uname -m)
 AARCH=${AARCH/aarch64/arm64}
 AARCH=${AARCH/i386/32-bit}
@@ -279,7 +279,7 @@ FROM pimp-my-shell-base AS pimp-my-shell-bun
 SHELL ["/bin/bash", "-c"]
 RUN <<EOF
 set -eux
-BUN_VERSION=1.3.5
+BUN_VERSION=1.3.6
 curl-pimp-my-shell -sS https://bun.sh/install | bash -s "bun-v${BUN_VERSION}"
 cd /root/.bun/bin
 ln -fs bun bunx
@@ -290,7 +290,7 @@ FROM pimp-my-shell-base AS pimp-my-shell-gh
 SHELL ["/bin/bash", "-c"]
 RUN <<EOF
 set -eux
-GH_VERSION=2.83.2
+GH_VERSION=2.85.0
 AARCH=$(uname -m)
 AARCH=${AARCH/aarch64/arm64}
 AARCH=${AARCH/x86_64/amd64}

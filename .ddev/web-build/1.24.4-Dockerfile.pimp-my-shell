@@ -95,7 +95,7 @@ USER $uid:$gid
 
 # Fish plugins
 RUN set -eux; \
-    FISHER_VERSION=4.4.5; \
+    FISHER_VERSION=4.4.6; \
     TIDE_VERSION=6.2.0; \
     BASS_VERSION=1.0; \
     fish -c " \

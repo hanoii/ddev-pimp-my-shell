@@ -109,7 +109,7 @@ FROM pimp-my-shell-fish AS pimp-my-shell-fisher
 SHELL ["/bin/fish", "-c"]
 RUN <<EOF
 set fish_trace 1
-export FISHER_VERSION=4.4.6
+export FISHER_VERSION=4.4.8
 curl-pimp-my-shell -o fisher.tar.gz https://github.com/jorgebucaran/fisher/archive/refs/tags/$FISHER_VERSION.tar.gz
 mkdir -p /opt/fisher
 tar -xzf fisher.tar.gz --strip-components=1 -C /opt/fisher
@@ -239,7 +239,7 @@ FROM pimp-my-shell-base AS pimp-my-shell-rust
 SHELL ["/bin/bash", "-c"]
 RUN <<EOF
 set -eux
-RUST_VERSION=1.92.0
+RUST_VERSION=1.93.0
 curl-pimp-my-shell -sS https://sh.rustup.rs/ | sh -s -- --profile minimal --default-toolchain=${RUST_VERSION} -y
 EOF
 
@@ -290,7 +290,7 @@ FROM pimp-my-shell-base AS pimp-my-shell-gh
 SHELL ["/bin/bash", "-c"]
 RUN <<EOF
 set -eux
-GH_VERSION=2.85.0
+GH_VERSION=2.86.0
 AARCH=$(uname -m)
 AARCH=${AARCH/aarch64/arm64}
 AARCH=${AARCH/x86_64/amd64}
@@ -368,7 +368,7 @@ FROM pimp-my-shell-base AS pimp-my-shell-doctl
 SHELL ["/bin/bash", "-c"]
 RUN <<EOF
 set -eux
-DOCTL_VERSION=1.148.0
+DOCTL_VERSION=1.149.0
 AARCH=$(uname -m)
 AARCH=${AARCH/aarch64/arm64}
 AARCH=${AARCH/x86_64/amd64}

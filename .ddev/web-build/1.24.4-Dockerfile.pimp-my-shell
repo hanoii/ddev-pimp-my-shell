@@ -95,7 +95,7 @@ USER $uid:$gid
 
 # Fish plugins
 RUN set -eux; \
-    FISHER_VERSION=4.4.6; \
+    FISHER_VERSION=4.4.8; \
     TIDE_VERSION=6.2.0; \
     BASS_VERSION=1.0; \
     fish -c " \
@@ -124,7 +124,7 @@ RUN set -eux; \
     /usr/local/go/bin/go install dbohdan.com/recur/v${RECUR_MAJOR_VERSION}@v${RECUR_VERSION}
 
 RUN set -eux; \
-    RUST_VERSION=1.92.0; \
+    RUST_VERSION=1.93.0; \
     curl -sSf https://sh.rustup.rs/ | sh -s -- --profile minimal --default-toolchain=${RUST_VERSION} -y
 
 # Go back to root
@@ -179,6 +179,6 @@ RUN set -eux; \
 
 # gh
 RUN set -eux; \
-    GH_VERSION=2.85.0; \
+    GH_VERSION=2.86.0; \
     AARCH=$(dpkg --print-architecture); \
     wget -q https://github.com/cli/cli/releases/download/v${GH_VERSION}/gh_${GH_VERSION}_linux_${AARCH}.tar.gz -O- | tar -zxf - --strip-components=1 -C /usr/local --wildcards '*/bin/gh' ;

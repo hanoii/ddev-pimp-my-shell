@@ -65,7 +65,7 @@ EOF
 FROM pimp-my-shell-base AS pimp-my-shell-fzfgit
 SHELL ["/bin/bash", "-c"]
 RUN <<EOF
-FZFGIT_SHA1=8dd169c08393b4d50c2ddd270da19705a30cbbac
+FZFGIT_SHA1=34cd6c9d315d9b59b94721bd602c5769e919d686
 curl-pimp-my-shell -o fzf-git-sh.tar.gz https://github.com/junegunn/fzf-git.sh/archive/${FZFGIT_SHA1}.tar.gz
 tar -zxf fzf-git-sh.tar.gz --strip-components=1 -C /opt
 rm fzf-git-sh.tar.gz
@@ -279,7 +279,7 @@ FROM pimp-my-shell-base AS pimp-my-shell-bun
 SHELL ["/bin/bash", "-c"]
 RUN <<EOF
 set -eux
-BUN_VERSION=1.3.6
+BUN_VERSION=1.3.8
 curl-pimp-my-shell -sS https://bun.sh/install | bash -s "bun-v${BUN_VERSION}"
 cd /root/.bun/bin
 ln -fs bun bunx
@@ -368,7 +368,7 @@ FROM pimp-my-shell-base AS pimp-my-shell-doctl
 SHELL ["/bin/bash", "-c"]
 RUN <<EOF
 set -eux
-DOCTL_VERSION=1.148.0
+DOCTL_VERSION=1.149.0
 AARCH=$(uname -m)
 AARCH=${AARCH/aarch64/arm64}
 AARCH=${AARCH/x86_64/amd64}

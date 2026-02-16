@@ -239,7 +239,7 @@ FROM pimp-my-shell-base AS pimp-my-shell-rust
 SHELL ["/bin/bash", "-c"]
 RUN <<EOF
 set -eux
-RUST_VERSION=1.93.0
+RUST_VERSION=1.93.1
 curl-pimp-my-shell -sS https://sh.rustup.rs/ | sh -s -- --profile minimal --default-toolchain=${RUST_VERSION} -y
 EOF
 

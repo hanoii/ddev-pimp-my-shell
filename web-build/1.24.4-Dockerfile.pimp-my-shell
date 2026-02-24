@@ -9,7 +9,7 @@ RUN set -eux; \
 
 # fzf et al
 RUN set -eux; \
-    FZF_VERSION=0.67.0; \
+    FZF_VERSION=0.68.0; \
     AARCH=$(dpkg --print-architecture); \
     wget -q https://github.com/junegunn/fzf/releases/download/v${FZF_VERSION}/fzf-${FZF_VERSION}-linux_${AARCH}.tar.gz -O - | tar -zxf - -C /usr/local/bin; \
     \
@@ -63,7 +63,7 @@ RUN set -eux; \
 # busting ensuring you always have the last version when it's updated.
 RUN <<EOF
 set -eux
-FISH_VERSION=4.4.0-4
+FISH_VERSION=4.5.0-1
 DEBIAN=$(lsb_release -rs)
 echo "deb http://download.opensuse.org/repositories/shells:/fish:/release:/4/Debian_${DEBIAN}/ /" | sudo tee /etc/apt/sources.list.d/shells:fish:release:4.list
 curl -fsSL https://download.opensuse.org/repositories/shells:fish:release:4/Debian_${DEBIAN}/Release.key | gpg --dearmor | sudo tee /etc/apt/trusted.gpg.d/shells_fish_release_4.gpg > /dev/null
@@ -171,7 +171,7 @@ RUN set -eux; \
 
 # ov
 RUN set -eux; \
-    OV_VERSION=0.50.2; \
+    OV_VERSION=0.51.1; \
     AARCH=$(dpkg --print-architecture); \
     wget -q https://github.com/noborus/ov/releases/download/v${OV_VERSION}/ov_${OV_VERSION}_linux_${AARCH}.zip -O ov.zip; \
     unzip ov.zip -d /usr/local/bin/ ov; \
@@ -179,6 +179,6 @@ RUN set -eux; \
 
 # gh
 RUN set -eux; \
-    GH_VERSION=2.86.0; \
+    GH_VERSION=2.87.3; \
     AARCH=$(dpkg --print-architecture); \
     wget -q https://github.com/cli/cli/releases/download/v${GH_VERSION}/gh_${GH_VERSION}_linux_${AARCH}.tar.gz -O- | tar -zxf - --strip-components=1 -C /usr/local --wildcards '*/bin/gh' ;

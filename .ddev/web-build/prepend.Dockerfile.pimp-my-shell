@@ -187,7 +187,7 @@ FROM pimp-my-shell-go AS pimp-my-shell-go-recur
 SHELL ["/bin/bash", "-c"]
 RUN <<EOF
 set -eux
-RECUR_VERSION=3.1.0
+RECUR_VERSION=3.2.0
 RECUR_MAJOR_VERSION=$(echo ${RECUR_VERSION} | cut -d. -f1)
 /usr/local/go/bin/go install dbohdan.com/recur/v${RECUR_MAJOR_VERSION}@v${RECUR_VERSION}
 /usr/local/go/bin/go clean -cache -modcache

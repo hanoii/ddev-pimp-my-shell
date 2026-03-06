@@ -9,7 +9,7 @@ RUN set -eux; \
 
 # fzf et al
 RUN set -eux; \
-    FZF_VERSION=0.68.0; \
+    FZF_VERSION=0.70.0; \
     AARCH=$(dpkg --print-architecture); \
     wget -q https://github.com/junegunn/fzf/releases/download/v${FZF_VERSION}/fzf-${FZF_VERSION}-linux_${AARCH}.tar.gz -O - | tar -zxf - -C /usr/local/bin; \
     \
@@ -82,7 +82,7 @@ RUN set -eux; \
 
 # go
 RUN set -eux; \
-    GO_VERSION=1.26.0; \
+    GO_VERSION=1.26.1; \
     AARCH=$(dpkg --print-architecture); \
     wget -q https://go.dev/dl/go${GO_VERSION}.linux-${AARCH}.tar.gz -O go.tar.gz; \
     tar -C /usr/local -xzf go.tar.gz; \
@@ -124,7 +124,7 @@ RUN set -eux; \
     /usr/local/go/bin/go install dbohdan.com/recur/v${RECUR_MAJOR_VERSION}@v${RECUR_VERSION}
 
 RUN set -eux; \
-    RUST_VERSION=1.93.1; \
+    RUST_VERSION=1.94.0; \
     curl -sSf https://sh.rustup.rs/ | sh -s -- --profile minimal --default-toolchain=${RUST_VERSION} -y
 
 # Go back to root

@@ -140,7 +140,7 @@ mkdir -p /opt/z.lua
 cd /opt/z.lua
 curl-pimp-my-shell -o zlua.zip https://github.com/skywind3000/z.lua/archive/refs/tags/${ZLUA_VERSION}.zip
 unzip zlua.zip
-mv z.lua-${ZLUA_VERSION} z.lua
+mv z.lua-${ZLUA_VERSION#v} z.lua
 rm zlua.zip
 EOF
 

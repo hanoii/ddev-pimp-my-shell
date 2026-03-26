@@ -65,7 +65,7 @@ EOF
 FROM pimp-my-shell-base AS pimp-my-shell-fzfgit
 SHELL ["/bin/bash", "-c"]
 RUN <<EOF
-FZFGIT_SHA1=52e3f704767f6cf1dad557220e077fbb40162349
+FZFGIT_SHA1=0f0488331a060cf45aaecb6705a2cf394fb20293
 curl-pimp-my-shell -o fzf-git-sh.tar.gz https://github.com/junegunn/fzf-git.sh/archive/${FZFGIT_SHA1}.tar.gz
 tar -zxf fzf-git-sh.tar.gz --strip-components=1 -C /opt
 rm fzf-git-sh.tar.gz
@@ -149,7 +149,7 @@ FROM pimp-my-shell-base AS pimp-my-shell-xterm-kitty
 SHELL ["/bin/bash", "-c"]
 RUN <<EOF
 set -eux
-KITTY_VERSION=0.46.1
+KITTY_VERSION=0.46.2
 mkdir -p /opt/kitty
 curl-pimp-my-shell -o kitty.tar.gz https://github.com/kovidgoyal/kitty/archive/v${KITTY_VERSION}.tar.gz
 tar -zxf kitty.tar.gz --strip-components=1 -C /opt/kitty
@@ -279,7 +279,7 @@ FROM pimp-my-shell-base AS pimp-my-shell-bun
 SHELL ["/bin/bash", "-c"]
 RUN <<EOF
 set -eux
-BUN_VERSION=1.3.10
+BUN_VERSION=1.3.11
 curl-pimp-my-shell -sS https://bun.sh/install | bash -s "bun-v${BUN_VERSION}"
 cd /root/.bun/bin
 ln -fs bun bunx
@@ -306,7 +306,7 @@ FROM pimp-my-shell-base AS pimp-my-shell-delta
 SHELL ["/bin/bash", "-c"]
 RUN <<EOF
 set -eux
-DELTA_VERSION=0.18.2
+DELTA_VERSION=0.19.1
 AARCH=$(uname -m)
 curl-pimp-my-shell -o delta.tar.gz https://github.com/dandavison/delta/releases/download/${DELTA_VERSION}/delta-${DELTA_VERSION}-${AARCH}-unknown-linux-gnu.tar.gz
 tar -zxf delta.tar.gz --strip-components=1 -C /opt
@@ -368,7 +368,7 @@ FROM pimp-my-shell-base AS pimp-my-shell-doctl
 SHELL ["/bin/bash", "-c"]
 RUN <<EOF
 set -eux
-DOCTL_VERSION=1.151.0
+DOCTL_VERSION=1.153.0
 AARCH=$(uname -m)
 AARCH=${AARCH/aarch64/arm64}
 AARCH=${AARCH/x86_64/amd64}

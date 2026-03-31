@@ -63,7 +63,7 @@ RUN set -eux; \
 # busting ensuring you always have the last version when it's updated.
 RUN <<EOF
 set -eux
-FISH_VERSION=4.5.0-1
+FISH_VERSION=4.6.0-1
 DEBIAN=$(lsb_release -rs)
 echo "deb http://download.opensuse.org/repositories/shells:/fish:/release:/4/Debian_${DEBIAN}/ /" | sudo tee /etc/apt/sources.list.d/shells:fish:release:4.list
 curl -fsSL https://download.opensuse.org/repositories/shells:fish:release:4/Debian_${DEBIAN}/Release.key | gpg --dearmor | sudo tee /etc/apt/trusted.gpg.d/shells_fish_release_4.gpg > /dev/null
@@ -124,7 +124,7 @@ RUN set -eux; \
     /usr/local/go/bin/go install dbohdan.com/recur/v${RECUR_MAJOR_VERSION}@v${RECUR_VERSION}
 
 RUN set -eux; \
-    RUST_VERSION=1.94.0; \
+    RUST_VERSION=1.94.1; \
     curl -sSf https://sh.rustup.rs/ | sh -s -- --profile minimal --default-toolchain=${RUST_VERSION} -y
 
 # Go back to root
@@ -138,7 +138,7 @@ RUN set -eux; \
 
 # delta
 RUN set -eux; \
-    DELTA_VERSION=0.19.1; \
+    DELTA_VERSION=0.19.2; \
     AARCH=$(uname -m); \
     wget -q https://github.com/dandavison/delta/releases/download/${DELTA_VERSION}/delta-${DELTA_VERSION}-${AARCH}-unknown-linux-gnu.tar.gz -O- | tar -zxf - --strip-components=1 -C /usr/local/bin --wildcards '*/delta';
 
@@ -179,6 +179,6 @@ RUN set -eux; \
 
 # gh
 RUN set -eux; \
-    GH_VERSION=2.88.1; \
+    GH_VERSION=2.89.0; \
     AARCH=$(dpkg --print-architecture); \
     wget -q https://github.com/cli/cli/releases/download/v${GH_VERSION}/gh_${GH_VERSION}_linux_${AARCH}.tar.gz -O- | tar -zxf - --strip-components=1 -C /usr/local --wildcards '*/bin/gh' ;

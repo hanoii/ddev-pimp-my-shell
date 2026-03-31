@@ -96,7 +96,7 @@ FROM pimp-my-shell-base AS pimp-my-shell-fish
 SHELL ["/bin/bash", "-c"]
 RUN <<EOF
 set -eux
-FISH_VERSION=4.5.0-1
+FISH_VERSION=4.6.0-1
 DEBIAN=$(lsb_release -rs)
 echo "deb http://download.opensuse.org/repositories/shells:/fish:/release:/4/Debian_${DEBIAN}/ /" | sudo tee /etc/apt/sources.list.d/shells:fish:release:4.list
 curl-pimp-my-shell -sS https://download.opensuse.org/repositories/shells:fish:release:4/Debian_${DEBIAN}/Release.key | gpg --dearmor | sudo tee /etc/apt/trusted.gpg.d/shells_fish_release_4.gpg > /dev/null
@@ -239,7 +239,7 @@ FROM pimp-my-shell-base AS pimp-my-shell-rust
 SHELL ["/bin/bash", "-c"]
 RUN <<EOF
 set -eux
-RUST_VERSION=1.94.0
+RUST_VERSION=1.94.1
 curl-pimp-my-shell -sS https://sh.rustup.rs/ | sh -s -- --profile minimal --default-toolchain=${RUST_VERSION} -y
 EOF
 
@@ -290,7 +290,7 @@ FROM pimp-my-shell-base AS pimp-my-shell-gh
 SHELL ["/bin/bash", "-c"]
 RUN <<EOF
 set -eux
-GH_VERSION=2.88.1
+GH_VERSION=2.89.0
 AARCH=$(uname -m)
 AARCH=${AARCH/aarch64/arm64}
 AARCH=${AARCH/x86_64/amd64}
@@ -306,7 +306,7 @@ FROM pimp-my-shell-base AS pimp-my-shell-delta
 SHELL ["/bin/bash", "-c"]
 RUN <<EOF
 set -eux
-DELTA_VERSION=0.19.1
+DELTA_VERSION=0.19.2
 AARCH=$(uname -m)
 curl-pimp-my-shell -o delta.tar.gz https://github.com/dandavison/delta/releases/download/${DELTA_VERSION}/delta-${DELTA_VERSION}-${AARCH}-unknown-linux-gnu.tar.gz
 tar -zxf delta.tar.gz --strip-components=1 -C /opt

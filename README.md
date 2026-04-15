@@ -1,5 +1,5 @@
 [![tests](https://github.com/hanoii/ddev-pimp-my-shell/actions/workflows/tests.yml/badge.svg)](https://github.com/hanoii/ddev-pimp-my-shell/actions/workflows/tests.yml)
-![project is maintained](https://img.shields.io/maintenance/yes/2025.svg)
+![project is maintained](https://img.shields.io/maintenance/yes/2026.svg)
 
 # ddev-pimp-my-shell <!-- omit in toc -->
 

@@ -57,8 +57,8 @@ post_install_actions:
       _tmp_file=$(mktemp)
       grep -vx '#ddev-pimp-my-shell-ddev-v1.24.5' "$_file" | grep -vx '/Dockerfile.~pimp-my-shell' > "$_tmp_file" || true
       mv "$_tmp_file" "$_file"
-      if [ ! -s "$_file" ]; then
+      if ! grep -qvE '^($|#ddev-generated)$' "$_file"; then
         rm "$_file"
-        echo "Removed empty $_file"
+        echo "Removed empty/generated-only $_file"
       fi
     fi

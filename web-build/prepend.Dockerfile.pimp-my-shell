@@ -25,7 +25,7 @@ FROM pimp-my-shell-base AS pimp-my-shell-starship
 SHELL ["/bin/bash", "-c"]
 RUN <<EOF
 set -eux
-STARSHIP_VERSION=1.25.0
+STARSHIP_VERSION=1.25.1
 AARCH=$(uname -m)
 AARCH=${AARCH/i386/i686}
 curl-pimp-my-shell -o starship.tar.gz https://github.com/starship/starship/releases/download/v${STARSHIP_VERSION}/starship-${AARCH}-unknown-linux-musl.tar.gz
@@ -290,7 +290,7 @@ FROM pimp-my-shell-base AS pimp-my-shell-gh
 SHELL ["/bin/bash", "-c"]
 RUN <<EOF
 set -eux
-GH_VERSION=2.91.0
+GH_VERSION=2.92.0
 AARCH=$(uname -m)
 AARCH=${AARCH/aarch64/arm64}
 AARCH=${AARCH/x86_64/amd64}

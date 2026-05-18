@@ -154,13 +154,7 @@ VERSION=$(curl -Ls -o /dev/null -w %{url_effective} "https://github.com/noborus/
 echo "ov - feature rich terminal pager version: $VERSION"
 perl -pi -e "s@OV_VERSION=[^\s;]*(.*)@OV_VERSION=${VERSION}\$1@g" web-build/*.pimp-my-shell
 
-if git diff --exit-code web-build/*.pimp-my-shell; then
-  echo -e "\nThere are currently no available upgrades."
-else
-  ddev add-on get . > /dev/null 2>&1
-fi
-
-# muiltitail
+# multitail
 VERSION=$(gh api repos/folkertvanheusden/multitail/commits --jq 'sort_by(.commit.author.date) | reverse | .[0].sha')
 [ -n "$VERSION" ]
 echo "multitail latest commit SHA1: $VERSION"
@@ -177,3 +171,16 @@ VERSION=$(curl -Ls -o /dev/null -w %{url_effective} "https://github.com/digitalo
 [ -n "$VERSION" ]
 echo "DigitalOcean CLI version: $VERSION"
 perl -pi -e "s@DOCTL_VERSION=[^\s;]*(.*)@DOCTL_VERSION=${VERSION}\$1@g" web-build/*.pimp-my-shell
+
+# task
+VERSION=$(curl -Ls -o /dev/null -w %{url_effective} "https://github.com/go-task/task/releases/latest" | sed 's/.*tag\/v//g')
+[ -n "$VERSION" ]
+echo "Task version: $VERSION"
+perl -pi -e "s@TASK_VERSION=[^\s;]*(.*)@TASK_VERSION=${VERSION}\$1@g" web-build/*.pimp-my-shell
+
+
+if git diff --exit-code web-build/*.pimp-my-shell; then
+  echo -e "\nThere are currently no available upgrades."
+else
+  ddev add-on get . > /dev/null 2>&1
+fi

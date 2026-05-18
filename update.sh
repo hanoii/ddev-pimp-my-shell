@@ -178,7 +178,9 @@ VERSION=$(curl -Ls -o /dev/null -w %{url_effective} "https://github.com/go-task/
 echo "Task version: $VERSION"
 perl -pi -e "s@TASK_VERSION=[^\s;]*(.*)@TASK_VERSION=${VERSION}\$1@g" web-build/*.pimp-my-shell
 
-
+#
+# Add any new version checks above this final change-detection block.
+#
 if git diff --exit-code web-build/*.pimp-my-shell; then
   echo -e "\nThere are currently no available upgrades."
 else

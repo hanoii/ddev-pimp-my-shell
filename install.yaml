@@ -8,6 +8,7 @@ project_files:
   - commands/web/gum
   - commands/web/lazygit
   - commands/web/fish
+  - commands/web/task
   - homeadditions/.local/bin/xdebug
   - homeadditions/.local/share/bash-completion/completions/ahoy
   - homeadditions/.local/share/fish/vendor_completions.d/ahoy.fish

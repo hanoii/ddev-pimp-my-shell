@@ -1,0 +1,11 @@
+#!/bin/bash
+#ddev-generated
+
+## Description: Run ahoy inside the web container
+## Usage: task [args]
+## Example: "ddev task some:command"
+## ExecRaw: true
+## MutagenSync: true
+
+export DDEV_PIMP_MY_SHELL_TASK=1
+task "$@"

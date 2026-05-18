@@ -368,11 +368,25 @@ FROM pimp-my-shell-base AS pimp-my-shell-doctl
 SHELL ["/bin/bash", "-c"]
 RUN <<EOF
 set -eux
-DOCTL_VERSION=1.157.0
+DOCTL_VERSION=1.158.0
 AARCH=$(uname -m)
 AARCH=${AARCH/aarch64/arm64}
 AARCH=${AARCH/x86_64/amd64}
 curl-pimp-my-shell -o doctl.tar.gz https://github.com/digitalocean/doctl/releases/download/v${DOCTL_VERSION}/doctl-${DOCTL_VERSION}-linux-${AARCH}.tar.gz
 tar -zxf doctl.tar.gz -C /usr/local/bin;
 rm doctl.tar.gz
+EOF
+
+# taskfile.dev
+FROM pimp-my-shell-base AS pimp-my-shell-task
+SHELL ["/bin/bash", "-c"]
+RUN <<EOF
+set -eux
+TASK_VERSION=3.51.1
+AARCH=$(uname -m)
+AARCH=${AARCH/aarch64/arm64}
+AARCH=${AARCH/x86_64/amd64}
+curl-pimp-my-shell -o task.deb https://github.com/go-task/task/releases/download/v${TASK_VERSION}/task_${TASK_VERSION}_linux_${AARCH}.deb
+dpkg-deb -x task.deb /opt/task
+rm task.deb
 EOF

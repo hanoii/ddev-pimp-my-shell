@@ -5,6 +5,7 @@
 ## Usage: lazygit
 ## Example: "ddev lazygit"
 ## ExecRaw: true
+## MutagenSync: true
 
 export DDEV_PIMP_MY_SHELL_LAZYGIT=1
 lazygit "$@"

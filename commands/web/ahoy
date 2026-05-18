@@ -5,6 +5,7 @@
 ## Usage: ahoy [args]
 ## Example: "ddev ahoy some:command"
 ## ExecRaw: true
+## MutagenSync: true
 
 export DDEV_PIMP_MY_SHELL_AHOY=1
 ahoy "$@"

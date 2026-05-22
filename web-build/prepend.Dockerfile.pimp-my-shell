@@ -390,3 +390,17 @@ curl-pimp-my-shell -o task.deb https://github.com/go-task/task/releases/download
 dpkg-deb -x task.deb /opt/task
 rm task.deb
 EOF
+
+# upterm
+FROM pimp-my-shell-base AS pimp-my-shell-upterm
+SHELL ["/bin/bash", "-c"]
+RUN <<EOF
+set -eux
+UPTERM_VERSION=0.24.0
+AARCH=$(uname -m)
+AARCH=${AARCH/aarch64/arm64}
+AARCH=${AARCH/x86_64/amd64}
+curl-pimp-my-shell -o upterm.deb https://github.com/owenthereal/upterm/releases/download/v${UPTERM_VERSION}/upterm_linux_${AARCH}.deb
+dpkg-deb -x upterm.deb /opt/upterm
+rm upterm.deb
+EOF

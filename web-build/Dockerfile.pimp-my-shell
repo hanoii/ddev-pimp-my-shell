@@ -50,9 +50,14 @@ COPY --from=pimp-my-shell-multitail /opt/multitail/build/multitail /usr/local/bi
 COPY --from=pimp-my-shell-tmux /opt/tmux/tmux /usr/local/bin
 COPY --from=pimp-my-shell-doctl /usr/local/bin/doctl /usr/local/bin
 COPY --from=pimp-my-shell-task /opt/task /
+COPY --from=pimp-my-shell-upterm /opt/upterm/usr/bin /usr/bin
+COPY --from=pimp-my-shell-upterm /opt/upterm/usr/share/bash-completion /usr/share/bash-completion
+COPY --from=pimp-my-shell-upterm /opt/upterm/usr/share/zsh/site-functions /usr/share/zsh/site-functions
+
 # This was hard to find.
 # Apparently /usr/share/fish/completations is not loaded by default in recent
 # fish shells - https://github.com/fish-shell/fish-shell/issues/12220
 # I'd assume it will be changed at some point on task, but this is a good
 # workaround.
 RUN [ -f /usr/share/fish/completions/task.fish ] && mv /usr/share/fish/completions/task.fish /usr/share/fish/vendor_completions.d/
+RUN upterm completion fish > /usr/share/fish/vendor_completions.d/upterm.fish

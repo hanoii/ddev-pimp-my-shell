@@ -1,0 +1,10 @@
+#!/bin/bash
+
+## #ddev-generated
+## Description: Run Upterm in the web container for secure terminal sharing and remote pair sessions
+## Usage: upterm
+## Example: ddev upterm
+## ExecRaw: upterm
+## MutagenSync: upterm
+
+upterm "$@"

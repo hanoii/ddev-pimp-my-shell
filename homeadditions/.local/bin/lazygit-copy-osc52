@@ -1,0 +1,11 @@
+#!/usr/bin/env bash
+#ddev-generated
+
+text="$*"
+encoded="$(printf '%s' "$text" | base64 -w 0)"
+
+if [[ "$TERM" =~ ^(screen|tmux) ]]; then
+  printf '\033Ptmux;\033\033]52;c;%s\a\033\\' "$encoded" > /dev/tty
+else
+  printf '\033]52;c;%s\a' "$encoded" > /dev/tty
+fi

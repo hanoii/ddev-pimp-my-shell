@@ -1,2 +1,4 @@
 #ddev-generated
 disableStartupPopups: true
+os:
+  copyToClipboardCmd: ~/.local/bin/lazygit-copy-osc52 {{text}}

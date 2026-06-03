@@ -1,25 +1,16 @@
 #ddev-generated
 
-# PATH
-fish_add_path /usr/games
+# Most things will be inheritted from pimp-my-shell.sh run by .bashrc.d because
+# fish is run by bash as that what it does with custom commands like `ddev fish`
+# Only add fish additions here
 
 # fzf
-function fish_user_key_bindings
-  fzf --fish | source
-end
+fzf --fish | source
 
 # fzf-git
 source /opt/fzf-git.sh/fzf-git.fish
 
-# go
-fish_add_path /usr/local/go/bin
-fish_add_path ~/go/bin
-set -x GOOS
-set -x GOARCH
-
 # z.lua
-mkdir -p /mnt/ddev-global-cache/z.lua/$HOSTNAME
-set -x _ZL_DATA /mnt/ddev-global-cache/z.lua/$HOSTNAME/.zlua
 lua /opt/z.lua/z.lua --init fish | source
 
 # fish
@@ -65,15 +56,6 @@ end
 function ll --wraps eza --description "eza -la --icons --octal-permissions --group-directories-first"
     eza -la --icons --octal-permissions --group-directories-first $argv
 end
-
-# rust
-fish_add_path ~/.cargo/bin
-
-# delta
-git config --global core.pager delta
-git config --global interactive.diffFilter 'delta --color-only'
-git config --global delta.navigate true
-git config --global merge.conflictStyle zdiff3
 
 # Make child processes treat fish as the current/default shell for this session
 set -gx SHELL (command -v fish)

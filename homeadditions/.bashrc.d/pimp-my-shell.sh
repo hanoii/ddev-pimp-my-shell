@@ -6,6 +6,42 @@ export PATH=~/.bun/bin:~/.local/bin:~/.composer/vendor/bin:$PATH:/usr/games
 # This is so that child processes have appropriate access to this var
 export SHELL
 
+# lazygit mac keybindings if host is mac
+if [[ $DDEV_GOOS == 'darwin' ]] && ! grep -q '^[[:space:]]*moveWordLeft: <alt+left>$' ~/.config/lazygit/config.yml; then
+  cat <<'YAML' >> ~/.config/lazygit/config.yml
+
+keybinding:
+  universal:
+    moveWordLeft: <alt+left>
+    moveWordRight: <alt+right>
+    backspaceWord: <alt+backspace>
+    forwardDeleteWord: <alt+delete>
+    confirmInEditor: [<meta+enter>, <ctrl+s>]
+YAML
+fi
+
+# ahoy
+COMP_WORDBREAKS=${COMP_WORDBREAKS//:}
+
+# z.lua
+mkdir -p /mnt/ddev-global-cache/z.lua/${HOSTNAME}
+_ZL_DATA=/mnt/ddev-global-cache/z.lua/${HOSTNAME}/.zlua
+export _ZL_DATA
+
+# go
+export PATH=$PATH:/usr/local/go/bin:~/go/bin
+unset GOARCH
+unset GOOS
+
+# delta
+git config --global core.pager delta
+git config --global interactive.diffFilter 'delta --color-only'
+git config --global delta.navigate true
+git config --global merge.conflictStyle zdiff3
+
+# rust
+. ~/.cargo/env
+
 # If not running interactively, don't do anything
 case $- in
     *i*) ;;
@@ -15,9 +51,6 @@ esac
 unset DDEV_PIMP_MY_SHELL_NON_INTERACTIVE
 export DDEV_PIMP_MY_SHELL_INTERACTIVE=true
 
-# ahoy
-COMP_WORDBREAKS=${COMP_WORDBREAKS//:}
-
 # fzf
 eval "$(fzf --bash)"
 
@@ -25,9 +58,6 @@ eval "$(fzf --bash)"
 source /opt/fzf-git.sh/fzf-git.sh
 
 # z.lua
-mkdir -p /mnt/ddev-global-cache/z.lua/${HOSTNAME}
-_ZL_DATA=/mnt/ddev-global-cache/z.lua/${HOSTNAME}/.zlua
-export _ZL_DATA
 if [[ "$BASHOPTS" =~ login_shell ]]; then
   eval "$(lua /opt/z.lua/z.lua --init bash enhanced once fzf)"
 fi
@@ -53,17 +83,3 @@ eval "$(starship init bash)"
 # https://gist.github.com/AppleBoiy/04a249b6f64fd0fe1744aff759a0563b
 alias ls='eza --color=always --group-directories-first --icons'
 alias ll='eza -la --icons --octal-permissions --group-directories-first'
-
-# go
-export PATH=$PATH:/usr/local/go/bin:~/go/bin
-unset GOARCH
-unset GOOS
-
-# rust
-. ~/.cargo/env
-
-# delta
-git config --global core.pager delta
-git config --global interactive.diffFilter 'delta --color-only'
-git config --global delta.navigate true
-git config --global merge.conflictStyle zdiff3

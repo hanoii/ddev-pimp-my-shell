@@ -1,7 +1,7 @@
 name: pimp-my-shell
 repository: .
 version: ""
-install_date: "2026-05-31T13:04:59Z"
+install_date: "2026-06-03T11:31:14-03:00"
 project_files:
     - config.pimp-my-shell.yaml
     - commands/

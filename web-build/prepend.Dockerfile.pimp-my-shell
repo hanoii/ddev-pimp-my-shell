@@ -96,7 +96,7 @@ FROM pimp-my-shell-base AS pimp-my-shell-fish
 SHELL ["/bin/bash", "-c"]
 RUN <<EOF
 set -eux
-FISH_VERSION=4.7.1-1
+FISH_VERSION=4.8.0-1
 DEBIAN=$(lsb_release -rs)
 echo "deb http://download.opensuse.org/repositories/shells:/fish:/release:/4/Debian_${DEBIAN}/ /" | sudo tee /etc/apt/sources.list.d/shells:fish:release:4.list
 curl-pimp-my-shell -sS https://download.opensuse.org/repositories/shells:fish:release:4/Debian_${DEBIAN}/Release.key | gpg --dearmor | sudo tee /etc/apt/trusted.gpg.d/shells_fish_release_4.gpg > /dev/null
@@ -105,24 +105,12 @@ apt -o APT::Install-Recommends=false satisfy -y "fish (>=${FISH_VERSION})"
 rm -rf /var/lib/apt/lists/*
 EOF
 
-FROM pimp-my-shell-fish AS pimp-my-shell-fisher
+FROM pimp-my-shell-fish AS pimp-my-shell-fisher-plugins
 SHELL ["/bin/fish", "-c"]
 RUN <<EOF
 set fish_trace 1
 export FISHER_VERSION=4.4.8
-curl-pimp-my-shell -o fisher.tar.gz https://github.com/jorgebucaran/fisher/archive/refs/tags/$FISHER_VERSION.tar.gz
-mkdir -p /opt/fisher
-tar -xzf fisher.tar.gz --strip-components=1 -C /opt/fisher
-cp -R /opt/fisher/functions /root/.config/fish/functions
-cp -R /opt/fisher/completions /root/.config/fish/completions
-rm fisher.tar.gz
-rm -fr /opt/fisher
-EOF
-
-FROM pimp-my-shell-fisher AS pimp-my-shell-fisher-plugins
-SHELL ["/bin/fish", "-c"]
-RUN <<EOF
-set fish_trace 1
+curl-pimp-my-shell https://raw.githubusercontent.com/jorgebucaran/fisher/{$FISHER_VERSION}/functions/fisher.fish | source && fisher install jorgebucaran/fisher
 export BASS_VERSION=1.0
 fisher install edc/bass@v$BASS_VERSION
 export TIDE_VERSION=6.2.0
@@ -351,7 +339,7 @@ RUN <<EOF
 set -eux
 apt-get update
 apt-get install -y --no-install-recommends libevent-dev ncurses-dev build-essential bison pkg-config
-TMUX_VERSION=3.6b
+TMUX_VERSION=3.7
 mkdir -p /opt/tmux
 cd /opt/tmux
 curl-pimp-my-shell -o tmux.tar.gz "https://github.com/tmux/tmux/releases/download/${TMUX_VERSION}/tmux-${TMUX_VERSION}.tar.gz"
@@ -368,7 +356,7 @@ FROM pimp-my-shell-base AS pimp-my-shell-doctl
 SHELL ["/bin/bash", "-c"]
 RUN <<EOF
 set -eux
-DOCTL_VERSION=1.162.0
+DOCTL_VERSION=1.163.0
 AARCH=$(uname -m)
 AARCH=${AARCH/aarch64/arm64}
 AARCH=${AARCH/x86_64/amd64}

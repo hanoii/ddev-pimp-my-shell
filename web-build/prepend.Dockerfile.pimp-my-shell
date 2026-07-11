@@ -76,7 +76,7 @@ FROM pimp-my-shell-base AS pimp-my-shell-eza
 SHELL ["/bin/bash", "-c"]
 RUN <<EOF
 set -eux
-EZA_VERSION=0.23.4
+EZA_VERSION=0.23.5
 curl-pimp-my-shell -o eza.tar.gz https://github.com/eza-community/eza/releases/download/v${EZA_VERSION}/eza_`uname -m`-unknown-linux-gnu.tar.gz
 curl-pimp-my-shell -o eza-completions.tar.gz https://github.com/eza-community/eza/releases/download/v${EZA_VERSION}/completions-${EZA_VERSION}.tar.gz
 tar -zxf eza.tar.gz -C /usr/local/bin
@@ -149,7 +149,7 @@ FROM pimp-my-shell-base AS pimp-my-shell-go
 SHELL ["/bin/bash", "-c"]
 RUN <<EOF
 set -eux
-GO_VERSION=1.26.4
+GO_VERSION=1.26.5
 AARCH=$(uname -m)
 AARCH=${AARCH/aarch64/arm64}
 AARCH=${AARCH/x86_64/amd64}
@@ -227,7 +227,7 @@ FROM pimp-my-shell-base AS pimp-my-shell-rust
 SHELL ["/bin/bash", "-c"]
 RUN <<EOF
 set -eux
-RUST_VERSION=1.96.1
+RUST_VERSION=1.97.0
 curl-pimp-my-shell -sS https://sh.rustup.rs/ | sh -s -- --profile minimal --default-toolchain=${RUST_VERSION} -y
 EOF
 

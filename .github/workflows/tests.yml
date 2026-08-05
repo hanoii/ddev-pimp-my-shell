@@ -1,8 +1,5 @@
 name: tests
 
-env:
-  DDEV_VERBOSE: "true"
-
 on:
   pull_request:
     paths-ignore:

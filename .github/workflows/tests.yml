@@ -1,4 +1,8 @@
 name: tests
+
+env:
+  BUILDKIT_PROGRESS: plain
+
 on:
   pull_request:
     paths-ignore:

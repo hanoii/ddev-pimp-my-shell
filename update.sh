@@ -59,10 +59,37 @@ echo "gum version: $VERSION"
 perl -pi -e "s@GUM_VERSION=[^\s;]*(.*)@GUM_VERSION=${VERSION}\$1@g" web-build/*.pimp-my-shell
 
 # fish
-VERSION=$(curl -Ls "https://download.opensuse.org/download/repositories/shells:/fish:/release:/4/Debian_12/?jsontable&_=${_timestamp}" | jq -r '.data | .[] | select(.name | endswith(".dsc")) | .name' | sort -r | head -1 | sed 's/fish_\(.*\)\.dsc/\1/g')
+VERSION=$(curl -LfsS "https://download.opensuse.org/repositories/shells:/fish:/release:/4/Debian_13/Packages?_=${_timestamp}" | awk '
+BEGIN { RS = ""; FS = "\n" }
+
+function version_key(version, parts) {
+  split(version, parts, /[.-]/)
+  return sprintf("v%09d.%09d.%09d.%09d", parts[1], parts[2], parts[3], parts[4])
+}
+
+{
+  package = version = architecture = ""
+  for (i = 1; i <= NF; i++) {
+    if ($i ~ /^Package: /) package = substr($i, 10)
+    if ($i ~ /^Version: /) version = substr($i, 10)
+    if ($i ~ /^Architecture: /) architecture = substr($i, 15)
+  }
+
+  if (package == "fish" && (architecture == "amd64" || architecture == "arm64")) {
+    if (!(architecture in versions) || version_key(version) > version_key(versions[architecture])) {
+      versions[architecture] = version
+    }
+  }
+}
+
+END {
+  if (!("amd64" in versions) || !("arm64" in versions)) exit 1
+  print "amd64:" versions["amd64"] ",arm64:" versions["arm64"]
+}
+')
 [ -n "$VERSION" ]
-echo "fish debian version from opensuse: $VERSION"
-perl -pi -e "s@FISH_VERSION=[^\s;]*(.*)@FISH_VERSION=${VERSION}@g" web-build/*.pimp-my-shell
+echo "fish debian versions from opensuse: $VERSION"
+perl -pi -e "s@FISH_CACHE_KEY=[^\s;]*(.*)@FISH_CACHE_KEY=${VERSION}@g" web-build/*.pimp-my-shell
 
 # eza
 VERSION=$(curl -Ls -o /dev/null -w %{url_effective} "https://github.com/eza-community/eza/releases/latest" | sed 's/.*tag\/v//g')

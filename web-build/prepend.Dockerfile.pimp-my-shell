@@ -88,20 +88,19 @@ EOF
 
 # fish
 #
-# Opensuse doesn't keep older files of the fish build, so this will always use
-# the latest regardless of the fish version specified below in the
-# `apt satisfy` command. However, this allows for proper docker build cache
-# busting ensuring you always have the last version when it's updated.
+# Opensuse publishes architectures independently. This key tracks both versions
+# so either changing invalidates this RUN and installs the latest available fish
+# package for the current architecture.
 FROM pimp-my-shell-base AS pimp-my-shell-fish
 SHELL ["/bin/bash", "-c"]
 RUN <<EOF
 set -euxo pipefail
-FISH_VERSION=4.8.1-1
+FISH_CACHE_KEY=amd64:4.8.0-1,arm64:4.8.1-1
 DEBIAN=$(lsb_release -rs)
 echo "deb http://download.opensuse.org/repositories/shells:/fish:/release:/4/Debian_${DEBIAN}/ /" | sudo tee /etc/apt/sources.list.d/shells:fish:release:4.list
 curl-pimp-my-shell -fsS https://download.opensuse.org/repositories/shells:fish:release:4/Debian_${DEBIAN}/Release.key | gpg --dearmor | sudo tee /etc/apt/trusted.gpg.d/shells_fish_release_4.gpg > /dev/null
 apt update
-apt -o APT::Install-Recommends=false satisfy -y "fish (>=${FISH_VERSION})"
+apt-get install -y --no-install-recommends fish
 rm -rf /var/lib/apt/lists/*
 EOF
 

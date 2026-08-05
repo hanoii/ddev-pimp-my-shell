@@ -1,7 +1,7 @@
 name: tests
 
 env:
-  BUILDKIT_PROGRESS: plain
+  DDEV_VERBOSE: "true"
 
 on:
   pull_request:

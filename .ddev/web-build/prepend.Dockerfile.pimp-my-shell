@@ -122,7 +122,7 @@ FROM pimp-my-shell-base AS pimp-my-shell-zlua
 SHELL ["/bin/bash", "-c"]
 RUN <<EOF
 set -eux
-ZLUA_VERSION=v1.8.25
+ZLUA_VERSION=1.8.26
 mkdir -p /opt/z.lua
 cd /opt/z.lua
 curl-pimp-my-shell -o zlua.zip https://github.com/skywind3000/z.lua/archive/refs/tags/${ZLUA_VERSION}.zip

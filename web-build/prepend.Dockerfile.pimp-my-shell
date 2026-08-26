@@ -200,7 +200,7 @@ FROM pimp-my-shell-base AS pimp-my-shell-fd
 SHELL ["/bin/bash", "-c"]
 RUN <<EOF
 set -eux
-FD_VERSION=10.4.2
+FD_VERSION=10.5.0
 AARCH=$(uname -m)
 AARCH=${AARCH/i386/i686}
 curl-pimp-my-shell -o fd.tar.gz https://github.com/sharkdp/fd/releases/download/v${FD_VERSION}/fd-v${FD_VERSION}-${AARCH}-unknown-linux-musl.tar.gz

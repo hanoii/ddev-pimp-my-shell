@@ -12,7 +12,7 @@ FROM pimp-my-shell-base AS pimp-my-shell-ahoy
 SHELL ["/bin/bash", "-c"]
 RUN <<EOF
 set -eux
-AHOY_VERSION=3.0.0
+AHOY_VERSION=2.5.0
 AARCH=$(uname -m)
 AARCH=${AARCH/aarch64/arm64}
 AARCH=${AARCH/x86_64/amd64}

@@ -11,10 +11,10 @@ echo "GitHub CLI version: $VERSION"
 perl -pi -e "s@GH_VERSION=[^\s;]*(.*)@GH_VERSION=${VERSION}\$1@g" web-build/*.pimp-my-shell
 
 # ahoy
-VERSION=$(curl -Ls -o /dev/null -w %{url_effective} "https://github.com/ahoy-cli/ahoy/releases/latest" | sed 's/.*tag\/v//g')
-[ -n "$VERSION" ]
-echo "ahoy version: $VERSION"
-perl -pi -e "s@AHOY_VERSION=[^\s;]*(.*)@AHOY_VERSION=${VERSION}\$1@g" web-build/*.pimp-my-shell
+# VERSION=$(curl -Ls -o /dev/null -w %{url_effective} "https://github.com/ahoy-cli/ahoy/releases/latest" | sed 's/.*tag\/v//g')
+# [ -n "$VERSION" ]
+# echo "ahoy version: $VERSION"
+# perl -pi -e "s@AHOY_VERSION=[^\s;]*(.*)@AHOY_VERSION=${VERSION}\$1@g" web-build/*.pimp-my-shell
 
 # fzf
 VERSION=$(curl -Ls -o /dev/null -w %{url_effective} "https://github.com/junegunn/fzf/releases/latest" | sed 's/.*tag\/v//g')

@@ -37,6 +37,17 @@ post_install_actions:
       fi
     fi
   - |
+    #ddev-description:Remove deprecated ahoy completions from homeadditions
+    for remove_file in homeadditions/.local/share/bash-completion/completions/ahoy homeadditions/.local/share/fish/vendor_completions.d/ahoy.fish; do
+      if [ -f "$remove_file" ]; then
+        if grep -q '#ddev-generated' "$remove_file"; then
+          rm "$remove_file"
+        else
+          echo "Existing "$remove_file" does not have #ddev-generated, so can't be removed"
+        fi
+      fi
+    done
+  - |
     #ddev-description:Remove deprecated .gitignore entries
     _file="${DDEV_APPROOT}/.ddev/web-build/.gitignore"
     if [ -f "$_file" ]; then

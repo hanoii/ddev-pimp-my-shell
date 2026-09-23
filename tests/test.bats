@@ -14,6 +14,8 @@ setup() {
 health_checks() {
   # Do something useful here that verifies the add-on
   ddev ahoy --version
+  ddev exec 'grep -q __start_ahoy /usr/share/bash-completion/completions/ahoy'
+  ddev fish -c 'complete -C "ahoy comp"' | grep -q completion
   ddev fish --version
   ddev exec bash -cli z
   ddev exec starship --version

@@ -53,10 +53,17 @@ echo "starship version: $VERSION"
 perl -pi -e "s@STARSHIP_VERSION=[^\s;]*(.*)@STARSHIP_VERSION=${VERSION}\$1@g" web-build/*.pimp-my-shell
 
 # gum
-VERSION=$(curl -Ls -o /dev/null -w %{url_effective} "https://github.com/charmbracelet/gum/releases/latest" | sed 's/.*tag\/v//g')
-[ -n "$VERSION" ]
-echo "gum version: $VERSION"
-perl -pi -e "s@GUM_VERSION=[^\s;]*(.*)@GUM_VERSION=${VERSION}\$1@g" web-build/*.pimp-my-shell
+# Pinned to 0.17.0, so not updated automatically. gum v2 leaves terminal
+# replies such as ^[[?2026;2$y^[[?2027;0$y on the prompt after every
+# `gum spin`. It sends mode 2026/2027 queries with input disabled, so nothing
+# reads the replies.
+# - gum issue: https://github.com/charmbracelet/gum/issues/1118
+# - bubbletea fix: https://github.com/charmbracelet/bubbletea/pull/1801
+# Once a gum release ships with that fix, uncomment the lines below.
+#VERSION=$(curl -Ls -o /dev/null -w %{url_effective} "https://github.com/charmbracelet/gum/releases/latest" | sed 's/.*tag\/v//g')
+#[ -n "$VERSION" ]
+#echo "gum version: $VERSION"
+#perl -pi -e "s@GUM_VERSION=[^\s;]*(.*)@GUM_VERSION=${VERSION}\$1@g" web-build/*.pimp-my-shell
 
 # fish
 VERSION=$(curl -LfsS "https://download.opensuse.org/repositories/shells:/fish:/release:/4/Debian_13/Packages?_=${_timestamp}" | awk '

@@ -18,6 +18,11 @@ AARCH=${AARCH/aarch64/arm64}
 AARCH=${AARCH/x86_64/amd64}
 curl-pimp-my-shell -o /usr/local/bin/ahoy https://github.com/ahoy-cli/ahoy/releases/download/v${AHOY_VERSION}/ahoy-bin-linux-${AARCH}
 chmod +x /usr/local/bin/ahoy
+# Completions come from ahoy itself (cobra) so they follow the binary. They
+# never run a command on TAB, unlike the legacy --generate-bash-completion.
+mkdir -p /opt/ahoy
+/usr/local/bin/ahoy completion bash > /opt/ahoy/ahoy.bash
+/usr/local/bin/ahoy completion fish > /opt/ahoy/ahoy.fish
 EOF
 
 # startship

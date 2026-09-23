@@ -13,6 +13,8 @@ RUN set -eux; \
 #
 COPY --from=pimp-my-shell-go /usr/local/go /usr/local/go
 COPY --from=pimp-my-shell-ahoy /usr/local/bin/ahoy /usr/local/bin
+COPY --from=pimp-my-shell-ahoy /opt/ahoy/ahoy.bash /usr/share/bash-completion/completions/ahoy
+COPY --from=pimp-my-shell-ahoy /opt/ahoy/ahoy.fish /usr/share/fish/vendor_completions.d/ahoy.fish
 COPY --from=pimp-my-shell-starship /usr/local/bin/starship /usr/local/bin
 COPY --from=pimp-my-shell-gum /opt/gum /usr/local/bin
 COPY --from=pimp-my-shell-gum /opt/completions/gum.bash /usr/share/bash-completion/completions/gum

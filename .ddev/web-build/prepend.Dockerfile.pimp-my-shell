@@ -360,7 +360,7 @@ FROM pimp-my-shell-base AS pimp-my-shell-doctl
 SHELL ["/bin/bash", "-c"]
 RUN <<EOF
 set -eux
-DOCTL_VERSION=1.169.0
+DOCTL_VERSION=1.173.0
 AARCH=$(uname -m)
 AARCH=${AARCH/aarch64/arm64}
 AARCH=${AARCH/x86_64/amd64}
@@ -388,7 +388,7 @@ FROM pimp-my-shell-base AS pimp-my-shell-upterm
 SHELL ["/bin/bash", "-c"]
 RUN <<EOF
 set -eux
-UPTERM_VERSION=0.30.0
+UPTERM_VERSION=0.31.0
 AARCH=$(uname -m)
 AARCH=${AARCH/aarch64/arm64}
 AARCH=${AARCH/x86_64/amd64}

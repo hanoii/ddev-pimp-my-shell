@@ -12,7 +12,7 @@ FROM pimp-my-shell-base AS pimp-my-shell-ahoy
 SHELL ["/bin/bash", "-c"]
 RUN <<EOF
 set -eux
-AHOY_VERSION=3.0.1
+AHOY_VERSION=3.0.2
 AARCH=$(uname -m)
 AARCH=${AARCH/aarch64/arm64}
 AARCH=${AARCH/x86_64/amd64}
@@ -72,7 +72,7 @@ EOF
 FROM pimp-my-shell-base AS pimp-my-shell-fzfgit
 SHELL ["/bin/bash", "-c"]
 RUN <<EOF
-FZFGIT_SHA1=d5b0a5dcd1e073b8bfca45338d5dfad3e5642471
+FZFGIT_SHA1=930e378b8abcb2b6f47191462d492c6f9f0325e2
 curl-pimp-my-shell -o fzf-git-sh.tar.gz https://github.com/junegunn/fzf-git.sh/archive/${FZFGIT_SHA1}.tar.gz
 tar -zxf fzf-git-sh.tar.gz --strip-components=1 -C /opt
 rm fzf-git-sh.tar.gz
@@ -143,7 +143,7 @@ FROM pimp-my-shell-base AS pimp-my-shell-xterm-kitty
 SHELL ["/bin/bash", "-c"]
 RUN <<EOF
 set -eux
-KITTY_VERSION=0.49.0
+KITTY_VERSION=0.49.1
 mkdir -p /opt/kitty
 curl-pimp-my-shell -o kitty.tar.gz https://github.com/kovidgoyal/kitty/archive/v${KITTY_VERSION}.tar.gz
 tar -zxf kitty.tar.gz --strip-components=1 -C /opt/kitty
@@ -362,7 +362,7 @@ FROM pimp-my-shell-base AS pimp-my-shell-doctl
 SHELL ["/bin/bash", "-c"]
 RUN <<EOF
 set -eux
-DOCTL_VERSION=1.173.0
+DOCTL_VERSION=1.175.0
 AARCH=$(uname -m)
 AARCH=${AARCH/aarch64/arm64}
 AARCH=${AARCH/x86_64/amd64}
@@ -390,7 +390,7 @@ FROM pimp-my-shell-base AS pimp-my-shell-upterm
 SHELL ["/bin/bash", "-c"]
 RUN <<EOF
 set -eux
-UPTERM_VERSION=0.31.0
+UPTERM_VERSION=0.32.0
 AARCH=$(uname -m)
 AARCH=${AARCH/aarch64/arm64}
 AARCH=${AARCH/x86_64/amd64}

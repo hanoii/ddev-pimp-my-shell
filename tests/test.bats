@@ -37,6 +37,7 @@ health_checks() {
   ddev fish -c "sysbox version"
   ddev exec 'bash -ic "delta --version"'
   ddev fish -c "delta --version"
+  ddev exec git config --global core.pager | grep -qx delta
   ddev exec 'bash -ic "tte --version"'
   ddev fish -c 'tte --version'
   ddev exec 'bash -ic "lazygit --version"'

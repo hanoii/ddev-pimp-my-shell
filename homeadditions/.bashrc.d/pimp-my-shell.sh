@@ -33,12 +33,6 @@ export PATH=$PATH:/usr/local/go/bin:~/go/bin
 unset GOARCH
 unset GOOS
 
-# delta
-git config --global core.pager delta
-git config --global interactive.diffFilter 'delta --color-only'
-git config --global delta.navigate true
-git config --global merge.conflictStyle zdiff3
-
 # rust
 . ~/.cargo/env
 

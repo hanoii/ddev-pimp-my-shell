@@ -157,8 +157,10 @@ conflict with the container OS as
 ### delta
 
 Having found [delta](https://dandavison.github.io/delta/) and wanting to give
-this a try I am auto-configuring this for git. I am doing so in the shell
-startup scripts so that it's picked up after any global homeaddition.
+this a try I am auto-configuring this for git. I am doing so in a `post-start`
+hook so that it's picked up after DDEV copies the host `~/.gitconfig` and any
+global homeaddition. It used to run on every shell startup, but that made
+parallel shells (e.g. several tmux panes) race on `~/.gitconfig.lock`.
 
 ### DDEV `post-import-db` hook
 

@@ -22,6 +22,8 @@ health_checks() {
   ddev exec --raw bash -cli "fzf --version"
   ddev exec bat --version
   ddev gum --version
+  # gum v2 before 2.0.2 leaked mode 2026/2027 queries after `gum spin`.
+  [ -z "$(ddev exec "script -q -c 'TERM=xterm-ghostty gum spin --title x -- true' /dev/null" | grep -F '?2026')" ]
   ddev exec editor --version | grep -i vim
   ddev fish -c "fisher --version"
   ddev fish -c "tide --version"

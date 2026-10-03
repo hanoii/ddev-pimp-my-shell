@@ -374,7 +374,7 @@ FROM pimp-my-shell-base AS pimp-my-shell-task
 SHELL ["/bin/bash", "-c"]
 RUN <<EOF
 set -eux
-TASK_VERSION=3.53.1
+TASK_VERSION=3.54.0
 AARCH=$(uname -m)
 AARCH=${AARCH/aarch64/arm64}
 AARCH=${AARCH/x86_64/amd64}

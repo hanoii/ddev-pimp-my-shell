@@ -16,6 +16,11 @@ health_checks() {
   ddev ahoy --version
   ddev exec 'grep -q __start_ahoy /usr/share/bash-completion/completions/ahoy'
   ddev fish -c 'complete -C "ahoy comp"' | grep -q completion
+  printf "version: 3\ntasks:\n  hello: echo hi\n" > Taskfile.yml
+  ddev __complete task "" | grep -qx hello
+  printf "ahoyapi: v2\ncommands:\n  hello:\n    cmd: echo hi\n" > .ahoy.yml
+  ddev __complete ahoy "" | grep -qx hello
+  ddev __complete upterm "" | grep -qx host
   ddev fish --version
   ddev exec bash -cli z
   ddev exec starship --version

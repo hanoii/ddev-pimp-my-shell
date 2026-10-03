@@ -1,0 +1,10 @@
+#!/bin/bash
+#ddev-generated
+
+# Autocomplete for `ddev ahoy`, backed by ahoy's own (cobra) completion engine
+# (`ahoy __complete`). DDEV passes the command line starting with the command
+# name, so drop it. Each output line is `value<TAB>description` and the last
+# one is a `:directive`, which DDEV has no use for.
+
+shift
+ahoy __complete "$@" 2>/dev/null | grep -v '^:' | cut -f1

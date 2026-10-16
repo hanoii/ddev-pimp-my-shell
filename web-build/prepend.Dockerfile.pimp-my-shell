@@ -57,7 +57,7 @@ FROM pimp-my-shell-base AS pimp-my-shell-fzf
 SHELL ["/bin/bash", "-c"]
 RUN <<EOF
 set -eux
-FZF_VERSION=0.74.4
+FZF_VERSION=0.74.5
 AARCH=$(uname -m)
 AARCH=${AARCH/aarch64/arm64}
 AARCH=${AARCH/x86_64/amd64}
@@ -153,7 +153,7 @@ FROM pimp-my-shell-base AS pimp-my-shell-go
 SHELL ["/bin/bash", "-c"]
 RUN <<EOF
 set -eux
-GO_VERSION=1.27.1
+GO_VERSION=1.27.2
 AARCH=$(uname -m)
 AARCH=${AARCH/aarch64/arm64}
 AARCH=${AARCH/x86_64/amd64}
@@ -231,7 +231,7 @@ FROM pimp-my-shell-base AS pimp-my-shell-rust
 SHELL ["/bin/bash", "-c"]
 RUN <<EOF
 set -eux
-RUST_VERSION=1.99.0
+RUST_VERSION=1.99.1
 curl-pimp-my-shell -sS https://sh.rustup.rs/ | sh -s -- --profile minimal --default-toolchain=${RUST_VERSION} -y
 EOF
 
@@ -240,7 +240,7 @@ FROM pimp-my-shell-base AS pimp-my-shell-lazygit
 SHELL ["/bin/bash", "-c"]
 RUN <<EOF
 set -eux
-LAZYGIT_VERSION=0.66.0
+LAZYGIT_VERSION=0.66.2
 AARCH=$(uname -m)
 AARCH=${AARCH/aarch64/arm64}
 AARCH=${AARCH/i386/32-bit}
@@ -271,7 +271,7 @@ FROM pimp-my-shell-base AS pimp-my-shell-bun
 SHELL ["/bin/bash", "-c"]
 RUN <<EOF
 set -eux
-BUN_VERSION=1.4.2
+BUN_VERSION=1.4.3
 curl-pimp-my-shell -sS https://bun.sh/install | bash -s "bun-v${BUN_VERSION}"
 cd /root/.bun/bin
 ln -fs bun bunx
@@ -325,7 +325,7 @@ RUN <<EOF
 set -eux
 apt-get update
 apt-get install -y --no-install-recommends build-essential cmake libncurses-dev ninja-build
-MULTITAIL_SHA1=fdfcd84c300147efb924a003fcf5d15b020a3f7a
+MULTITAIL_SHA1=1bf273ec425a047d278023d6c197a939243a9eb3
 mkdir -p /opt/multitail
 cd /opt/multitail
 curl-pimp-my-shell -o multitail.tar.gz "https://github.com/folkertvanheusden/multitail/tarball/${MULTITAIL_SHA1}"
@@ -343,7 +343,7 @@ RUN <<EOF
 set -eux
 apt-get update
 apt-get install -y --no-install-recommends libevent-dev ncurses-dev build-essential bison pkg-config
-TMUX_VERSION=3.7c
+TMUX_VERSION=3.8
 mkdir -p /opt/tmux
 cd /opt/tmux
 curl-pimp-my-shell -o tmux.tar.gz "https://github.com/tmux/tmux/releases/download/${TMUX_VERSION}/tmux-${TMUX_VERSION}.tar.gz"
@@ -360,7 +360,7 @@ FROM pimp-my-shell-base AS pimp-my-shell-doctl
 SHELL ["/bin/bash", "-c"]
 RUN <<EOF
 set -eux
-DOCTL_VERSION=1.178.0
+DOCTL_VERSION=2.0.0
 AARCH=$(uname -m)
 AARCH=${AARCH/aarch64/arm64}
 AARCH=${AARCH/x86_64/amd64}
@@ -388,7 +388,7 @@ FROM pimp-my-shell-base AS pimp-my-shell-upterm
 SHELL ["/bin/bash", "-c"]
 RUN <<EOF
 set -eux
-UPTERM_VERSION=0.36.0
+UPTERM_VERSION=0.38.0
 AARCH=$(uname -m)
 AARCH=${AARCH/aarch64/arm64}
 AARCH=${AARCH/x86_64/amd64}

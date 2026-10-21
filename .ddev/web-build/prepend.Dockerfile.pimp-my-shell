@@ -30,7 +30,7 @@ FROM pimp-my-shell-base AS pimp-my-shell-starship
 SHELL ["/bin/bash", "-c"]
 RUN <<EOF
 set -eux
-STARSHIP_VERSION=1.26.0
+STARSHIP_VERSION=1.27.0
 AARCH=$(uname -m)
 AARCH=${AARCH/i386/i686}
 curl-pimp-my-shell -o starship.tar.gz https://github.com/starship/starship/releases/download/v${STARSHIP_VERSION}/starship-${AARCH}-unknown-linux-musl.tar.gz
@@ -70,7 +70,7 @@ EOF
 FROM pimp-my-shell-base AS pimp-my-shell-fzfgit
 SHELL ["/bin/bash", "-c"]
 RUN <<EOF
-FZFGIT_SHA1=110c0a10b744131b90861aa1d1fff6fbe0794f9d
+FZFGIT_SHA1=57ef995e245923ae05721e876c42100a1896ad6c
 curl-pimp-my-shell -o fzf-git-sh.tar.gz https://github.com/junegunn/fzf-git.sh/archive/${FZFGIT_SHA1}.tar.gz
 tar -zxf fzf-git-sh.tar.gz --strip-components=1 -C /opt
 rm fzf-git-sh.tar.gz
@@ -153,7 +153,7 @@ FROM pimp-my-shell-base AS pimp-my-shell-go
 SHELL ["/bin/bash", "-c"]
 RUN <<EOF
 set -eux
-GO_VERSION=1.27.2
+GO_VERSION=1.27.3
 AARCH=$(uname -m)
 AARCH=${AARCH/aarch64/arm64}
 AARCH=${AARCH/x86_64/amd64}
@@ -282,7 +282,7 @@ FROM pimp-my-shell-base AS pimp-my-shell-gh
 SHELL ["/bin/bash", "-c"]
 RUN <<EOF
 set -eux
-GH_VERSION=2.102.0
+GH_VERSION=2.103.0
 AARCH=$(uname -m)
 AARCH=${AARCH/aarch64/arm64}
 AARCH=${AARCH/x86_64/amd64}

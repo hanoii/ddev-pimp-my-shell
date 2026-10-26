@@ -271,7 +271,7 @@ FROM pimp-my-shell-base AS pimp-my-shell-bun
 SHELL ["/bin/bash", "-c"]
 RUN <<EOF
 set -eux
-BUN_VERSION=1.4.3
+BUN_VERSION=1.4.4
 curl-pimp-my-shell -sS https://bun.sh/install | bash -s "bun-v${BUN_VERSION}"
 cd /root/.bun/bin
 ln -fs bun bunx
@@ -282,7 +282,7 @@ FROM pimp-my-shell-base AS pimp-my-shell-gh
 SHELL ["/bin/bash", "-c"]
 RUN <<EOF
 set -eux
-GH_VERSION=2.103.0
+GH_VERSION=2.103.2
 AARCH=$(uname -m)
 AARCH=${AARCH/aarch64/arm64}
 AARCH=${AARCH/x86_64/amd64}
@@ -360,7 +360,7 @@ FROM pimp-my-shell-base AS pimp-my-shell-doctl
 SHELL ["/bin/bash", "-c"]
 RUN <<EOF
 set -eux
-DOCTL_VERSION=2.0.0
+DOCTL_VERSION=2.0.1
 AARCH=$(uname -m)
 AARCH=${AARCH/aarch64/arm64}
 AARCH=${AARCH/x86_64/amd64}
@@ -388,7 +388,7 @@ FROM pimp-my-shell-base AS pimp-my-shell-upterm
 SHELL ["/bin/bash", "-c"]
 RUN <<EOF
 set -eux
-UPTERM_VERSION=0.38.0
+UPTERM_VERSION=0.39.0
 AARCH=$(uname -m)
 AARCH=${AARCH/aarch64/arm64}
 AARCH=${AARCH/x86_64/amd64}

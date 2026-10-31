@@ -127,7 +127,7 @@ FROM pimp-my-shell-base AS pimp-my-shell-zlua
 SHELL ["/bin/bash", "-c"]
 RUN <<EOF
 set -eux
-ZLUA_VERSION=1.8.26
+ZLUA_VERSION=1.8.27
 mkdir -p /opt/z.lua
 cd /opt/z.lua
 curl-pimp-my-shell -o zlua.zip https://github.com/skywind3000/z.lua/archive/refs/tags/${ZLUA_VERSION}.zip
@@ -282,7 +282,7 @@ FROM pimp-my-shell-base AS pimp-my-shell-gh
 SHELL ["/bin/bash", "-c"]
 RUN <<EOF
 set -eux
-GH_VERSION=2.103.2
+GH_VERSION=2.103.3
 AARCH=$(uname -m)
 AARCH=${AARCH/aarch64/arm64}
 AARCH=${AARCH/x86_64/amd64}
@@ -360,7 +360,7 @@ FROM pimp-my-shell-base AS pimp-my-shell-doctl
 SHELL ["/bin/bash", "-c"]
 RUN <<EOF
 set -eux
-DOCTL_VERSION=2.0.1
+DOCTL_VERSION=2.1.0
 AARCH=$(uname -m)
 AARCH=${AARCH/aarch64/arm64}
 AARCH=${AARCH/x86_64/amd64}
@@ -388,7 +388,7 @@ FROM pimp-my-shell-base AS pimp-my-shell-upterm
 SHELL ["/bin/bash", "-c"]
 RUN <<EOF
 set -eux
-UPTERM_VERSION=0.39.0
+UPTERM_VERSION=0.40.0
 AARCH=$(uname -m)
 AARCH=${AARCH/aarch64/arm64}
 AARCH=${AARCH/x86_64/amd64}

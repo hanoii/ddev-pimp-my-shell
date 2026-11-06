@@ -16,6 +16,8 @@ defaults.
   * [terminal window title](#terminal-window-title)
   * [ls replacement](#ls-replacement)
   * [ahoy](#ahoy)
+  * [task](#task)
+  * [devopsy](#devopsy)
   * [starship](#starship)
   * [fish](#fish)
   * [lazygit](#lazygit)
@@ -72,6 +74,7 @@ ddev get https://github.com/hanoii/ddev-pimp-my-shell/tarball/main
 - https://github.com/cli/cli
 - https://github.com/go-task/task
 - https://upterm.dev/
+- https://github.com/hanoii/devopsy-cli
 
 ## Tweaks
 
@@ -113,9 +116,15 @@ completion engine (`ahoy __complete`).
 
 ### task
 
-Inside the container, bash and fish completions come from the task package.
-On the host, `ddev task <TAB>` completes task names, aliases, flags and flag
-values through task's own completion engine (`task __complete`).
+Inside the container, bash and fish completions come from the task package. On
+the host, `ddev task <TAB>` completes task names, aliases, flags and flag values
+through task's own completion engine (`task __complete`).
+
+### devopsy
+
+Bash and fish completions come from `devopsy --completion`. Its daily update
+check stays on, but `devopsy --upgrade` inside the container is lost on the next
+restart: the add-on's own updates bump the version instead.
 
 ### starship
 

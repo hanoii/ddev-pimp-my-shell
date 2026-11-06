@@ -21,6 +21,9 @@ health_checks() {
   printf "ahoyapi: v2\ncommands:\n  hello:\n    cmd: echo hi\n" > .ahoy.yml
   ddev __complete ahoy "" | grep -qx hello
   ddev __complete upterm "" | grep -qx host
+  ddev exec devopsy --version
+  ddev exec 'grep -q _devopsy /usr/share/bash-completion/completions/devopsy'
+  ddev fish -c 'complete -C "devopsy --compl"' | grep -q completion
   ddev fish --version
   ddev exec bash -cli z
   ddev exec starship --version

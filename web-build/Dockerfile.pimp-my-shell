@@ -55,5 +55,8 @@ COPY --from=pimp-my-shell-task /opt/task /
 COPY --from=pimp-my-shell-upterm /opt/upterm/usr/bin /usr/bin
 COPY --from=pimp-my-shell-upterm /opt/upterm/usr/share/bash-completion /usr/share/bash-completion
 COPY --from=pimp-my-shell-upterm /opt/upterm/usr/share/zsh/site-functions /usr/share/zsh/site-functions
+COPY --from=pimp-my-shell-devopsy /usr/local/bin/devopsy /usr/local/bin
+COPY --from=pimp-my-shell-devopsy /opt/devopsy/devopsy.bash /usr/share/bash-completion/completions/devopsy
+COPY --from=pimp-my-shell-devopsy /opt/devopsy/devopsy.fish /usr/share/fish/vendor_completions.d/devopsy.fish
 
 RUN upterm completion fish > /usr/share/fish/vendor_completions.d/upterm.fish

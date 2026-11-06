@@ -211,6 +211,12 @@ VERSION=$(curl -Ls -o /dev/null -w %{url_effective} "https://github.com/owenther
 echo "Upterm version: $VERSION"
 perl -pi -e "s@UPTERM_VERSION=[^\s;]*(.*)@UPTERM_VERSION=${VERSION}\$1@g" web-build/*.pimp-my-shell
 
+# devopsy
+VERSION=$(curl -Ls -o /dev/null -w %{url_effective} "https://github.com/hanoii/devopsy-cli/releases/latest" | sed 's/.*tag\/v//g')
+[ -n "$VERSION" ]
+echo "devopsy version: $VERSION"
+perl -pi -e "s@DEVOPSY_VERSION=[^\s;]*(.*)@DEVOPSY_VERSION=${VERSION}\$1@g" web-build/*.pimp-my-shell
+
 #
 # Add any new version checks above this final change-detection block.
 #

@@ -396,3 +396,21 @@ curl-pimp-my-shell -o upterm.deb https://github.com/owenthereal/upterm/releases/
 dpkg-deb -x upterm.deb /opt/upterm
 rm upterm.deb
 EOF
+
+# devopsy
+FROM pimp-my-shell-base AS pimp-my-shell-devopsy
+SHELL ["/bin/bash", "-c"]
+RUN <<EOF
+set -eux
+DEVOPSY_VERSION=0.60.1
+AARCH=$(uname -m)
+AARCH=${AARCH/aarch64/arm64}
+AARCH=${AARCH/x86_64/amd64}
+curl-pimp-my-shell -o devopsy.tar.gz https://github.com/hanoii/devopsy-cli/releases/download/v${DEVOPSY_VERSION}/devopsy_linux_${AARCH}.tar.gz
+tar -zxf devopsy.tar.gz -C /usr/local/bin devopsy
+rm devopsy.tar.gz
+# The scripts ask devopsy at every Tab, so they follow the binary.
+mkdir -p /opt/devopsy
+/usr/local/bin/devopsy --completion bash > /opt/devopsy/devopsy.bash
+/usr/local/bin/devopsy --completion fish > /opt/devopsy/devopsy.fish
+EOF

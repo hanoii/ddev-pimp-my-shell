@@ -1,7 +1,7 @@
 #!/bin/bash
 
 ## #ddev-generated
-## Description: Opens up a fish shell in the container or executs a command within a fish shell
+## Description: Opens up a fish shell in the container or executes a command within a fish shell
 ## Usage: fish
 ## Example: ddev fish
 ## ExecRaw: true

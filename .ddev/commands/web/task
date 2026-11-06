@@ -1,7 +1,7 @@
 #!/bin/bash
 #ddev-generated
 
-## Description: Run ahoy inside the web container
+## Description: Run task inside the web container
 ## Usage: task [args]
 ## Example: "ddev task some:command"
 ## ExecRaw: true

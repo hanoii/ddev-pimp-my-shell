@@ -114,9 +114,13 @@ through task's own completion engine (`task __complete`).
 
 ### devopsy
 
-Bash and fish completions come from `devopsy --completion`. Its daily update
-check stays on, but `devopsy --upgrade` inside the container is lost on the next
-restart: the add-on's own updates bump the version instead.
+Bash and fish completions come from `devopsy --completion`. On the host,
+`ddev devopsy` runs it in the container, for what goes over SSH like `ddev
+devopsy @prod --release` (the container has no Docker for `devopsy up`), and
+`ddev devopsy <TAB>` completes through devopsy's own completion engine
+(`devopsy --complete`). Its daily update check stays on, but `devopsy --upgrade`
+inside the container is lost on the next restart: the add-on's own updates bump
+the version instead.
 
 ### starship
 

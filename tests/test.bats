@@ -24,6 +24,8 @@ health_checks() {
   ddev exec devopsy --version
   ddev exec 'grep -q _devopsy /usr/share/bash-completion/completions/devopsy'
   ddev fish -c 'complete -C "devopsy --compl"' | grep -q completion
+  ddev devopsy --version
+  ddev __complete devopsy --compl | grep -qx -- --completion
   ddev fish --version
   ddev exec bash -cli z
   ddev exec starship --version

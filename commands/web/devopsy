@@ -1,0 +1,12 @@
+#!/bin/bash
+#ddev-generated
+
+## Description: Run devopsy inside the web container
+## Usage: devopsy [args]
+## Example: "ddev devopsy @prod --release"
+## ExecRaw: true
+## MutagenSync: true
+## HostWorkingDir: true
+
+export DDEV_PIMP_MY_SHELL_DEVOPSY=1
+devopsy "$@"

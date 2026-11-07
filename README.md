@@ -155,6 +155,13 @@ function mytide --on-event fish_prompt
 end
 ```
 
+It overrides fish's `__fish_print_hostnames` with
+[fish-shell/fish-shell#12743](https://github.com/fish-shell/fish-shell/pull/12743)
+applied, so ssh host completion also reads quoted and multi-path `Include`
+directives (for example `Include "config.d/*"`). To complete your host's ssh
+hosts in every DDEV project, symlink your ssh config and its included
+directories into `~/.ddev/homeadditions/.ssh/` on the host.
+
 ### lazygit
 
 It adds a [config.yml](homeadditions/.config/lazygit/config.yml) disabling the

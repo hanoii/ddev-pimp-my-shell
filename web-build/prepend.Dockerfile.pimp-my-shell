@@ -57,7 +57,7 @@ FROM pimp-my-shell-base AS pimp-my-shell-fzf
 SHELL ["/bin/bash", "-c"]
 RUN <<EOF
 set -eux
-FZF_VERSION=0.74.5
+FZF_VERSION=0.75.0
 AARCH=$(uname -m)
 AARCH=${AARCH/aarch64/arm64}
 AARCH=${AARCH/x86_64/amd64}
@@ -205,7 +205,7 @@ FROM pimp-my-shell-base AS pimp-my-shell-fd
 SHELL ["/bin/bash", "-c"]
 RUN <<EOF
 set -eux
-FD_VERSION=10.5.1
+FD_VERSION=10.5.2
 AARCH=$(uname -m)
 AARCH=${AARCH/i386/i686}
 curl-pimp-my-shell -o fd.tar.gz https://github.com/sharkdp/fd/releases/download/v${FD_VERSION}/fd-v${FD_VERSION}-${AARCH}-unknown-linux-musl.tar.gz
@@ -402,7 +402,7 @@ FROM pimp-my-shell-base AS pimp-my-shell-devopsy
 SHELL ["/bin/bash", "-c"]
 RUN <<EOF
 set -eux
-DEVOPSY_VERSION=0.60.1
+DEVOPSY_VERSION=0.61.0
 AARCH=$(uname -m)
 AARCH=${AARCH/aarch64/arm64}
 AARCH=${AARCH/x86_64/amd64}

@@ -60,3 +60,6 @@ COPY --from=pimp-my-shell-devopsy /opt/devopsy/devopsy.bash /usr/share/bash-comp
 COPY --from=pimp-my-shell-devopsy /opt/devopsy/devopsy.fish /usr/share/fish/vendor_completions.d/devopsy.fish
 
 RUN upterm completion fish > /usr/share/fish/vendor_completions.d/upterm.fish
+
+# fzf and ssh fixes that need bash-completion loaded first
+COPY pimp-my-shell.bash-completion /etc/bash_completion.d/pimp-my-shell

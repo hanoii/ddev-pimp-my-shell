@@ -1,0 +1,87 @@
+#ddev-generated
+# Copied to /etc/bash_completion.d/, which bash-completion sources at the end of
+# its own startup. ~/.bashrc loads bash-completion after
+# ~/.bashrc.d/pimp-my-shell.sh has loaded fzf, so this is the first place where
+# both are loaded.
+
+# fzf picks the completion it falls back to for a plain <Tab> when it loads, and
+# bash-completion was not loaded yet, so `ssh <Tab>`, `kill <Tab>`, `unset <Tab>`
+# and the like completed nothing. Set the loader fzf picks when it loads after
+# bash-completion.
+if declare -F _fzf_complete >/dev/null && [[ -z ${_fzf_completion_loader-} ]] &&
+  declare -F _comp_load >/dev/null; then
+  _fzf_completion_loader=_comp_load
+fi
+
+# fzf's `ssh **<Tab>` only reads ~/.ssh/config and ~/.ssh/config.d/*, never an
+# Include. fzf documents overriding __fzf_list_hosts, so it lists the same hosts
+# as bash-completion's `ssh <Tab>`.
+if declare -F _fzf_complete_ssh >/dev/null &&
+  declare -F _comp_compgen_known_hosts >/dev/null; then
+  __fzf_list_hosts() {
+    local COMPREPLY=()
+    _comp_compgen_known_hosts -a ""
+    printf '%s\n' "${COMPREPLY[@]}" | command sort -u
+  }
+fi
+
+# bash-completion 2.16's _comp__included_ssh_config_files keeps the quotes of a
+# quoted Include, for example Include "config.d/*", so the glob matches nothing
+# and every host in those files is missing. This is the same function with the
+# quotes stripped, from https://github.com/scop/bash-completion/pull/1766.
+# Remove it once a bash-completion release includes that PR.
+if declare -F _comp__included_ssh_config_files >/dev/null; then
+_comp__included_ssh_config_files()
+{
+    (($# < 1)) &&
+        echo "bash_completion: $FUNCNAME: missing mandatory argument CONFIG" >&2
+    local configfile i files f REPLY
+    configfile=$1
+
+    # From man ssh_config:
+    # "Files without absolute paths are assumed to be in ~/.ssh if included
+    # in a user configuration file or /etc/ssh if included from the system
+    # configuration file."
+    # This behavior is not affected by the the including file location -
+    # if the system configuration file is included from the user's config,
+    # relative includes are still resolved in the user's ssh config directory.
+    local relative_include_base
+    if [[ $configfile == /etc/ssh* ]]; then
+        relative_include_base="/etc/ssh"
+    else
+        relative_include_base="$HOME/.ssh"
+    fi
+
+    local depth=1
+    local -a included
+    local -a include_files
+    included=("$configfile")
+
+    # Max recursion depth per openssh's READCONF_MAX_DEPTH:
+    # https://github.com/openssh/openssh-portable/blob/5ec5504f1d328d5bfa64280cd617c3efec4f78f3/readconf.c#L2240
+    local max_depth=16
+    while ((${#included[@]} > 0 && depth++ < max_depth)); do
+        _comp_split include_files "$(command sed -ne 's/^[[:blank:]]*[Ii][Nn][Cc][Ll][Uu][Dd][Ee][[:blank:]]\(.*\)$/\1/p' "${included[@]}")" || return
+        included=()
+        for i in "${include_files[@]}"; do
+            # ssh_config allows quoted pathnames, for example Include "config.d/*".
+            if [[ $i == \"*\" || $i == \'*\' ]]; then
+                i=${i:1:${#i}-2}
+            fi
+            if [[ $i != [~/]* ]]; then
+                i="${relative_include_base}/${i}"
+            fi
+            _comp_expand_tilde "$i"
+            if _comp_expand_glob files '$REPLY'; then
+                # In case the expanded variable contains multiple paths
+                for f in "${files[@]}"; do
+                    if [[ -r $f && ! -d $f ]]; then
+                        config+=("$f")
+                        included+=("$f")
+                    fi
+                done
+            fi
+        done
+    done
+}
+fi

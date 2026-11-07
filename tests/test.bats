@@ -30,6 +30,11 @@ health_checks() {
   ddev exec bash -cli z
   ddev exec starship --version
   ddev exec --raw bash -cli "fzf --version"
+  # bash: fzf falls back to bash-completion, and both follow a quoted Include.
+  ddev exec 'bash -ic "echo \$_fzf_completion_loader"' | grep -q '_comp_load$'
+  ddev exec 'mkdir -p ~/.ssh/pms.d && echo "Host pms-test" > ~/.ssh/pms.d/a && echo "Include \"pms.d/*\"" >> ~/.ssh/config'
+  ddev exec bash -ic '__fzf_list_hosts' | grep -q 'pms-test$'
+  ddev fish -c '__fish_print_hostnames' | grep -qx pms-test
   ddev exec bat --version
   ddev gum --version
   # gum v2 before 2.0.2 leaked mode 2026/2027 queries after `gum spin`.

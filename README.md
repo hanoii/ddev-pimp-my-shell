@@ -20,6 +20,7 @@ defaults.
   * [devopsy](#devopsy)
   * [starship](#starship)
   * [fish](#fish)
+  * [ssh host completion](#ssh-host-completion)
   * [lazygit](#lazygit)
   * [go](#go)
   * [delta](#delta)
@@ -155,12 +156,22 @@ function mytide --on-event fish_prompt
 end
 ```
 
-It overrides fish's `__fish_print_hostnames` with
-[fish-shell/fish-shell#12743](https://github.com/fish-shell/fish-shell/pull/12743)
-applied, so ssh host completion also reads quoted and multi-path `Include`
-directives (for example `Include "config.d/*"`). To complete your host's ssh
-hosts in every DDEV project, symlink your ssh config and its included
-directories into `~/.ddev/homeadditions/.ssh/` on the host.
+### ssh host completion
+
+Both bash and fish complete ssh hosts from files your ssh config pulls in with a
+quoted `Include` (for example `Include "config.d/*"`), which neither does on its
+own, and fish also from an `Include` listing several paths:
+
+- fish's `__fish_print_hostnames` is overridden with
+  [fish-shell/fish-shell#12743](https://github.com/fish-shell/fish-shell/pull/12743)
+  applied.
+- bash-completion's `_comp__included_ssh_config_files` is overridden with
+  [scop/bash-completion#1766](https://github.com/scop/bash-completion/pull/1766)
+  applied, and fzf's `ssh **<TAB>` lists the same hosts as `ssh <TAB>`
+  ([`pimp-my-shell.bash-completion`](web-build/pimp-my-shell.bash-completion)).
+
+To complete your host's ssh hosts in every DDEV project, symlink your ssh config
+and its included directories into `~/.ddev/homeadditions/.ssh/` on the host.
 
 ### lazygit
 

@@ -158,14 +158,15 @@ end
 
 ### ssh host completion
 
-Both bash and fish complete ssh hosts from files your ssh config pulls in with a
-quoted `Include` (for example `Include "config.d/*"`), which neither does on its
-own, and fish also from an `Include` listing several paths:
+Both bash and fish read your ssh config the way ssh does since OpenSSH 8.7,
+which neither does on its own: an `Include`, `Host` or `KnownHostsFile` argument
+can be quoted (for example `Include "config.d/*"`) or have an escaped space, and
+a line can list several:
 
 - fish's `__fish_print_hostnames` is overridden with
   [fish-shell/fish-shell#12743](https://github.com/fish-shell/fish-shell/pull/12743)
-  applied.
-- bash-completion's `_comp__included_ssh_config_files` is overridden with
+  applied, which also expands `Include` paths without `eval`.
+- bash-completion 2.16's ssh config functions are overridden with
   [scop/bash-completion#1766](https://github.com/scop/bash-completion/pull/1766)
   applied, and fzf's `ssh **<TAB>` lists the same hosts as `ssh <TAB>`
   ([`pimp-my-shell.bash-completion`](web-build/pimp-my-shell.bash-completion)).

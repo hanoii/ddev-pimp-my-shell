@@ -30,11 +30,16 @@ health_checks() {
   ddev exec bash -cli z
   ddev exec starship --version
   ddev exec --raw bash -cli "fzf --version"
-  # bash: fzf falls back to bash-completion, and both follow a quoted Include.
+  # bash: fzf falls back to bash-completion. Both shells read ssh_config like
+  # ssh: a quoted Include with a wildcard, one with a space, a quoted Host.
   ddev exec 'bash -ic "echo \$_fzf_completion_loader"' | grep -q '_comp_load$'
-  ddev exec 'mkdir -p ~/.ssh/pms.d && echo "Host pms-test" > ~/.ssh/pms.d/a && echo "Include \"pms.d/*\"" >> ~/.ssh/config'
-  ddev exec bash -ic '__fzf_list_hosts' | grep -q 'pms-test$'
-  ddev fish -c '__fish_print_hostnames' | grep -qx pms-test
+  ddev exec 'mkdir -p ~/.ssh/pms.d ~/".ssh/pms dir" && echo "Host pms-glob" > ~/.ssh/pms.d/a && echo "Host pms-space" > ~/".ssh/pms dir/b" && printf "%s\n" "Include \"pms.d/*\" \"pms dir/b\"" "Host \"pms-quoted\"" >> ~/.ssh/config'
+  bash_hosts=$(ddev exec bash -ic '__fzf_list_hosts' | tr -d '\r')
+  fish_hosts=$(ddev fish -c '__fish_print_hostnames' | tr -d '\r')
+  for host in pms-glob pms-space pms-quoted; do
+    grep -qx "$host" <<<"$bash_hosts"
+    grep -qx "$host" <<<"$fish_hosts"
+  done
   ddev exec bat --version
   ddev gum --version
   # gum v2 before 2.0.2 leaked mode 2026/2027 queries after `gum spin`.

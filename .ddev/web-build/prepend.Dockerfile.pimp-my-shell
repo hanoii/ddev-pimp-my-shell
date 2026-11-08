@@ -240,7 +240,7 @@ FROM pimp-my-shell-base AS pimp-my-shell-lazygit
 SHELL ["/bin/bash", "-c"]
 RUN <<EOF
 set -eux
-LAZYGIT_VERSION=0.66.2
+LAZYGIT_VERSION=0.66.3
 AARCH=$(uname -m)
 AARCH=${AARCH/aarch64/arm64}
 AARCH=${AARCH/i386/32-bit}
@@ -402,7 +402,7 @@ FROM pimp-my-shell-base AS pimp-my-shell-devopsy
 SHELL ["/bin/bash", "-c"]
 RUN <<EOF
 set -eux
-DEVOPSY_VERSION=0.61.0
+DEVOPSY_VERSION=0.62.0
 AARCH=$(uname -m)
 AARCH=${AARCH/aarch64/arm64}
 AARCH=${AARCH/x86_64/amd64}

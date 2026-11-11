@@ -153,7 +153,7 @@ FROM pimp-my-shell-base AS pimp-my-shell-go
 SHELL ["/bin/bash", "-c"]
 RUN <<EOF
 set -eux
-GO_VERSION=1.27.3
+GO_VERSION=1.27.4
 AARCH=$(uname -m)
 AARCH=${AARCH/aarch64/arm64}
 AARCH=${AARCH/x86_64/amd64}
@@ -360,7 +360,7 @@ FROM pimp-my-shell-base AS pimp-my-shell-doctl
 SHELL ["/bin/bash", "-c"]
 RUN <<EOF
 set -eux
-DOCTL_VERSION=2.3.0
+DOCTL_VERSION=2.4.0
 AARCH=$(uname -m)
 AARCH=${AARCH/aarch64/arm64}
 AARCH=${AARCH/x86_64/amd64}
@@ -402,7 +402,7 @@ FROM pimp-my-shell-base AS pimp-my-shell-devopsy
 SHELL ["/bin/bash", "-c"]
 RUN <<EOF
 set -eux
-DEVOPSY_VERSION=0.62.0
+DEVOPSY_VERSION=0.65.0
 AARCH=$(uname -m)
 AARCH=${AARCH/aarch64/arm64}
 AARCH=${AARCH/x86_64/amd64}

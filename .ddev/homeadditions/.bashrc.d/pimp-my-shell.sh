@@ -29,7 +29,14 @@ _ZL_DATA=/mnt/ddev-global-cache/z.lua/${HOSTNAME}/.zlua
 export _ZL_DATA
 
 # go
-export PATH=$PATH:/usr/local/go/bin:~/go/bin
+# Everything go downloads or builds lives in the global cache so it survives
+# restarts: GOPATH holds the module cache (pkg/mod, also where GOTOOLCHAIN
+# downloads go) and `go install` binaries (bin), GOCACHE the build cache.
+# Values already set (e.g. a project's web_environment) are kept.
+export GOPATH=${GOPATH:-/mnt/ddev-global-cache/go/${HOSTNAME}}
+export GOCACHE=${GOCACHE:-${GOPATH}/cache}
+mkdir -p "${GOCACHE}"
+export PATH=$PATH:/usr/local/go/bin:${GOPATH}/bin
 unset GOARCH
 unset GOOS
 

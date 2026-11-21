@@ -1,4 +1,5 @@
 name: pimp-my-shell
+ddev_version_constraint: '>= v1.25.6'
 project_files:
   - config.pimp-my-shell.yaml
   - commands/

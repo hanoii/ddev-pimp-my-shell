@@ -24,16 +24,16 @@ fi
 COMP_WORDBREAKS=${COMP_WORDBREAKS//:}
 
 # z.lua
-mkdir -p /mnt/ddev-global-cache/z.lua/${HOSTNAME}
-_ZL_DATA=/mnt/ddev-global-cache/z.lua/${HOSTNAME}/.zlua
+mkdir -p /mnt/ddev-project-cache/z.lua
+_ZL_DATA=/mnt/ddev-project-cache/z.lua/.zlua
 export _ZL_DATA
 
 # go
-# Everything go downloads or builds lives in the global cache so it survives
+# Everything go downloads or builds lives in the project cache so it survives
 # restarts: GOPATH holds the module cache (pkg/mod, also where GOTOOLCHAIN
 # downloads go) and `go install` binaries (bin), GOCACHE the build cache.
 # Values already set (e.g. a project's web_environment) are kept.
-export GOPATH=${GOPATH:-/mnt/ddev-global-cache/go/${HOSTNAME}}
+export GOPATH=${GOPATH:-/mnt/ddev-project-cache/go}
 export GOCACHE=${GOCACHE:-${GOPATH}/cache}
 mkdir -p "${GOCACHE}"
 export PATH=$PATH:/usr/local/go/bin:${GOPATH}/bin

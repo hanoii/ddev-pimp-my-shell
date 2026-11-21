@@ -402,7 +402,7 @@ FROM pimp-my-shell-base AS pimp-my-shell-devopsy
 SHELL ["/bin/bash", "-c"]
 RUN <<EOF
 set -eux
-DEVOPSY_VERSION=0.76.0
+DEVOPSY_VERSION=0.77.0
 AARCH=$(uname -m)
 AARCH=${AARCH/aarch64/arm64}
 AARCH=${AARCH/x86_64/amd64}

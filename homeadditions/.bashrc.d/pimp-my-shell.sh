@@ -1,5 +1,13 @@
 #ddev-generated
 
+# umask
+# Since Docker 29.6, `docker exec` processes (ddev exec/ssh, exec hooks) inherit
+# umask 0000 from dockerd when it starts containerd (OrbStack, dind, rootless),
+# so every file they create is world-writable.
+# https://github.com/moby/moby/issues/53985
+# Restore the usual 0022, but only when it is 0000 so a deliberate umask is kept.
+[ "$(umask)" = 0000 ] && umask 022
+
 # Path
 export PATH=~/.bun/bin:~/.local/bin:~/.composer/vendor/bin:$PATH:/usr/games
 

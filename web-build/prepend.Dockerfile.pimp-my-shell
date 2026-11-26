@@ -141,7 +141,7 @@ FROM pimp-my-shell-base AS pimp-my-shell-xterm-kitty
 SHELL ["/bin/bash", "-c"]
 RUN <<EOF
 set -eux
-KITTY_VERSION=0.51.0
+KITTY_VERSION=0.51.1
 mkdir -p /opt/kitty
 curl-pimp-my-shell -o kitty.tar.gz https://github.com/kovidgoyal/kitty/archive/v${KITTY_VERSION}.tar.gz
 tar -zxf kitty.tar.gz --strip-components=1 -C /opt/kitty
@@ -282,7 +282,7 @@ FROM pimp-my-shell-base AS pimp-my-shell-gh
 SHELL ["/bin/bash", "-c"]
 RUN <<EOF
 set -eux
-GH_VERSION=2.105.0
+GH_VERSION=2.106.0
 AARCH=$(uname -m)
 AARCH=${AARCH/aarch64/arm64}
 AARCH=${AARCH/x86_64/amd64}
@@ -298,7 +298,7 @@ FROM pimp-my-shell-base AS pimp-my-shell-delta
 SHELL ["/bin/bash", "-c"]
 RUN <<EOF
 set -eux
-DELTA_VERSION=0.21.2
+DELTA_VERSION=0.22.0
 AARCH=$(uname -m)
 curl-pimp-my-shell -o delta.tar.gz https://github.com/dandavison/delta/releases/download/${DELTA_VERSION}/delta-${DELTA_VERSION}-${AARCH}-unknown-linux-gnu.tar.gz
 tar -zxf delta.tar.gz --strip-components=1 -C /opt
@@ -360,7 +360,7 @@ FROM pimp-my-shell-base AS pimp-my-shell-doctl
 SHELL ["/bin/bash", "-c"]
 RUN <<EOF
 set -eux
-DOCTL_VERSION=2.7.0
+DOCTL_VERSION=2.11.0
 AARCH=$(uname -m)
 AARCH=${AARCH/aarch64/arm64}
 AARCH=${AARCH/x86_64/amd64}
@@ -402,7 +402,7 @@ FROM pimp-my-shell-base AS pimp-my-shell-devopsy
 SHELL ["/bin/bash", "-c"]
 RUN <<EOF
 set -eux
-DEVOPSY_VERSION=0.77.0
+DEVOPSY_VERSION=0.82.0
 AARCH=$(uname -m)
 AARCH=${AARCH/aarch64/arm64}
 AARCH=${AARCH/x86_64/amd64}
